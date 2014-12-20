@@ -13,7 +13,6 @@
                 </td>
             </tr>
         </table>
-        <!-- <?=$SQLConnect?> -->
         <div class="container">
             <div class="row">
                   <div class="col-xs-6 content main-content">
@@ -25,11 +24,13 @@
                   </div>
             </div><!-- Closing Row -->
         </div><!-- Closing Container -->
+
         <div class="content-banner">
             <h1>Ratings</h1>
         </div>
         <img class = "icon" src="<?=base_url('public/images/ListButton.png')?>">
         <?=$DisplayRatingSystem?>
+        
         <div id="accordion" role="tablist" aria-multiselectable="true">
           <div >
             <div class="content-banner" role="tab" id="headingOne">
@@ -41,96 +42,68 @@
             </div>
             <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
               <div class="panel-body">
-                <table>
-                    <tr>
-                        <td class=" left">
-                            <img class = "icon" src="<?=base_url('public/images/ListButton.png')?>">
-                        </td>
-                        <td>
-                            <table class="information-content ">
-                                <tr>
-                                    <td><p class="text-right">Name:</p></td>
-                                    <td class="information-content "><p><?=$name?></p></td>
-                                </tr>
-                                <tr>
-                                    <td><p class="text-right">Website:</p></td>
-                                    <td class="information-content "><p><?=$website?></p></td>
-                                </tr>
-                                <tr>
-                                    <td><p class="text-right">Location:</p></td>
-                                    <td class="information-content "><p><?=$location?></p></td>
-                                </tr>
-                                <tr>
-                                    <td><p class="text-right">Description:</p></td>
-                                    <td class="information-content "><p><?=$description?></p></td>
-                                </tr>
-                                <tr>
-                                    <td><p class="text-right">Longitude:</p></td>
-                                    <td class="information-content "><p><?=$longitude?></p></td>
-                                </tr>
-                                <tr>
-                                    <td><p class="text-right">Latitude:</p></td>
-                                    <td class="information-content "><p><?=$latitude?></p></td>
-                                </tr>
-                            </table>
-                        </td>
+                <div class="row">
+                    <div class="col-xs-2"><img class = "icon" src="<?=base_url('public/images/ListButton.png')?>"></div>
 
-                        <td class=" right">
-                            <img class = "icon" src="<?=base_url('public/images/PlayButton.png')?>">
-                        </td>		
-                    </tr>	
-                </table>
+                    <div class="col-xs-4">
+                        <table class="information-content ">
+                            <tr>
+                                <td><p class="text-right">Name:</p></td>
+                                <td class="information-content "><p><?=$name?></p></td>
+                            </tr>
+                            <tr>
+                                <td><p class="text-right">Website:</p></td>
+                                <td class="information-content "><p><?=$website?></p></td>
+                            </tr>
+                            <tr>
+                                <td><p class="text-right">Location:</p></td>
+                                <td class="information-content "><p><?=$location?></p></td>
+                            </tr>
+                            <tr>
+                                <td><p class="text-right">Description:</p></td>
+                                <td class="information-content "><p><?=$description?></p></td>
+                            </tr>
+                            <tr>
+                                <td><p class="text-right">Longitude:</p></td>
+                                <td class="information-content "><p><?=$longitude?></p></td>
+                            </tr>
+                            <tr>
+                                <td><p class="text-right">Latitude:</p></td>
+                                <td class="information-content "><p><?=$latitude?></p></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-xs-2"><img class = "icon" src="<?=base_url('public/images/PlayButton.png')?>"></div>
+                </div>
               </div>
             </div>
           </div>
         </div>
+
         <div class="content-banner">
             <h1>Location</h1>
         </div>
-        <table>
-            <tr>
-                <td>
-                    <img class = "icon" src="<?=base_url('public/images/PinButton.png')?>">
-                </td>
-                <td>
-<?php
-echo "<p>".$location. "</p>";
-?>
-                </td>		
-            </tr>	
-        </table>
+        <div class="row">
+            <div class="col-xs-2"><img class = "icon" src="<?=base_url('public/images/PinButton.png')?>"></div>
+            <div class="col-md-4"><?php echo "<p>".$location. "</p>"; ?></div>
+        </div>
+
         <div class="content-banner">
             <h1>Opening Hour</h1>
         </div>
-        <table>
-            <tr>
-                <td>
-                    <img class = "icon" src="<?=base_url('public/images/ClockButton.png')?>">
-                </td>
-                <td>
-                    <p>
-                        11.00 am - 11.01 am, Everyday except Monday to Sunday
-                    </p>
-                </td>		
-            </tr>	
-        </table>
+        <div class="row">
+            <div class="col-xs-2"><img class = "icon" src="<?=base_url('public/images/ClockButton.png')?>"></div>
+            <div class="col-md-4"><p>11.00 am - 11.01 am, Everyday except Monday to Sunday</p></div>
+        </div>
 
         <div class="content-banner">
             <h1>Contact</h1>
         </div>
-        <table>
-            <tr>
-                <td>
-                    <img class = "icon" src="<?=base_url('public/images/PhoneButton.png')?>">
-                </td>
-                <td>
-                    <p>
-                        Find in yellow book, I believe it is not exist anymore.
-                    </p>
-                </td>		
-            </tr>	
-        </table>
-        <br>
+        <div class="row">
+            <div class="col-xs-2"><img class = "icon" src="<?=base_url('public/images/PhoneButton.png')?>"></div>
+            <div class="col-md-4"><p>Find in yellow book, I believe it is not exist anymore.</p></div>
+        </div>
+
         <div class="content-banner">
             <h1>Rate Us Please</h1>
         </div>
