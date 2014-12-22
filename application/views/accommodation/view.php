@@ -4,21 +4,18 @@
     </head>
     <body>
         <?=$NavBar?>
-        <table>
-            <tr>
-                <td>
-                    <div class="title-banner">
-                        <h1><?=$title?></h1>
-                    </div>
-                </td>
-            </tr>
-        </table>
+
+        <div class="title-banner">
+            <h1><?=$title?></h1>
+        </div>
+        <br><br><br><br>
+
         <div class="container">
             <div class="row">
                   <div class="col-xs-6 content main-content">
                     <img class="main-img" src="http://www.plazamerdeka.com/slideshow/slide01.jpg">
                   </div>
-                  <div class="col-xs-4">
+                  <div class="col-md-4">
                         <div class="col-xs-12 content"><img class="thumb-img" src="http://www.plazamerdeka.com/slideshow/slide01.jpg"></div>
                         <div class="col-xs-12 content"><img class="thumb-img" src="http://www.plazamerdeka.com/slideshow/slide01.jpg"></div>
                   </div>
@@ -28,7 +25,7 @@
         <div class="content-banner">
             <h1>Ratings</h1>
         </div>
-        <img class = "icon" src="<?=base_url('public/images/ListButton.png')?>">
+        <img class = "icon" src="<?=base_url('public/images/RatingButton.png')?>">
         <?=$DisplayRatingSystem?>
         
         <div id="accordion" role="tablist" aria-multiselectable="true">
