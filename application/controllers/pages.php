@@ -2,6 +2,12 @@
 
 class Pages extends CI_Controller {
 
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->model('accommodation_model');
+    }
+
     public function view($page = 'home')
     {
         if ( ! file_exists(APPPATH.'/views/pages/'.$page.'.php'))
@@ -9,6 +15,7 @@ class Pages extends CI_Controller {
             show_404();
         }
 
+        $data['accommodation'] = $this->accommodation_model->get_accommodation();
         $data['title'] = ucfirst($page); // Capitalize the first letter
         $data['head'] = $this->load->view('templates/head', $data, TRUE);
         $data['NavBar'] = $this->load->view('templates/NavBar', $data, TRUE);
@@ -16,6 +23,7 @@ class Pages extends CI_Controller {
         
         $this->load->view('pages/'.$page, $data);
     }
+
 }
 
 /* End of file pages.php */
