@@ -7,12 +7,13 @@
 
         <div class="row">
             <div class="search-banner">
-                <form class="form-horizontal" role="form" method="post">
+                <form action="search.php" method="get" class="form-horizontal" role="form">
                   <div class="form-group">
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="search" placeholder="Search">
+                      <input type="text" class="form-control" id="search" placeholder="Search" name="search">
                     </div>
-                    <label for="searchbox" class="col-sm-2 control-label"><img class = "left search-icon" src="<?php echo base_url(); ?>public/images/SearchButton.png"></label>
+                    <label for="searchbox" class="col-sm-2 control-label"><button type="submit" class="btn btn-default"><img class = "left search-icon" src="<?php echo base_url(); ?>public/images/SearchButton.png"></button></label>
+
                   </div>    
                 </form>
             </div>
@@ -20,17 +21,21 @@
         <br><br><br><br>
 
         <?php 
-            $tables = $this->db->list_tables();
-
-            foreach ($tables as $table)
+            if (!empty($_GET)) 
             {
-                $this->db->from($table);
-                $this->db->like($table.'.name', 'merdeka', 'both'); 
-                // $this->db->or_like($table'.description', 'merdeka', 'both'); sometables dont have description or website
-                // $this->db->or_like($table'.website', 'merdeka', 'both');  
-                $this->db->or_like($table.'.location', 'merdeka', 'both'); 
+                $tables = $this->db->list_tables();
 
-                $query = $this->db->get();
+                foreach ($tables as $table)
+                {
+                    $this->db->from($table);
+                    $this->db->like($table.'.name', $_GET['search'], 'both'); 
+                    // $this->db->or_like($table'.description', $_GET['search'], 'both'); sometables dont have description or website
+                    // $this->db->or_like($table'.website', $_GET['search'], 'both');  
+                    $this->db->or_like($table.'.location', $_GET['search'], 'both'); 
+
+                    $query = $this->db->get();
+            
+
         ?>
 
                 <div id="accordion" role="tablist" aria-multiselectable="true">
@@ -38,7 +43,8 @@
                     <div class="content-banner" role="tab" id="heading<?=$table?>">
                       <h1>
                         <a data-toggle="collapse" data-parent="#accordion" href="#collapse<?=$table?>" aria-expanded="true" aria-controls="collapse<?=$table?>">
-                            <p class="information-link"><?=$table ?></p>
+                            <!-- <p class="information-link"><?=$table ?></p> -->
+                            <p class="information-link"><?= ucfirst($string = str_replace('_', ' ', $table)); ?></p>
                         </a>
                       </h1>
                     </div>
@@ -77,7 +83,7 @@
                   </div>
                 </div>
         <?php
-            
+                }
             }
 
         ?>
