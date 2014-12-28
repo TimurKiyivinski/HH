@@ -1,4 +1,4 @@
-<?php
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Accommodation extends CI_Controller {
 
@@ -31,7 +31,7 @@ class Accommodation extends CI_Controller {
         $data['title'] = $data['accommodation_item']['name'];
         $data['name'] = $data['accommodation_item']['name'];
         $data['website'] = $data['accommodation_item']['website'];
-        $data['location'] = $data['accommodation_item']['location'];
+        $data['location'] = $data['accommodation_item']['address'];
         $data['description'] = $data['accommodation_item']['description'];
         $data['longitude'] = $data['accommodation_item']['longitude'];
         $data['latitude'] = $data['accommodation_item']['latitude'];

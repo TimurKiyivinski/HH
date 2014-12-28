@@ -22,7 +22,7 @@
                                             <?php $accommodation_item['rating']--; ?>
                                         <?php endfor; ?>
                                         <br>
-                                        <a class="list-description" href="<?='view/'.strval($accommodation_item['id'])?>">View Accommodation</a>
+                                        <a class="list-description" href="<?=site_url('accommodation/view/'.strval($accommodation_item['id']))?>">View Accommodation</a>
                                     </div>
                                 </div>
                             </div>
