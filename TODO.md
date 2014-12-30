@@ -9,4 +9,6 @@
 
 ## Controller ##
 - [ ] Loads all `href` links from `config/links.php` 
+- [ ] Use AJAX to handle rating
+
 
