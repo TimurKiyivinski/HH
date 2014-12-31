@@ -1,5 +1,8 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
+/**
+ * Accommodation model handles everything related to the query
+ * towards the accommodation table in the database
+ */
 class Accommodation_model extends CI_Model
 {
     public $id = '';
@@ -25,9 +28,10 @@ class Accommodation_model extends CI_Model
     }
 
     /**
-     * query for a place by it's id
+     * Query for a place by it's id
      *
-     * @param id, place id
+     * @param int, place id
+     * @return associative array of data
      */
     public function get_place($id = FALSE)
     {
@@ -36,33 +40,48 @@ class Accommodation_model extends CI_Model
             return NULL;
         }
 
-        $query = $this->db->get_where('accommodation', array('id' => $id));
+        $this->db->where('id', $id);
+        $query = $this->db->get($this->table);
 
         if ($query->num_rows() === 1)
             return $query->row_array();
     }
 
     /**
-     * query all the places from this category
+     * Query all the places from this category
+     *
+     * @return array of associative array of data
      */
     public function get_all()
     {
-        $query = $this->db->get('accommodation');
+        $query = $this->db->get($this->table);
         return $query->result_array();
     }
 
+    /**
+     * Adds a new place to accommodation table
+     *
+     * @return bool, status of operation
+     */
     public function add_place()
     {
-        $this->name = $this->input->post('name');
-        $this->description = $this->input->post('description');
-        $this->website = $this->input->post('website');
-        $this->location = $this->input->post('location');
-        $this->longitude = $this->input->post('longitude');
-        $this->latitude = $this->input->post('latitude');
+        $data = array();
+        $data['name'] = $this->input->post('name');
+        $data['description'] = $this->input->post('description');
+        $data['website'] = $this->input->post('website');
+        $data['location'] = $this->input->post('location');
+        $data['longitude'] = $this->input->post('longitude');
+        $data['latitude'] = $this->input->post('latitude');
 
-        return $this->db->insert('accommodation', $this);
+        return $this->db->insert($this->table, $data);
     }
 
+    /**
+     * Deletes a place by id
+     *
+     * @param int, place id
+     * @return bool, status of operation
+     */
     public function remove_place($id = FALSE)
     {
         if ($id === FALSE)
@@ -76,3 +95,6 @@ class Accommodation_model extends CI_Model
         return TRUE;
     }
 }
+
+/* End of file accommodation_model.php */
+/* Location: application/models/accommodation_model.php */
