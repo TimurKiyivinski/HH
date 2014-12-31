@@ -3,7 +3,7 @@
 <?=$head?>
 </head>
 <body>
-<?=$NavBar?>
+<?=$navbar?>
 
 <div class="title-banner">
     <h1><?=$place['name']?></h1>

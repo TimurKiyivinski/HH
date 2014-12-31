@@ -32,7 +32,7 @@ class Places extends CI_Controller {
         // load view
         $this->data['title'] = 'Categories';
         $this->data['head'] = $this->load->view('templates/head', $this->data, TRUE);
-        $this->data['NavBar'] = $this->load->view('templates/NavBar', $this->data, TRUE);
+        $this->data['navbar'] = $this->load->view('templates/navbar', $this->data, TRUE);
         $this->data['foot'] = $this->load->view('templates/foot', $this->data, TRUE);
 
         // output view
@@ -65,7 +65,7 @@ class Places extends CI_Controller {
         // load view
         $this->data['title'] = ucfirst($category) . ' List';
         $this->data['head'] = $this->load->view('templates/head', $this->data, TRUE);
-        $this->data['NavBar'] = $this->load->view('templates/NavBar', $this->data, TRUE);
+        $this->data['navbar'] = $this->load->view('templates/navbar', $this->data, TRUE);
         $this->data['foot'] = $this->load->view('templates/foot', $this->data, TRUE);
 
         // output view
@@ -98,7 +98,7 @@ class Places extends CI_Controller {
         // load views
         $this->data['title'] = $this->data['place']['name'];
         $this->data['head'] = $this->load->view('templates/head', $this->data, TRUE);
-        $this->data['NavBar'] = $this->load->view('templates/NavBar', $this->data, TRUE);
+        $this->data['navbar'] = $this->load->view('templates/navbar', $this->data, TRUE);
         $this->data['foot'] = $this->load->view('templates/foot', $this->data, TRUE);
         $this->load->view("{$category}/detail", $this->data);
     }

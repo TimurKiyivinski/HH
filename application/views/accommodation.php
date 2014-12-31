@@ -3,7 +3,7 @@
     <?=$head?>
 </head>
 <body>
-<?=$NavBar?>
+<?=$navbar?>
 <div class="container">
     <?php foreach ($places as $place): ?>
     <div class="row">

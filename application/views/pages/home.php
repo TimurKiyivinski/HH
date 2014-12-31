@@ -3,7 +3,7 @@
         <?=$head?>
     </head>
     <body>
-        <?=$NavBar?>
+        <?=$navbar?>
         <table>
             <tr>
                 <td>

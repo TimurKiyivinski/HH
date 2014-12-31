@@ -3,7 +3,7 @@
         <?=$head?>
     </head>
     <body>
-        <?=$NavBar?>
+        <?=$navbar?>
 
         <div class="row">
             <div class="search-banner">

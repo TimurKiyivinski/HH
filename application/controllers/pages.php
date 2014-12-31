@@ -18,7 +18,7 @@ class Pages extends CI_Controller {
         $data['accommodation'] = $this->accommodation_model->get_accommodation();
         $data['title'] = ucfirst($page); // Capitalize the first letter
         $data['head'] = $this->load->view('templates/head', $data, TRUE);
-        $data['NavBar'] = $this->load->view('templates/NavBar', $data, TRUE);
+        $data['navbar'] = $this->load->view('templates/navbar', $data, TRUE);
         $data['foot'] = $this->load->view('templates/foot', $data, TRUE);
         
         $this->load->view('pages/'.$page, $data);
