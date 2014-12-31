@@ -12,8 +12,6 @@ class Search extends CI_Controller {
 
     /**
      * Shows the Search interface
-     *
-     * TODO: Group search by categories
      */
     public function index()
     {
@@ -25,10 +23,7 @@ class Search extends CI_Controller {
 
             $search = $this->input->get('search');
 
-            $this->data['places'] = $this->category_model->search_all($search);
-            // TODO: Make category dynamic too
-            $this->data['category'] = 'accommodation';
-            
+            $this->data['results'] = $this->category_model->search_all($search);
         }
 
         // load view

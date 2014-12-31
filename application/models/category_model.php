@@ -46,23 +46,10 @@ class Category_model extends CI_Model
     }
 
     /**
-     * Query for list of category tables
-     *
-     * @return array of associative array of data
-     */
-    public function get_all_tables()
-    {
-        $this->db->select('table_name');
-        $query = $this->db->get($this->table);
-
-        return $query->result_array();
-    }
-
-    /**
      * Make a search query
      *
      * @param string , search string
-     * @return array of places objects that matches
+     * @return array of associative array of data
      */
     public function search_all($str = FALSE)
     {
@@ -71,7 +58,9 @@ class Category_model extends CI_Model
             return NULL;
         }
 
-        $categories = $this->get_all_tables();
+        $categories = $this->get_all();
+
+        $result = array();
 
         for ($i = 0; $i < count($categories); $i++)
         {
@@ -80,11 +69,16 @@ class Category_model extends CI_Model
             $this->db->or_like($categories[$i]['table_name'].'.description', $str, 'both');
             $this->db->or_like($categories[$i]['table_name'].'.website', $str, 'both');
             $this->db->or_like($categories[$i]['table_name'].'.address', $str, 'both');
+
+            $query = $this->db->get();
+
+            $data = array();
+            $data['category'] = $categories[$i];
+            $data['places'] = $query->result_array();
+            array_push($result, $data);
         }
 
-        $query = $this->db->get();
-
-        return $query->result();
+        return $result;
     }
 
     /**
