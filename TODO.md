@@ -3,6 +3,8 @@
 - [ ] Use carousel to show at least 3 images per details page.
 - [ ] Make collapsible more visible for Information section on Details page.
 - [x] Refactor view file structure to `view/accommodation.php` and `view/accommodation/details.php` 
+- [ ] Remove <br> tags and use CSS to prettify
+- [ ] Change from table to css in details page for information section
 
 ## Model ##
 - [x] Have a new table called photos that has category_id, place_id and link to photo
