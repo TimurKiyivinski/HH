@@ -2,22 +2,43 @@
 
 class Search extends CI_Controller {
 
+    private $data;
+
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('accommodation_model');
+        $this->data['href'] = $this->config->item('href');
     }
 
-    // TODO: Fix search
+    /**
+     * Shows the Search interface
+     *
+     * TODO: Group search by categories
+     */
     public function index()
     {
-        $data['accommodation'] = $this->accommodation_model->get_accommodation();
+        $this->load->helper('form');
 
-        $data['head'] = $this->load->view('templates/head', $data, TRUE);
-        $data['navbar'] = $this->load->view('templates/navbar', $data, TRUE);
-        $data['foot'] = $this->load->view('templates/foot', $data, TRUE);
+        if($this->input->get())
+        {
+            $this->load->model('category_model');
 
-        $this->load->view('search', $data);
+            $search = $this->input->get('search');
+
+            $this->data['places'] = $this->category_model->search_all($search);
+            // TODO: Make category dynamic too
+            $this->data['category'] = 'accommodation';
+            
+        }
+
+        // load view
+        $this->data['title'] = 'Search';
+        $this->data['head'] = $this->load->view('templates/head', $this->data, TRUE);
+        $this->data['navbar'] = $this->load->view('templates/navbar', $this->data, TRUE);
+        $this->data['foot'] = $this->load->view('templates/foot', $this->data, TRUE);
+
+        // output view
+        $this->load->view('search', $this->data);
     }
 
 }

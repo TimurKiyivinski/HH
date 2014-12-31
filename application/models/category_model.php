@@ -46,6 +46,48 @@ class Category_model extends CI_Model
     }
 
     /**
+     * Query for list of category tables
+     *
+     * @return array of associative array of data
+     */
+    public function get_all_tables()
+    {
+        $this->db->select('table_name');
+        $query = $this->db->get($this->table);
+
+        return $query->result_array();
+    }
+
+    /**
+     * Make a search query
+     *
+     * @param string , search string
+     * @return array of places objects that matches
+     */
+    public function search_all($str = FALSE)
+    {
+        if ($str === FALSE)
+        {
+            return NULL;
+        }
+
+        $categories = $this->get_all_tables();
+
+        for ($i = 0; $i < count($categories); $i++)
+        {
+            $this->db->from($categories[$i]['table_name']);
+            $this->db->or_like($categories[$i]['table_name'].'.name', $str, 'both');
+            $this->db->or_like($categories[$i]['table_name'].'.description', $str, 'both');
+            $this->db->or_like($categories[$i]['table_name'].'.website', $str, 'both');
+            $this->db->or_like($categories[$i]['table_name'].'.address', $str, 'both');
+        }
+
+        $query = $this->db->get();
+
+        return $query->result();
+    }
+
+    /**
      * Add a new category
      *
      * @return bool, status of operation
