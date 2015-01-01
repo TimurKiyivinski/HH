@@ -24,7 +24,10 @@ class Accommodation_model extends CI_Model
 
     public function __construct()
     {
+        parent::__construct();
+
         $this->load->database();
+        log_msg(__CLASS__, __FUNCTION__, func_get_args());
     }
 
     /**
@@ -35,6 +38,7 @@ class Accommodation_model extends CI_Model
      */
     public function get_place($id = FALSE)
     {
+        log_msg(__CLASS__, __FUNCTION__, func_get_args());
         if ($id === FALSE)
         {
             return NULL;
@@ -54,6 +58,7 @@ class Accommodation_model extends CI_Model
      */
     public function get_all()
     {
+        log_msg(__CLASS__, __FUNCTION__, func_get_args());
         $query = $this->db->get($this->table);
         return $query->result_array();
     }
@@ -65,6 +70,7 @@ class Accommodation_model extends CI_Model
      */
     public function add_place()
     {
+        log_msg(__CLASS__, __FUNCTION__, func_get_args());
         $data = array();
         $data['name'] = $this->input->post('name');
         $data['description'] = $this->input->post('description');
@@ -84,6 +90,7 @@ class Accommodation_model extends CI_Model
      */
     public function remove_place($id = FALSE)
     {
+        log_msg(__CLASS__, __FUNCTION__, func_get_args());
         if ($id === FALSE)
         {
             return FALSE;

@@ -11,7 +11,10 @@ class Category_model extends CI_Model
 
     public function __construct()
     {
+        parent::__construct();
+
         $this->load->database();
+        log_msg(__CLASS__, __FUNCTION__, func_get_args());
     }
 
     /**
@@ -22,6 +25,7 @@ class Category_model extends CI_Model
      */
     public function get($id = FALSE)
     {
+        log_msg(__CLASS__, __FUNCTION__, func_get_args());
         if ($id === FALSE)
         {
             return NULL;
@@ -41,6 +45,7 @@ class Category_model extends CI_Model
      */
     public function get_all()
     {
+        log_msg(__CLASS__, __FUNCTION__, func_get_args());
         $query = $this->db->get($this->table);
         return $query->result_array();
     }
@@ -53,6 +58,7 @@ class Category_model extends CI_Model
      */
     public function search_all($str = FALSE)
     {
+        log_msg(__CLASS__, __FUNCTION__, func_get_args());
         if ($str === FALSE)
         {
             return NULL;
@@ -88,6 +94,7 @@ class Category_model extends CI_Model
      **/
     public function add()
     {
+        log_msg(__CLASS__, __FUNCTION__, func_get_args());
         $data = array();
         $data['table_name'] = $this->input->post('table_name');
         $data['display'] = $this->input->post('display_name');
@@ -104,6 +111,7 @@ class Category_model extends CI_Model
      */
     public function remove($id = FALSE)
     {
+        log_msg(__CLASS__, __FUNCTION__, func_get_args());
         if ($id === FALSE)
         {
             return FALSE;
