@@ -5,7 +5,8 @@
 *.jpeg
 *.swp
 *.sh
-*/config/development
+.sass-cache/
+*/config/development/
 */logs/log*.php
 */logs/!index.html
 */cache/*
