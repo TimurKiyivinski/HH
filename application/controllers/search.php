@@ -7,6 +7,7 @@ class Search extends CI_Controller {
     public function __construct()
     {
         parent::__construct();
+        log_msg(__CLASS__, __FUNCTION__, func_get_args());
         $this->data['href'] = $this->config->item('href');
     }
 
@@ -15,6 +16,7 @@ class Search extends CI_Controller {
      */
     public function index()
     {
+        log_msg(__CLASS__, __FUNCTION__, func_get_args());
         $this->load->helper('form');
 
         if($this->input->get())

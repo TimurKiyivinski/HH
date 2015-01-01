@@ -10,6 +10,7 @@ class Places extends CI_Controller {
     public function __construct()
     {
         parent::__construct();
+        log_msg(__CLASS__, __FUNCTION__, func_get_args());
         $this->data['href'] = $this->config->item('href');
     }
 
@@ -18,6 +19,7 @@ class Places extends CI_Controller {
      */
     public function index()
     {
+        log_msg(__CLASS__, __FUNCTION__, func_get_args());
         $this->list_categories();
     }
 
@@ -26,6 +28,7 @@ class Places extends CI_Controller {
      */
     public function list_categories()
     {
+        log_msg(__CLASS__, __FUNCTION__, func_get_args());
         $this->load->model('category_model');
         $this->data['categories'] = $this->category_model->get_all();
 
@@ -46,6 +49,7 @@ class Places extends CI_Controller {
      */
     public function list_places($category = FALSE)
     {
+        log_msg(__CLASS__, __FUNCTION__, func_get_args());
         if ($category === FALSE)
         {
             redirect($this->data['href']['places']['categories']);
@@ -80,6 +84,7 @@ class Places extends CI_Controller {
      */
     public function details($category = FALSE, $place_id = FALSE)
     {
+        log_msg(__CLASS__, __FUNCTION__, func_get_args());
         if ($category === FALSE OR $place_id === FALSE)
         {
             show_404();
