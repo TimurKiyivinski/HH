@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <head>
     <?=$head?>
@@ -32,5 +33,6 @@
 <br>
 <br>
 <?=$foot?>
+<?=$js?>
 </body>
 </html>

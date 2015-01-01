@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <head>
 <?=$head?>
@@ -12,7 +13,7 @@
                 <input type="text" class="form-control" id="search" placeholder="Search" name="search">
             </div>
             <label for="searchbox" class="col-sm-2 control-label"><button type="submit" class="btn btn-default"><img class = "left search-icon" src="<?php echo base_url(); ?>public/images/SearchButton.png"></button></label>
-            </div>    
+            </div>
         </form>
     </div>
 </div>
@@ -55,12 +56,13 @@
                     </a>
                 </div><!-- /.row -->
             </div><!-- /.container -->
-            <?php endforeach ?>  
+            <?php endforeach ?>
         </div>
         </div>
     </div><!-- #collapse -->
     <?php endforeach ?>
 </div><!-- $accordion -->
 <?=$foot?>
+<?=$js?>
 </body>
 </html>

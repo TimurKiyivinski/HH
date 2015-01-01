@@ -1,5 +1,5 @@
 <title>Halaman Heritage - <?=$title?></title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="<?=base_url('public/css/head.css')?>" type="text/css">
-<link rel="stylesheet" href="<?=base_url('public/css/bootstrap.css')?>" type="text/css">
-<script src="<?=base_url('public/js/jquery-2.1.1.js')?>"></script>
-<script src="<?=base_url('public/js/bootstrap.js')?>"></script>
+<link rel="stylesheet" href="<?=base_url('public/assets/bootstrap/css/bootstrap.min.css')?>" type="text/css">
+<link rel="stylesheet" href="<?=base_url('public/assets/bootstrap/css/bootstrap-theme.css')?>" type="text/css">

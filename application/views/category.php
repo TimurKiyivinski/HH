@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <head>
 <?=$head?>
@@ -18,6 +19,7 @@
     <?php endforeach ?>
 </div><!-- /.container -->
 <?=$foot?>
+<?=$js?>
 </body>
 </html>
 

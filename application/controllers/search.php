@@ -33,6 +33,7 @@ class Search extends CI_Controller {
         $this->data['head'] = $this->load->view('templates/head', $this->data, TRUE);
         $this->data['navbar'] = $this->load->view('templates/navbar', $this->data, TRUE);
         $this->data['foot'] = $this->load->view('templates/foot', $this->data, TRUE);
+        $this->data['js'] = $this->load->view('templates/js', $this->data, TRUE);
 
         // output view
         $this->load->view('search', $this->data);

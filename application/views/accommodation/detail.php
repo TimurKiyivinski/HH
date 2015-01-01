@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <head>
 <?=$head?>
@@ -120,5 +121,6 @@
 <a href="<?php echo "?NewRating=4"; ?>"><img src="<?php echo base_url(); ?>public/images/StarHollowButton.png" onmouseover="this.src='<?php echo base_url(); ?>public/images/StarFilledButton.png'" onmouseout="this.src='<?php echo base_url(); ?>public/images/StarHollowButton.png'"></a>
 <a href="<?php echo "?NewRating=5"; ?>"><img src="<?php echo base_url(); ?>public/images/StarHollowButton.png" onmouseover="this.src='<?php echo base_url(); ?>public/images/StarFilledButton.png'" onmouseout="this.src='<?php echo base_url(); ?>public/images/StarHollowButton.png'"></a>
 <?=$foot?>
+<?=$js?>
 </body>
 </html>
