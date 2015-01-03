@@ -1,27 +1,28 @@
+<!-- TODO: refactor details page -->
 <!DOCTYPE html>
 <html>
 <head>
 <?=$head?>
 </head>
 <body>
-<?=$navbar?>
-
+<div class="container">
+    <div class="row">
+        <?=$banner?>
+    </div><!-- /.row -->
 <div class="title-banner">
     <h1><?=$place['name']?></h1>
 </div>
 <br><br><br><br>
 
-<div class="container">
-    <div class="row">
-        <div class="col-xs-6 content main-content">
-            <img class="main-img" src="http://www.plazamerdeka.com/slideshow/slide01.jpg">
-        </div>
-        <div class="col-md-4">
-            <div class="col-xs-12 content"><img class="thumb-img" src="http://www.plazamerdeka.com/slideshow/slide01.jpg"></div>
-            <div class="col-xs-12 content"><img class="thumb-img" src="http://www.plazamerdeka.com/slideshow/slide01.jpg"></div>
-        </div>
-    </div><!-- /.row -->
-</div><!-- /.container -->
+<div class="row">
+    <div class="col-xs-6 content main-content">
+        <img class="main-img" src="http://www.plazamerdeka.com/slideshow/slide01.jpg">
+    </div>
+    <div class="col-md-4">
+        <div class="col-xs-12 content"><img class="thumb-img" src="http://www.plazamerdeka.com/slideshow/slide01.jpg"></div>
+        <div class="col-xs-12 content"><img class="thumb-img" src="http://www.plazamerdeka.com/slideshow/slide01.jpg"></div>
+    </div>
+</div><!-- /.row -->
 
 <div class="content-banner">
     <h1>Ratings</h1>
@@ -120,7 +121,11 @@
 <a href="<?php echo "?NewRating=3"; ?>"><img src="<?php echo base_url(); ?>public/images/StarHollowButton.png" onmouseover="this.src='<?php echo base_url(); ?>public/images/StarFilledButton.png'" onmouseout="this.src='<?php echo base_url(); ?>public/images/StarHollowButton.png'"></a>
 <a href="<?php echo "?NewRating=4"; ?>"><img src="<?php echo base_url(); ?>public/images/StarHollowButton.png" onmouseover="this.src='<?php echo base_url(); ?>public/images/StarFilledButton.png'" onmouseout="this.src='<?php echo base_url(); ?>public/images/StarHollowButton.png'"></a>
 <a href="<?php echo "?NewRating=5"; ?>"><img src="<?php echo base_url(); ?>public/images/StarHollowButton.png" onmouseover="this.src='<?php echo base_url(); ?>public/images/StarFilledButton.png'" onmouseout="this.src='<?php echo base_url(); ?>public/images/StarHollowButton.png'"></a>
-<?=$foot?>
+
+    <div class="row">
+        <?=$navbar?>
+    </div><!-- /.row -->
+</div><!-- /.container -->
 <?=$js?>
 </body>
 </html>

@@ -1,9 +1,88 @@
 @import "../assets/bourbon/bourbon";
 
 // Variables
-$primary-red: #a5080a;
+$grey: #7A7A7A;
 
-// TODO: CSS
-body {
-    color: $primary-red;
+// sizes
+$margin: 10px;
+$banner-padding: 3px;
+$banner-height: 20px;
+$shadow: 3px;
+$thumb-size: 76px;
+
+// mixins
+@mixin box-shadow($shadows...) {
+    -moz-box-shadow:    $shadows;
+    -webkit-box-shadow: $shadows;
+    box-shadow:         $shadows;
+}
+
+@mixin truncate-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+}
+
+div.banner {
+    text-align: center;
+    margin-bottom: $margin;
+
+    @include padding($banner-padding null $banner-padding null);
+    @include box-shadow(3px $shadow $grey);
+}
+
+.category-title {
+    & > div {
+
+        text-align: center;
+        margin-bottom: $margin;
+
+        @include padding(10px null 10px null);
+        @include box-shadow(3px $shadow $grey);
+    }
+
+    & > img {
+        // TODO: Test position of icon
+        position: absolute;
+        top: $margin + $banner-height + $banner-padding;
+        right: 10%;
+    }
+}
+
+.panel-place {
+    padding: 2px;
+}
+
+.list-group-item {
+    margin-bottom: $margin / 2;
+
+    @include box-shadow(3px $shadow $grey);
+}
+
+.thumbnail-place {
+    // TODO: make it dynamic?
+    height: $thumb-size;
+    width: $thumb-size;
+}
+
+.place-list {
+    @include padding(5px null 10px 5px);
+
+    & > span {
+        position: relative;
+        right: 0px;
+    }
+}
+
+.place-name {
+    @include truncate-text;
+}
+
+.ratings-display {
+    height: 25px;
+}
+
+img.nav-btn {
+    height: $banner-height + $banner-padding + $margin;
 }

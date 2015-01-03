@@ -35,8 +35,8 @@ class Places extends CI_Controller {
         // load view
         $this->data['title'] = 'Categories';
         $this->data['head'] = $this->load->view('templates/head', $this->data, TRUE);
+        $this->data['banner'] = $this->load->view('templates/banner', $this->data, TRUE);
         $this->data['navbar'] = $this->load->view('templates/navbar', $this->data, TRUE);
-        $this->data['foot'] = $this->load->view('templates/foot', $this->data, TRUE);
         $this->data['js'] = $this->load->view('templates/js', $this->data, TRUE);
 
         // output view
@@ -61,17 +61,20 @@ class Places extends CI_Controller {
             show_404();
         }
 
+        $this->load->helper('inflector');
+
         $this->load->model("{$category}_model", 'category');
 
         // get data from db
         $this->data['places'] = $this->category->get_all();
         $this->data['category'] = $category;
+        $this->data['category_display'] = humanize($category);
 
         // load view
         $this->data['title'] = ucfirst($category) . ' List';
         $this->data['head'] = $this->load->view('templates/head', $this->data, TRUE);
+        $this->data['banner'] = $this->load->view('templates/banner', $this->data, TRUE);
         $this->data['navbar'] = $this->load->view('templates/navbar', $this->data, TRUE);
-        $this->data['foot'] = $this->load->view('templates/foot', $this->data, TRUE);
         $this->data['js'] = $this->load->view('templates/js', $this->data, TRUE);
 
         // output view
@@ -105,8 +108,8 @@ class Places extends CI_Controller {
         // load views
         $this->data['title'] = $this->data['place']['name'];
         $this->data['head'] = $this->load->view('templates/head', $this->data, TRUE);
+        $this->data['banner'] = $this->load->view('templates/banner', $this->data, TRUE);
         $this->data['navbar'] = $this->load->view('templates/navbar', $this->data, TRUE);
-        $this->data['foot'] = $this->load->view('templates/foot', $this->data, TRUE);
         $this->data['js'] = $this->load->view('templates/js', $this->data, TRUE);
         $this->load->view("{$category}/detail", $this->data);
     }

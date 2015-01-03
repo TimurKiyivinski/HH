@@ -4,21 +4,21 @@
 <?=$head?>
 </head>
 <body>
-<?=$navbar?>
+<?=$banner?>
 <div class="container">
-    <?php foreach ($categories as $category): ?>
     <div class="row">
-        <a href="<?=site_url($href['places']['list'].'/'.$category['table_name'])?>">
-            <div class="col-xs-12 list main-content">
-                <div class="col-xs-9 list-description">
-                    <h1><?=$category['display_name']?></h1>
-                </div>
-            </div>
-        </a>
+        <div class="list-group">
+        <?php foreach ($categories as $category): ?>
+            <a class="list-group-item" href="<?=site_url($href['places']['list'].'/'.$category['table_name'])?>">
+                <!-- TODO: Add category icons -->
+                <?=$category['display_name']?>
+                <!-- TODO: Add chevron icon -->
+            </a>
+        <?php endforeach ?>
+        </div><!-- /.list-group -->
     </div><!-- /.row -->
-    <?php endforeach ?>
 </div><!-- /.container -->
-<?=$foot?>
+<?=$navbar?>
 <?=$js?>
 </body>
 </html>
