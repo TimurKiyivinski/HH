@@ -6,43 +6,48 @@
 </head>
 <body>
 <?=$banner?>
-<!-- TODO: Add search UI -->
+<div class="category-title bg-primary">
+    <div class="bg-primary"><?=$category_display?></div>
+    <?php if ($src['category_icon'] !== FALSE): ?>
+    <img class="img-thumbnail" alt="<?=$category_display?>" src="<?=base_url($src['category_icon'])?>">
+    <?php endif?>
+</div><!-- /.category-title -->
 <div class="container">
-    <div class="row category-title">
-        <div class="bg-primary">
-            <?=$category_display?>
-        </div><!-- /.category-title -->
-        <!-- TODO: load category images -->
-        <img class="hidden-xs" alt="<?=$category?>" src="<?=base_url('public/images/icons/PlayButton.png')?>">
-    </div>
     <!-- Start listing places -->
-    <div class="row">
-        <div class="list-group">
-        <?php foreach ($places as $place): ?>
-            <a class="list-group-item panel-place" href="<?=site_url($href['places']['details'].'/'.$category.'/'.$place['id'])?>">
-                <div class="media">
-                    <div class="media-left media-middle" href="<?=site_url($href['places']['details'].'/'.$category.'/'.$place['id'])?>">
-                        <!-- TODO: load image from db -->
-                        <img class="img-thumbnail thumbnail-place" src="<?=base_url('public/images/places/accommodation/Merdeka_Palace_Hotel.png')?>" alt="<?=$place['name']?>">
-                    </div><!-- /.media-left -->
-                    <div class="media-body place-list">
-                        <h4 class="media-heading place-name"><?=$place['name']?>
-                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                        </h4>
+    <?php foreach ($places as $place): ?>
+    <div class="row place-panel">
+        <a class="" href="<?=site_url($href['places']['details'].'/'.$category.'/'.$place['id'])?>">
+            <div class="col-xs-3 col-sm-2 col-md-2">
+                <!-- TODO: load image from db -->
+                <img class="img-thumbnail place-panel-img" src="<?=base_url('public/images/places/accommodation/Merdeka_Palace_Hotel.png')?>" alt="<?=$place['name']?>">
+            </div><!-- col-xs-3 -->
+            <div class="col-xs-9 col-sm-9 col-md-9 place-panel-detail">
+                <div class="row">
+                    <div class="col-xs-12 col-md-12 place-panel-name">
+                        <?=$place['name']?>
+                    </div><!-- place-panel-name -->
+                </div><!-- /.row -->
+                <div class="row">
+                    <div class="col-xs-12 col-md-12">
+                        <h4>
                         <?php for ($i = 0; $i < 5; $i++): ?>
                             <?php if ($place['rating'] > 0): ?>
-                                <img class="ratings-display" src="<?=base_url('public/images/icons/StarFilledButton.png')?>">
+                                <span class="glyphicon glyphicon-star"></span>
                             <?php else: ?>
-                                <img class="ratings-display" src="<?=base_url('public/images/icons/StarHollowButton.png')?>">
+                                <span class="glyphicon glyphicon-star-empty"></span>
                             <?php endif; ?>
                             <?php $place['rating']--; ?>
                         <?php endfor; ?>
-                    </div><!-- /.media-body -->
-                </div><!-- /.media -->
-            </a>
-        <?php endforeach ?>
-        </div><!-- /.list-group -->
+                        </h4>
+                    </div><!-- /.col-xs-12 -->
+                </div><!-- /.row -->
+            </div><!-- /. place-panel-detail -->
+            <div class="hidden-xs col-sm-1 col-md-1">
+                <h1><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></h1>
+            </div><!-- /.hidden-xs -->
+        </a>
     </div><!-- /.row -->
+    <?php endforeach ?>
 </div><!-- /.container -->
 <?=$navbar?>
 <?=$js?>

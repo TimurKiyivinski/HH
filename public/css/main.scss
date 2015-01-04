@@ -1,7 +1,10 @@
 @import "../assets/bourbon/bourbon";
 
 // Variables
+$body-colour: #fdf1d8;
 $grey: #7A7A7A;
+$box-colour: #ffffff;
+$thumb-colour: #866d65;
 
 // sizes
 $margin: 10px;
@@ -24,6 +27,7 @@ $thumb-size: 76px;
     -o-text-overflow: ellipsis;
 }
 
+// Top most banner 
 div.banner {
     text-align: center;
     margin-bottom: $margin;
@@ -32,57 +36,50 @@ div.banner {
     @include box-shadow(3px $shadow $grey);
 }
 
+// heading of category when listing places
 .category-title {
     & > div {
 
         text-align: center;
-        margin-bottom: $margin;
+        margin-top: $margin;
+        margin-bottom: $margin - 4px;
 
-        @include padding(10px null 10px null);
+        @include padding($margin null $margin null);
         @include box-shadow(3px $shadow $grey);
     }
 
     & > img {
-        // TODO: Test position of icon
+        // static square size 64px
+        height: 64px;
+        width: 64px;
+
         position: absolute;
-        top: $margin + $banner-height + $banner-padding;
-        right: 10%;
+        top: $banner-height - $margin - 5px;
+        right: 12%;
+        background-color: $box-colour;
+        
+        @include box-shadow(3px $shadow $grey);
     }
 }
 
-.panel-place {
-    padding: 2px;
-}
+.place-panel {
+    background-color: $box-colour;
+    margin-bottom: 6px;
 
-.list-group-item {
-    margin-bottom: $margin / 2;
-
+    @include padding(5px null 5px null);
     @include box-shadow(3px $shadow $grey);
-}
 
-.thumbnail-place {
-    // TODO: make it dynamic?
-    height: $thumb-size;
-    width: $thumb-size;
-}
+    &-img {
+        background-color: $thumb-colour;
+        border: 1px solid $body-colour;
+    }
 
-.place-list {
-    @include padding(5px null 10px 5px);
-
-    & > span {
-        position: relative;
-        right: 0px;
+    &-name {
+        @include truncate-text;
     }
 }
 
-.place-name {
-    @include truncate-text;
-}
-
-.ratings-display {
-    height: 25px;
-}
-
+// bottom navbar
 img.nav-btn {
     height: $banner-height + $banner-padding + $margin;
 }

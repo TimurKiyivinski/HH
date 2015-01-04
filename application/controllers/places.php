@@ -56,9 +56,10 @@ class Places extends CI_Controller {
             redirect($this->data['href']['places']['categories']);
         }
 
-        if ( ! file_exists(APPPATH."/views/{$category}.php"))
+        $this->data['src']['category_icon'] = "public/images/icons/{$category}_icon.png";
+        if ( ! file_exists(FCPATH . $this->data['src']['category_icon']))
         {
-            show_404();
+            $this->data['src']['category_icon'] = FALSE;
         }
 
         $this->load->helper('inflector');
