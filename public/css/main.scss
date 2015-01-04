@@ -74,6 +74,8 @@ div.banner {
 .category-panel {
     @include panel;
 
+    min-height: $thumb-size + 6px;
+
     &-img {
         background-color: transparent;
         width: $thumb-size;
