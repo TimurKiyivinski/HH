@@ -82,11 +82,20 @@ class Places extends CI_Controller {
 
         // get data from db
         $places = $this->category->get_all();
-        $thumbnails = $this->photos->get_thumbnails($category['id']);
 
         if (empty($places))
         {
-            // tell user that this category is empty
+            // TODO: tell user that this category is empty
+        }
+
+        $thumbnails = $this->photos->get_thumbnails($category['id']);
+
+        $this->data['thumbnails'] = array();
+
+        // restructure thumbnails array
+        foreach ($thumbnails as $img)
+        {
+            $this->data['thumbnails'][$img['place_id']] = $img['link'];
         }
 
         $this->data['places'] = $places;

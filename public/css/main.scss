@@ -11,7 +11,7 @@ $margin: 10px;
 $banner-padding: 3px;
 $banner-height: 20px;
 $shadow: 3px;
-$thumb-size: 76px;
+$thumb-size: 64px;
 
 // mixins
 @mixin box-shadow($shadows...) {
@@ -25,6 +25,14 @@ $thumb-size: 76px;
     overflow: hidden;
     text-overflow: ellipsis;
     -o-text-overflow: ellipsis;
+}
+
+@mixin panel {
+    background-color: $box-colour;
+    margin-bottom: 6px;
+    text-align: center;
+    @include padding(3px null 3px null);
+    @include box-shadow(3px $shadow $grey);
 }
 
 // Top most banner 
@@ -50,8 +58,8 @@ div.banner {
 
     & > img {
         // static square size 64px
-        height: 64px;
-        width: 64px;
+        height: $thumb-size;
+        width: $thumb-size;
 
         position: absolute;
         top: $banner-height - $margin - 5px;
@@ -62,21 +70,39 @@ div.banner {
     }
 }
 
-.place-panel {
-    background-color: $box-colour;
-    margin-bottom: 6px;
+// the panels that displays the categories
+.category-panel {
+    @include panel;
 
-    @include padding(5px null 5px null);
-    @include box-shadow(3px $shadow $grey);
+    &-img {
+        background-color: transparent;
+        width: $thumb-size;
+        height: $thumb-size;
+    }
+}
+
+// the panels that displays the places
+.place-panel {
+    @include panel;
 
     &-img {
         background-color: $thumb-colour;
         border: 1px solid $body-colour;
+
+        min-height: $thumb-size;
+        max-height: $thumb-size + 6px;
     }
 
     &-name {
         @include truncate-text;
     }
+
+    &-rating {
+        & > h4 {
+            margin-top: 0px;
+        }
+    }
+
 }
 
 // bottom navbar

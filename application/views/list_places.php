@@ -19,14 +19,14 @@
             <div class="col-xs-3 col-sm-2 col-md-2">
                 <img class="img-thumbnail place-panel-img" src="<?=base_url($thumbnails[$category['id']])?>" alt="<?=$place['name']?>">
             </div><!-- col-xs-3 -->
-            <div class="col-xs-9 col-sm-9 col-md-9 place-panel-detail">
+            <div class="col-xs-9 col-sm-8 col-md-8 place-panel-detail">
                 <div class="row">
                     <div class="col-xs-12 col-md-12 place-panel-name">
-                        <?=$place['name']?>
+                        <h4><?=$place['name']?></h4>
                     </div><!-- place-panel-name -->
                 </div><!-- /.row -->
                 <div class="row">
-                    <div class="col-xs-12 col-md-12">
+                    <div class="col-xs-12 col-md-12 place-panel-rating">
                         <h4>
                         <?php for ($i = 0; $i < 5; $i++): ?>
                             <?php if ($place['rating'] > 0): ?>
@@ -40,7 +40,7 @@
                     </div><!-- /.col-xs-12 -->
                 </div><!-- /.row -->
             </div><!-- /. place-panel-detail -->
-            <div class="hidden-xs col-sm-1 col-md-1">
+            <div class="hidden-xs col-sm-2 col-md-2">
                 <h1><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></h1>
             </div><!-- /.hidden-xs -->
         </a>
