@@ -46,57 +46,87 @@ class Places extends CI_Controller {
     /**
      * Shows list of places from a category
      *
-     * @param category, string
+     * @param int, category id
      */
-    public function list_places($category = FALSE)
+    public function list_places($category_id = FALSE)
     {
         log_msg(__CLASS__, __FUNCTION__, func_get_args());
-        if ($category === FALSE)
+        if ($category_id === FALSE)
         {
             redirect($this->data['href']['places']['categories']);
         }
 
-        $this->data['src']['category_icon'] = "public/images/icons/{$category}_icon.png";
+        // get category details
+        $this->load->model('category_model');
+        $category = $this->category_model->get($category_id);
+
+        if (empty($category))
+        {
+            show_404();
+        }
+
+        if ( ! file_exists(APPPATH."/models/{$category['table_name']}_model.php"))
+        {
+            show_404();
+        }
+
+        $this->data['src']['category_icon'] = "public/images/icons/{$category['table_name']}_icon.png";
         if ( ! file_exists(FCPATH . $this->data['src']['category_icon']))
         {
             $this->data['src']['category_icon'] = FALSE;
         }
 
-        $this->load->helper('inflector');
-
-        $this->load->model("{$category}_model", 'category');
+        // load required libaries
+        $this->load->model("{$category['table_name']}_model", 'category');
+        $this->load->model('photo_model', 'photos');
 
         // get data from db
-        $this->data['places'] = $this->category->get_all();
+        $places = $this->category->get_all();
+        $thumbnails = $this->photos->get_thumbnails($category['id']);
+
+        if (empty($places))
+        {
+            // tell user that this category is empty
+        }
+
+        $this->data['places'] = $places;
         $this->data['category'] = $category;
-        $this->data['category_display'] = humanize($category);
 
         // load view
-        $this->data['title'] = ucfirst($category) . ' List';
+        $this->data['title'] = $category['display_name'] . ' List';
         $this->data['head'] = $this->load->view('templates/head', $this->data, TRUE);
         $this->data['banner'] = $this->load->view('templates/banner', $this->data, TRUE);
         $this->data['navbar'] = $this->load->view('templates/navbar', $this->data, TRUE);
         $this->data['js'] = $this->load->view('templates/js', $this->data, TRUE);
 
         // output view
-        $this->load->view($category, $this->data);
+        $this->load->view('list_places', $this->data);
     }
 
     /**
      * Display the details of a place
      *
-     * @param category , string
-     * @param id , place id
+     * @param int , category id
+     * @param int , place id
      */
-    public function details($category = FALSE, $place_id = FALSE)
+    public function details($category_id = FALSE, $place_id = FALSE)
     {
         log_msg(__CLASS__, __FUNCTION__, func_get_args());
-        if ($category === FALSE OR $place_id === FALSE)
+        if ($category_id === FALSE OR $place_id === FALSE)
         {
             show_404();
         }
 
-        $this->load->model("{$category}_model", 'category');
+        // get category details
+        $this->load->model('category_model');
+        $category = $this->category_model->get($category_id);
+
+        if (empty($category))
+        {
+            show_404();
+        }
+
+        $this->load->model("{$category['table_name']}_model", 'category');
 
         // get data from db
         $this->data['place'] = $this->category->get_place($place_id);
@@ -112,7 +142,7 @@ class Places extends CI_Controller {
         $this->data['banner'] = $this->load->view('templates/banner', $this->data, TRUE);
         $this->data['navbar'] = $this->load->view('templates/navbar', $this->data, TRUE);
         $this->data['js'] = $this->load->view('templates/js', $this->data, TRUE);
-        $this->load->view("{$category}/detail", $this->data);
+        $this->load->view("{$category['table_name']}/detail", $this->data);
     }
 }
 
