@@ -21,18 +21,25 @@ class Search extends CI_Controller {
 
         if($this->input->get())
         {
-            $this->load->model('category_model');
-
-            $search = $this->input->get('search');
-
-            $this->data['results'] = $this->category_model->search_all($search);
+            // TODO: load search resut
         }
+
+        // TODO: remove stub data
+        $this->load->model('category_model');
+        $this->load->model('accommodation_model');
+
+        $category = $this->category_model->get(1);
+        $places = $this->accommodation_model->get_all();
+
+        $this->data['category'] = $category;
+        $this->data['places'] = $places;
+        // end stub data
 
         // load view
         $this->data['title'] = 'Search';
         $this->data['head'] = $this->load->view('templates/head', $this->data, TRUE);
+        $this->data['banner'] = $this->load->view('templates/banner', $this->data, TRUE);
         $this->data['navbar'] = $this->load->view('templates/navbar', $this->data, TRUE);
-        $this->data['foot'] = $this->load->view('templates/foot', $this->data, TRUE);
         $this->data['js'] = $this->load->view('templates/js', $this->data, TRUE);
 
         // output view

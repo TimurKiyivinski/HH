@@ -2,6 +2,8 @@
 /**
  * Accommodation model handles everything related to the query
  * towards the accommodation table in the database
+ *
+ * TODO: refactor model to be modularized
  */
 class Accommodation_model extends CI_Model
 {

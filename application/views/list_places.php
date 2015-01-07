@@ -13,6 +13,7 @@
 </div><!-- /.category-title -->
 <div class="container">
     <!-- Start listing places -->
+    <!-- TODO: implement paging if there's too many places -->
     <?php foreach ($places as $place): ?>
     <div class="row place-panel">
         <a class="" href="<?=site_url($href['places']['details'].'/'.$category['id'].'/'.$place['id'])?>">
