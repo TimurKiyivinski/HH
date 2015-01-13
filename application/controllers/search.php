@@ -46,6 +46,20 @@ class Search extends CI_Controller {
         $this->load->view('search', $this->data);
     }
 
+    public function test($param = '')
+    {
+        log_msg(__CLASS__, __FUNCTION__, func_get_args());
+        $this->load->model('search_model');
+
+        $result = $this->search_model->find_all($param);
+
+        $this->load->model('place_model');
+
+        $query = $this->place_model->get_by_ids($result);
+
+        var_dump($query);
+    }
+
 }
 
 /* End of file search.php */
