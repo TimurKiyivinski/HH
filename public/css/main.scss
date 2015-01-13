@@ -5,6 +5,7 @@ $body-colour: #fdf1d8;
 $grey: #7A7A7A;
 $box-colour: #ffffff;
 $thumb-colour: #866d65;
+$a-link-colour :#ffffff;
 
 // sizes
 $margin: 10px;
@@ -12,6 +13,10 @@ $banner-padding: 3px;
 $banner-height: 20px;
 $shadow: 3px;
 $thumb-size: 64px;
+$search-thumb-size: 80px;
+$search-banner-padding-topbottom : 5px;
+$search-banner-padding-leftright : 2px;
+$search-margin: 15px;
 
 // mixins
 @mixin box-shadow($shadows...) {
@@ -48,6 +53,18 @@ div.banner {
     @include padding($banner-padding null $banner-padding null);
     @include box-shadow(3px $shadow $grey);
 }
+
+// search bar 
+div.search-bar {
+    text-align: center;
+    margin-bottom: $search-margin;
+
+    border-radius: 15px;
+
+    @include padding($search-banner-padding-topbottom $search-banner-padding-leftright $search-banner-padding-topbottom $search-banner-padding-leftright);
+    @include box-shadow(3px $shadow $grey);
+}
+
 
 // heading of category when listing places
 .category-title {
@@ -95,9 +112,8 @@ div.banner {
     &-img {
         background-color: $thumb-colour;
         border: 1px solid $body-colour;
-
-        min-height: $thumb-size;
-        max-height: $thumb-size + 6px;
+        height: $search-thumb-size;
+        width: $search-thumb-size;
     }
 
     &-name {
@@ -122,3 +138,13 @@ div.banner {
 img.nav-btn {
     height: $banner-height + $banner-padding + $margin;
 }
+
+
+//white text for links
+.white {
+    color: $a-link-colour; }
+
+a:hover, a:focus {
+    color: $a-link-colour;
+    text-decoration: underline;}
+

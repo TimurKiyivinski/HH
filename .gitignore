@@ -15,3 +15,5 @@
 user_guide/
 .agignore
 .picasa.ini
+.css
+.css.map
