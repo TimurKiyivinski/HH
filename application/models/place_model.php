@@ -37,8 +37,12 @@ class Place_model extends CI_Model
             return NULL;
         }
 
-        $this->db->where('id', $id);
-        $query = $this->db->get($this->table);
+        $this->db->select('place.*, rating.total DIV rating.count AS rating, area.name AS area');
+        $this->db->from($this->table);
+        $this->db->join('rating', 'rating.place_id = place.id');
+        $this->db->join('area', 'place.area_id = area.id');
+        $this->db->where('place.id', $id);
+        $query = $this->db->get();
 
         if ($query->num_rows() === 1)
             return $query->row_array();
@@ -46,6 +50,9 @@ class Place_model extends CI_Model
 
     /**
      * Query all the places by category id
+     * Used on the listing places page
+     *
+     * Keys: (id, name, approved, rating, area)
      *
      * @param int, category id
      * @return array of associative array of data
@@ -58,13 +65,20 @@ class Place_model extends CI_Model
             return NULL;
         }
 
-        $this->db->where('category_id', $category_id);
-        $query = $this->db->get($this->table);
+        $this->db->select('place.id, place.name, place.approved,
+            rating.total DIV rating.count AS rating, area.name AS area');
+        $this->db->from($this->table);
+        $this->db->join('rating', 'rating.place_id = place.id');
+        $this->db->join('area', 'area.id = place.area_id');
+        $this->db->where('place.category_id', $category_id);
+        $query = $this->db->get();
         return $query->result_array();
     }
 
     /**
      * Query all the places by area id
+     *
+     * Keys: (id, name, approved, rating, area)
      *
      * @param int, area id
      * @return array of associative array of data
@@ -77,8 +91,13 @@ class Place_model extends CI_Model
             return NULL;
         }
 
+        $this->db->select('place.id, place.name, place.approved,
+            rating.total DIV rating.count AS rating, area.name AS area');
+        $this->db->from($this->table);
+        $this->db->join('rating', 'rating.place_id = place.id');
+        $this->db->join('area', 'area.id = place.area_id');
         $this->db->where('area_id', $area_id);
-        $query = $this->db->get($this->table);
+        $query = $this->db->get();
         return $query->result_array();
     }
 

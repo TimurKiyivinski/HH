@@ -25,7 +25,7 @@ class Photo_model extends CI_Model
      * Query the images by place id
      *
      * @param int, place id
-     * @return aarray of ssociative array of data
+     * @return array of associative array of data
      */
     public function get_all($place_id = FALSE)
     {
@@ -37,7 +37,36 @@ class Photo_model extends CI_Model
 
         $query = $this->db->get($this->table);
 
-        return $query->row_array();
+        return $query->result_array();
+    }
+
+    /**
+     * Query the images of places and
+     * return the array of associative array
+     *
+     * @param array of place data
+     * @return array of associative array of data
+     */
+    public function get_by_places($place_array = NULL)
+    {
+        log_msg(__CLASS__, __FUNCTION__, func_get_args());
+        if (empty($place_array))
+        {
+            return NULL;
+        }
+
+        // Loops through the place array to add to the where clause
+        foreach($place_array as $place)
+        {
+            $this->db->or_where('id =', $place['id']);
+        }
+
+        $this->db->from($this->table);
+        // take only 1 of each place
+        $this->db->group_by('id');
+        $query = $this->db->get();
+
+        return $query->result_array();
     }
 
     /**

@@ -6,9 +6,9 @@
 <body>
 <?=$banner?>
 <div class="category-title bg-primary">
-    <div class="bg-primary"><?=$category['display_name']?></div>
+    <div class="bg-primary"><?=$category['name']?></div>
     <?php if ($src['category_icon'] !== FALSE): ?>
-    <img class="img-thumbnail" alt="<?=$category['display_name']?>" src="<?=base_url($src['category_icon'])?>">
+    <img class="img-thumbnail" alt="<?=$category['name']?>" src="<?=base_url($src['category_icon'])?>">
     <?php endif?>
 </div><!-- /.category-title -->
 <div class="container">
@@ -18,7 +18,8 @@
     <div class="row place-panel">
         <a class="" href="<?=site_url($href['places']['details'].'/'.$category['id'].'/'.$place['id'])?>">
             <div class="col-xs-3 col-sm-2 col-md-2">
-                <img class="img-thumbnail place-panel-img" src="<?=base_url($thumbnails[$category['id']])?>" alt="<?=$place['name']?>">
+                <?php // TODO: Use a helper to convert img link to thumbnail links ?>
+                <img class="img-thumbnail place-panel-img" src="<?=base_url($thumbnails[$place['id']])?>" alt="<?=$place['name']?>">
             </div><!-- col-xs-3 -->
             <div class="col-xs-9 col-sm-8 col-md-8 place-panel-detail">
                 <div class="row">
