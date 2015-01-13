@@ -62,7 +62,7 @@ class Places extends CI_Controller {
 
         if (empty($category))
         {
-            //show_404();
+            show_404();
         }
 
         // use category_name instead of category['name'] as this is made URL safe
@@ -89,6 +89,7 @@ class Places extends CI_Controller {
         if (empty($places))
         {
             // TODO: tell user that this category is empty
+            show_error('This category is currently empty. Come back when we bother populating it with data.');
         }
 
         $thumbnails = $this->photos->get_thumbnails($category['id']);
@@ -105,7 +106,7 @@ class Places extends CI_Controller {
         $this->data['category'] = $category;
 
         // load view
-        $this->data['title'] = $category['display_name'] . ' List';
+        $this->data['title'] = $category['name'] . ' List';
         $this->data['head'] = $this->load->view('templates/head', $this->data, TRUE);
         $this->data['banner'] = $this->load->view('templates/banner', $this->data, TRUE);
         $this->data['navbar'] = $this->load->view('templates/navbar', $this->data, TRUE);
