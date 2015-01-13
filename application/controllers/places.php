@@ -62,22 +62,25 @@ class Places extends CI_Controller {
 
         if (empty($category))
         {
-            show_404();
+            //show_404();
         }
 
-        if ( ! file_exists(APPPATH."/models/{$category['table_name']}_model.php"))
+        // use category_name instead of category['name'] as this is made URL safe
+        $category_name = url_title($category['name'], '_', TRUE);
+        
+        if ( ! file_exists(APPPATH."/models/{$category_name}_model.php"))
         {
             show_404();
         }
 
-        $this->data['src']['category_icon'] = "public/images/icons/{$category['table_name']}_icon.png";
+        $this->data['src']['category_icon'] = "public/images/icons/{$category_name}_icon.png";
         if ( ! file_exists(FCPATH . $this->data['src']['category_icon']))
         {
             $this->data['src']['category_icon'] = FALSE;
         }
 
         // load required libaries
-        $this->load->model("{$category['table_name']}_model", 'category');
+        $this->load->model("{$category_name}_model", 'category');
         $this->load->model('photo_model', 'photos');
 
         // get data from db
@@ -135,7 +138,7 @@ class Places extends CI_Controller {
             show_404();
         }
 
-        $this->load->model("{$category['table_name']}_model", 'category');
+        $this->load->model("{$category['name']}_model", 'category');
 
         // get data from db
         $this->data['place'] = $this->category->get_place($place_id);
@@ -151,7 +154,7 @@ class Places extends CI_Controller {
         $this->data['banner'] = $this->load->view('templates/banner', $this->data, TRUE);
         $this->data['navbar'] = $this->load->view('templates/navbar', $this->data, TRUE);
         $this->data['js'] = $this->load->view('templates/js', $this->data, TRUE);
-        $this->load->view("{$category['table_name']}/detail", $this->data);
+        $this->load->view("{$category['name']}/detail", $this->data);
     }
 }
 

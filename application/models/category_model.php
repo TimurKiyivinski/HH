@@ -7,7 +7,7 @@ class Category_model extends CI_Model
     public $display_name = '';
     public $subtype = '';
 
-    private $table = 'categories';
+    private $table = 'category';
 
     public function __construct()
     {
@@ -70,11 +70,11 @@ class Category_model extends CI_Model
 
         for ($i = 0; $i < count($categories); $i++)
         {
-            $this->db->from($categories[$i]['table_name']);
-            $this->db->or_like($categories[$i]['table_name'].'.name', $str, 'both');
-            $this->db->or_like($categories[$i]['table_name'].'.description', $str, 'both');
-            $this->db->or_like($categories[$i]['table_name'].'.website', $str, 'both');
-            $this->db->or_like($categories[$i]['table_name'].'.address', $str, 'both');
+            $this->db->from($categories[$i]['name']);
+            $this->db->or_like($categories[$i]['name'].'.name', $str, 'both');
+            $this->db->or_like($categories[$i]['name'].'.description', $str, 'both');
+            $this->db->or_like($categories[$i]['name'].'.website', $str, 'both');
+            $this->db->or_like($categories[$i]['name'].'.address', $str, 'both');
 
             $query = $this->db->get();
 
@@ -96,7 +96,7 @@ class Category_model extends CI_Model
     {
         log_msg(__CLASS__, __FUNCTION__, func_get_args());
         $data = array();
-        $data['table_name'] = $this->input->post('table_name');
+        $data['name'] = $this->input->post('name');
         $data['display'] = $this->input->post('display_name');
         $data['subtype'] = FALSE;
 
