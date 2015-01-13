@@ -2,12 +2,12 @@
 
 class Category_model extends CI_Model
 {
-    public $id = '';
-    public $table_name = '';
-    public $display_name = '';
-    public $subtype = '';
+    /**
+     * id (PK, Auto Increment, int)
+     * name (string)
+     */
 
-    private $table = 'categories';
+    private $table = 'category';
 
     public function __construct()
     {
@@ -51,43 +51,6 @@ class Category_model extends CI_Model
     }
 
     /**
-     * Make a search query
-     *
-     * @param string , search string
-     * @return array of associative array of data
-     */
-    public function search_all($str = FALSE)
-    {
-        log_msg(__CLASS__, __FUNCTION__, func_get_args());
-        if ($str === FALSE)
-        {
-            return NULL;
-        }
-
-        $categories = $this->get_all();
-
-        $result = array();
-
-        for ($i = 0; $i < count($categories); $i++)
-        {
-            $this->db->from($categories[$i]['table_name']);
-            $this->db->or_like($categories[$i]['table_name'].'.name', $str, 'both');
-            $this->db->or_like($categories[$i]['table_name'].'.description', $str, 'both');
-            $this->db->or_like($categories[$i]['table_name'].'.website', $str, 'both');
-            $this->db->or_like($categories[$i]['table_name'].'.address', $str, 'both');
-
-            $query = $this->db->get();
-
-            $data = array();
-            $data['category'] = $categories[$i];
-            $data['places'] = $query->result_array();
-            array_push($result, $data);
-        }
-
-        return $result;
-    }
-
-    /**
      * Add a new category
      *
      * @return bool, status of operation
@@ -96,9 +59,7 @@ class Category_model extends CI_Model
     {
         log_msg(__CLASS__, __FUNCTION__, func_get_args());
         $data = array();
-        $data['table_name'] = $this->input->post('table_name');
-        $data['display'] = $this->input->post('display_name');
-        $data['subtype'] = FALSE;
+        $data['name'] = $this->input->post('name');
 
         return $this->db->insert($this->table, $data);
     }

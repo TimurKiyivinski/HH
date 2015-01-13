@@ -5,13 +5,13 @@
  */
 class Photo_model extends CI_Model
 {
-    public $id = '';
-    public $category_id = '';
-    public $place_id = '';
-    public $link = '';
-    public $thumbnail = '';
+    /**
+     * id (PK, Auto Increment, int)
+     * place_id (FK, Auto Increment, int)
+     * photo_link (string)
+     */
 
-    private $table = 'photos';
+    private $table = 'photo';
 
     public function __construct()
     {
@@ -22,61 +22,22 @@ class Photo_model extends CI_Model
     }
 
     /**
-     * Query the image link of a place
-     * or every place in a category
+     * Query the images by place id
      *
-     * @param int, category id
      * @param int, place id
      * @return aarray of ssociative array of data
      */
-    public function get_link($category_id = FALSE, $place_id = FALSE)
+    public function get_all($place_id = FALSE)
     {
         log_msg(__CLASS__, __FUNCTION__, func_get_args());
-        if ($category_id === FALSE)
-        {
-            return NULL;
-        }
-
-        $this->db->where('category_id', $category_id);
-
-        // if place id is not specified, get all places from category
         if ($place_id !== FALSE)
-        {
+        {   // else, get all data from table
             $this->db->where('place_id', $place_id);
         }
 
         $query = $this->db->get($this->table);
 
         return $query->row_array();
-    }
-
-    /**
-     * Query all the image thumbnail links of a place
-     * or every place in the category
-     *
-     * @return array of associative array of data
-     */
-    public function get_thumbnails($category_id = FALSE, $place_id = FALSE)
-    {
-        log_msg(__CLASS__, __FUNCTION__, func_get_args());
-        if ($category_id === FALSE)
-        {
-            return NULL;
-        }
-
-        $this->db->where('category_id', $category_id);
-
-        // if place id is not specified, get all from category
-        if ($place_id !== FALSE)
-        {
-            $this->db->where('place_id', $place_id);
-        }
-
-        $this->db->where('thumbnail', TRUE);
-
-        $query = $this->db->get($this->table);
-
-        return $query->result_array();
     }
 
     /**
@@ -88,34 +49,50 @@ class Photo_model extends CI_Model
     {
         log_msg(__CLASS__, __FUNCTION__, func_get_args());
         $data = array();
-        $data['category_id'] = $this->input->post('category_id');
         $data['place_id'] = $this->input->post('place_id');
-        $data['link'] = $this->input->post('link');
-        $data['thumbnail'] = $this->input->post('thumbnail');
+        $data['photo_link'] = $this->input->post('photo_link');
 
         return $this->db->insert($this->table, $data);
     }
 
     /**
-     * Deletes an image link
+     * Deletes image by id
      *
      * NOTE: It doesn't delete image, only the link to it
+     * TODO: Delete image from fileserver too?
      *
-     * @param int, category id
-     * @param int, place id
+     * @param int, id
      * @return bool, status of operation
      */
-    public function remove_place($category_id = FALSE, $place_id = FALSE)
+    public function delete_photo($id = FALSE)
     {
         log_msg(__CLASS__, __FUNCTION__, func_get_args());
-        if ($category_id === FALSE || $place_id === FALSE)
+        if ($id === FALSE)
         {
             return FALSE;
         }
 
-        $this->db->where('category_id', $category_id);
-        $this->db->where('place_id', $place_id);
+        $this->db->where('id', $id);
+        $this->db->delete($this->table);
 
+        return TRUE;
+    }
+
+    /**
+     * Delete all images associated with a place
+     *
+     * @param int, place id
+     * @return bool, status of operation
+     */
+    public function delete_photos_by_place($place_id = FALSE)
+    {
+        log_msg(__CLASS__, __FUNCTION__, func_get_args());
+        if ($place_id === FALSE)
+        {
+            return FALSE;
+        }
+
+        $this->db->where('place_id', $place_id);
         $this->db->delete($this->table);
 
         return TRUE;
