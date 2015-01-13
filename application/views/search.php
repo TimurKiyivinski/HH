@@ -5,8 +5,12 @@
 </head>
 <body>
 <?=$banner?>
+
+
+
 <div class="container">
-    <div class="row">
+
+    <div class="row search-banner bg-primary">
         <div class="col-xs-12 col-sm-12 col-dm-12">
             <?=form_open(current_url(), array('method' => 'get', 'class' => 'form-horizontal', 'role' => 'form'))?>
                 <div class="input-group">
@@ -25,13 +29,16 @@
     <!-- TODO: implement jQuery lightweight collapse -->
     <!-- TODO: implement paging for search -->
     <div class="row">
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <h3 class="panel-title"><?=$category['display_name']?></h3>
+        <div class="panel panel-primary" id="accordion" role="tablist" aria-multiselectable="true">
+            <div class="panel-heading" role="tab" id="heading<?=$category['display_name']?>">
+                <a class = "white"data-toggle="collapse" data-parent="#accordion" href="#collapse<?=$category['display_name']?>" aria-expanded="true" aria-controls="collapse<?=$category['display_name']?>">
+                    <h3 class="panel-title"><?=$category['display_name']?></h3>
+                </a>
             </div><!-- /.panel-heading -->
-            <div class="list-group">
+
+            <div class="list-group panel-collapse collapse in" id="collapse<?=$category['display_name']?>" role="tabpanel" aria-labelledby="heading<?=$category['display_name']?>">
                 <?php foreach ($places as $place): ?>
-                <a class="list-group-item" href="<?=site_url($href['places']['details'].'/'.$category['id'].'/'.$place['id'])?>">
+                <a class="list-group-item panel-body" href="<?=site_url($href['places']['details'].'/'.$category['id'].'/'.$place['id'])?>">
                     <div class="row search-panel">
                         <div class="col-xs-3 col-sm-2 col-md-2">
                             <img class="img-thumbnail place-panel-img" src="<?=base_url('public/images/places/thumbnails/Merdeka_Palace_Hotel_thumb.png')?>" alt="<?=$place['name']?>">
@@ -61,7 +68,10 @@
                             <h1><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></h1>
                         </div><!-- /.hidden-xs -->
                     </div><!-- /.search-panel -->
+
                 </a>
+
+
                 <?php endforeach ?>
             </div><!-- /.list-group -->
         </div><!-- /.panel-primary -->    
