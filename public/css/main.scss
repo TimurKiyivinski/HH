@@ -183,6 +183,14 @@ div.banner {
     }
 }
 
+.map-canvas {
+    height: 80%;
+    margin: $margin;
+    padding: $margin;
+    
+    @include box-shadow(3px $shadow $grey);
+}
+
 .search-panel {
     text-align: center;
 
