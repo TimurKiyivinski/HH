@@ -10,6 +10,7 @@ $title-colour: #e23C3b;
 
 // sizes
 $margin: 10px;
+$image-curve: 16px;
 $banner-padding: 3px;
 $banner-height: 20px;
 $shadow: 3px;
@@ -130,7 +131,6 @@ div.banner {
     & > div {
         margin: $margin;
         color: $box-colour;
-        
     }
 }
 
@@ -182,6 +182,38 @@ div.banner {
         height: $thumb-size;
     }
 }
+
+.picture-carousel {
+    width: 96%;
+    position: relative;
+    left: 2%;
+    border-radius: $image-curve;
+    background-color: $head-colour;
+    
+    @include padding($margin null $margin null);
+    
+    &-img {
+        max-height: 300px;
+    }
+}
+
+/*
+.picture-carousel {
+    width: 90%;
+    position: relative;
+    margin-left:auto;
+    margin-right:0;
+    border-top-left-radius: $image-curve;
+    border-bottom-left-radius: $image-curve;
+    background-color: $head-colour;
+    
+    @include padding($margin null $margin null);
+    
+    &-img {
+        max-height: 300px;
+    }
+}
+*/
 
 .map-canvas {
     height: 80%;
