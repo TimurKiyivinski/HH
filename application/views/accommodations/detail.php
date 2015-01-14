@@ -10,6 +10,7 @@
     <div class="curved-title">
         <div><?=$place['name']?></div>
     </div>
+
     <!--Picture carousel-->
     <div class="picture-carousel">
         <div id="picture-carousel" class="carousel slide" data-ride="carousel">
@@ -45,6 +46,7 @@
         </a>
         </div>
     </div>
+
     <!--Ratings title-->
     <div class=" details-title bg-primary">
         <div class="bg-primary">
@@ -53,12 +55,12 @@
     </div>
     <!--Ratings content-->
     <div class="details-item-rating">
-        <img class="details-item-img" src="<?=base_url('public/images/icons/star_highlight.png')?>"/>
+        <span class="glyphicon glyphicon-star icon-rating"></span>
         <?php for ($i = 0; $i < 5; $i++): ?>
             <?php if ($place['rating'] > 0): ?>
-                <img class="details-item-star" src="<?=base_url("public/images/icons/star_filled.png")?>">
+                <span class="glyphicon glyphicon-star icon"></span>
             <?php else: ?>
-                <img class="details-item-star" src="<?=base_url('public/images/icons/star_hollow.png')?>">
+                <span class="glyphicon glyphicon-star-empty icon"></span>
             <?php endif; ?>
         <?php $place['rating']--; ?>
         <?php endfor; ?>

@@ -15,6 +15,7 @@ $banner-padding: 3px;
 $banner-height: 20px;
 $shadow: 3px;
 $thumb-size: 64px;
+$icon-size: 500%;
 
 // mixins
 @mixin box-shadow($shadows...) {
@@ -166,7 +167,7 @@ div.banner {
     {
         position: relative;
 
-        @include padding($margin null $margin $thumb-size+$margin+$margin);
+        @include padding($margin null $margin $margin);
     }
     
     &-img {
@@ -184,13 +185,15 @@ div.banner {
 }
 
 .picture-carousel {
-    width: 96%;
     position: relative;
-    left: 2%;
     border-radius: $image-curve;
     background-color: $head-colour;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+    height: 40%;
     
-    @include padding($margin null $margin null);
+    @include padding($margin 5px $margin 5px);
     
     &-img {
         max-height: 300px;
@@ -213,8 +216,15 @@ div.banner {
         max-height: 300px;
     }
 }
+
+
 */
 
+.carousel-inner > .item > img {
+    margin: 0 auto;
+    width: 300px;
+    height: 300px;
+}
 .map-canvas {
     height: 80%;
     margin: $margin;
@@ -233,3 +243,15 @@ div.banner {
 img.nav-btn {
     height: $banner-height + $banner-padding + $margin;
 }
+
+//icons (glyphicons)
+.icon {
+
+  font-size: 300%;
+  color: $head-colour;
+
+  &-rating {
+    color: #DE3634;
+    font-size: $icon-size; }
+}
+
