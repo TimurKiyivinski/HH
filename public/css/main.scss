@@ -5,6 +5,8 @@ $body-colour: #fdf1d8;
 $grey: #7A7A7A;
 $box-colour: #ffffff;
 $thumb-colour: #866d65;
+$head-colour: #a5080a;
+$title-colour: #e23C3b;
 
 // sizes
 $margin: 10px;
@@ -110,6 +112,75 @@ div.banner {
         }
     }
 
+}
+
+// pages with curved titles
+.curved-title {
+
+    text-align: left;
+    display: inline-block;
+    background-color: $title-colour;
+    margin-top: $margin;
+    margin-bottom: $margin - 4px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    
+    @include box-shadow(3px $shadow $grey);
+
+    & > div {
+        margin: $margin;
+        color: $box-colour;
+        
+    }
+}
+
+// details page items
+.details-title {
+
+    @include box-shadow(3px $shadow $grey);
+
+    & > div {
+
+        text-align: left;
+        margin-top: $margin;
+        margin-bottom: $margin - 4px;
+        margin-left: $margin;
+
+        @include padding($margin null $margin null);
+    }
+}
+
+.details-item {
+
+    margin-top: $margin;
+    margin-bottom: $margin - 4px;
+    margin-left: $margin;
+
+    @include padding($margin null $margin null);
+
+    & > div {
+        margin-left: $margin;
+    }
+    
+    &-rating
+    {
+        position: relative;
+
+        @include padding($margin null $margin $thumb-size+$margin+$margin);
+    }
+    
+    &-img {
+        position: absolute;
+        width: $thumb-size;
+        height: $thumb-size;
+        left: $margin;
+        top: $margin;
+    }
+    
+    &-star {
+        width: $thumb-size;
+        height: $thumb-size;
+    }
 }
 
 .search-panel {
