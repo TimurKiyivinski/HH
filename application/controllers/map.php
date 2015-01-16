@@ -10,14 +10,16 @@ class Map extends CI_Controller {
         $this->load->model('place_model');
     }
 
-    public function index()
+    public function index($area = 'all')
     {
+        $this->data['area'] = $area; 
+        $this->data['title'] = ucfirst($area); 
         $this->data['head'] = $this->load->view('templates/head', $this->data, TRUE);
         $this->data['banner'] = $this->load->view('templates/banner', $this->data, TRUE);
         $this->data['navbar'] = $this->load->view('templates/navbar', $this->data, TRUE);
         $this->data['js'] = $this->load->view('templates/js', $this->data, TRUE);
         
-        $this->load->view('map');
+        $this->load->view('map', $this->data);
     }
 }
 

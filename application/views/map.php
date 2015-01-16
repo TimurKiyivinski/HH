@@ -5,7 +5,7 @@
     </script>
     <script type="text/javascript">
     // TODO: Use AJAX to get this data instead
-    function getJSON() {
+    function getJSON(area) {
         var location1 = {
             "name" : "hell",
             "longitude" : 110.344055,
@@ -28,7 +28,7 @@
         };
         var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
         // Get locations
-        var locations = getJSON();
+        var locations = getJSON(<?=json_encode($area)?>);
         for (var i = 0; i < locations.length; i++)
         {
             // Create a new place
