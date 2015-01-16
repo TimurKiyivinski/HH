@@ -200,26 +200,6 @@ div.banner {
     }
 }
 
-/*
-.picture-carousel {
-    width: 90%;
-    position: relative;
-    margin-left:auto;
-    margin-right:0;
-    border-top-left-radius: $image-curve;
-    border-bottom-left-radius: $image-curve;
-    background-color: $head-colour;
-    
-    @include padding($margin null $margin null);
-    
-    &-img {
-        max-height: 300px;
-    }
-}
-
-
-*/
-
 .carousel-inner > .item > img {
     margin: 0 auto;
     width: 300px;
