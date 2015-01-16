@@ -75,15 +75,15 @@
     <div class="details-item">
         <?=$place['description']?>
     </div>
-    <!--Rate title-->
+    <!--Open hours title-->
     <div class=" details-title bg-primary">
         <div class="bg-primary">
-        Room rate
+        Open hours
         </div>
     </div>
-    <!--Rate content-->
+    <!--Open hours content-->
     <div class="details-item">
-        <?=$place['room_rate']?>
+        <?=$place['opening_hours']?>
     </div>
     <!--Location title-->
     <div class=" details-title bg-primary">

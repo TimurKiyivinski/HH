@@ -75,15 +75,31 @@
     <div class="details-item">
         <?=$place['description']?>
     </div>
-    <!--Rate title-->
+    <!--Food title-->
     <div class=" details-title bg-primary">
         <div class="bg-primary">
-        Room rate
+        Cuisine
         </div>
     </div>
-    <!--Rate content-->
+    <!--Food content-->
     <div class="details-item">
-        <?=$place['room_rate']?>
+        Types of dishes served: <?=$place['type']?><br />
+        <?=$place['cuisine']?>
+    </div>
+    <!--Signature dish-->
+    <div class="curved-title">
+        <div>Signature Dish</div>
+    </div>
+    <?=$place['signature_dish']?>
+    <!--Open hours title-->
+    <div class=" details-title bg-primary">
+        <div class="bg-primary">
+        Open hours
+        </div>
+    </div>
+    <!--Open hours content-->
+    <div class="details-item">
+        <?=$place['opening_hours']?>
     </div>
     <!--Location title-->
     <div class=" details-title bg-primary">
