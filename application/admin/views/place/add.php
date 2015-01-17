@@ -51,6 +51,14 @@
                     <label for="address">Address</label>
                     <textarea name="address" id="address" class="form-control" required></textarea>
                 </div>
+                <div class="form-group">
+                    <label for="latitude">Latitude</label>
+                    <input name="latitude" type="number" step="0.000001" min="0" class="form-control" id="latitude" placeholder="location" required>
+                </div>
+                <div class="form-group">
+                    <label for="longitude">Longitude</label>
+                    <input name="longitude" type="number" step="0.000001" min="0" class="form-control" id="longitude" placeholder="location" required>
+                </div>
                 <?php foreach($category_columns as $col): ?>
                 <div class="form-group">
                     <label for="<?=$col['column_name']?>"><?=humanize($col['column_name'])?></label>

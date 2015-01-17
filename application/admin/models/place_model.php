@@ -199,6 +199,13 @@ class Place_model extends CI_Model
 
         $this->db->insert('rating', $rating);
 
+        // add location to db
+        $location['place_id'] = $data['id'];
+        $location['latitude'] = $this->input->post('latitude');
+        $location['longitude'] = $this->input->post('longitude');
+
+        $this->db->insert('location', $location);
+
         // get extra columns
         $this->db->from('category_column');
         $this->db->where('category_id', $data['category_id']);
