@@ -178,7 +178,7 @@ class Place_model extends CI_Model
         $data['description'] = $this->input->post('description');
         $data['address'] = $this->input->post('address');
 
-        // By default, not approved.
+        // By default, not approved and rating 0
         $data['approved'] = FALSE;
 
         if (empty($data['name']) OR empty($data['description']) OR empty($data['description']))
@@ -192,11 +192,19 @@ class Place_model extends CI_Model
         // get id of previous entry
         $data['id'] = $this->db->insert_id();
 
+        // initialize rating to 0
+        $rating['total'] = 0;
+        $rating['count'] = 0;
+        $rating['place_id'] = $data['id'];
+
+        $this->db->insert('rating', $rating);
+
         // get extra columns
         $this->db->from('category_column');
         $this->db->where('category_id', $data['category_id']);
         $query = $this->db->get()->result_array();
 
+        // insert data to extra columns
         $batch = array();
         foreach ($query as $row)
         {

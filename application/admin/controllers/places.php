@@ -174,6 +174,15 @@ class Places extends CI_Controller {
         {
             $this->load->model('place_model');
             $query = $this->place_model->add_place();
+            $this->data['status'] = $query;
+            if ($query)
+            {
+                $this->data['message'] = 'Successfully added a new place';
+            }
+            else
+            {
+                $this->data['message'] = 'Failed to add a new place';
+            }
         }
 
         $this->load->helper('form');
@@ -189,7 +198,7 @@ class Places extends CI_Controller {
         $this->data['banner'] = $this->load->view('templates/banner', $this->data, TRUE);
         $this->data['navbar'] = $this->load->view('templates/navbar', $this->data, TRUE);
         $this->data['js'] = $this->load->view('templates/js', $this->data, TRUE);
-        $this->load->view(url_title($category['name'], '_', TRUE).'/add', $this->data);
+        $this->load->view('place/add', $this->data);
     }
 }
 

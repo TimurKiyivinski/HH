@@ -11,6 +11,23 @@
             <div class="curved-title">
                 <div><?=$category['name']?></div>
             </div>
+            <?php if ( ! isset($status)): ?>
+            <!-- show message here -->
+            <?php elseif ($status == FALSE): ?>
+            <div class="alert-dismissible alert alert-error fade in" role="alert">
+                <button aria-label="close" class="close" data-dismiss="alert">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <?=$message?>
+            </div>
+            <?php elseif ($status == TRUE): ?>
+            <div class="alert-dismissible alert alert-success fade in" role="alert">
+                <button aria-label="close" class="close" data-dismiss="alert">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <?=$message?>
+            </div>
+            <?php endif; ?>
 
             <?= form_open() ?>
                 <input name="category_id" type="hidden" value="<?=$category['id']?>">
