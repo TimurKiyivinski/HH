@@ -37,10 +37,11 @@ class Place_model extends CI_Model
             return NULL;
         }
 
-        $this->db->select('place.*, rating.total DIV rating.count AS rating, area.name AS area');
+        $this->db->select('place.*, location.longitude, location.latitude, rating.total DIV rating.count AS rating, area.name AS area');
         $this->db->from($this->table);
         $this->db->join('rating', 'rating.place_id = place.id');
         $this->db->join('area', 'place.area_id = area.id');
+        $this->db->join('location', 'location.place_id = place.id');
         $this->db->where('place.id', $id);
         $query = $this->db->get();
 

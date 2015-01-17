@@ -28,7 +28,7 @@ class Location_model extends CI_Model
         }
 
         $this->db->where('place_id', $place_id);
-        $query = $this->db->from($this->table);
+        $query = $this->db->get($this->table);
 
         return $query->result_array();
     }

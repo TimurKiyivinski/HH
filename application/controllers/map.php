@@ -8,10 +8,36 @@ class Map extends CI_Controller {
         log_msg(__CLASS__, __FUNCTION__, func_get_args());
         $this->data['href'] = $this->config->item('href');
         $this->load->model('place_model');
+        $this->load->model('location_model');
     }
 
-    public function index($area = 'all')
+    public function index($area = FALSE, $lat = FALSE, $long = FALSE)
     {
+        // TODO: Fix this error screen
+        // or change default behaviour
+        if ($area === FALSE || $area == 0)
+        {
+            show_error('There are no places here.', 505);
+        }
+
+        $default_lat = 1.556316;
+        $default_long = 110.344055;
+
+        // Zoom in more if a place is in focus
+        if ($lat === FALSE || $long === FALSE)
+        {
+            $this->data['zoom'] = 16;
+            $this->data['latitude'] = $default_lat;
+            $this->data['longitude'] = $default_long;
+        }
+        else
+        {
+            $this->data['zoom'] = 20;
+            $this->data['latitude'] = $lat;
+            $this->data['longitude'] = $long;
+        }
+
+        // TODO: Create a model to get the area name instead
         $this->data['area'] = $area; 
         $this->data['title'] = ucfirst($area); 
         $this->data['head'] = $this->load->view('templates/head', $this->data, TRUE);
@@ -20,6 +46,36 @@ class Map extends CI_Controller {
         $this->data['js'] = $this->load->view('templates/js', $this->data, TRUE);
         
         $this->load->view('map', $this->data);
+    }
+
+    /**
+     * Gets a JSON object based on area id
+     *
+     * @param int, area
+     */
+    public function get_places($area = FALSE)
+    {
+        // Get all the places under one area
+        $data['places'] = $this->place_model->get_by_area($area);
+
+        // Check if place exists
+        if (empty($data['places']))
+        {
+            show_error('There are no places here.', 505);
+        }
+        
+        // Iterate though all places in an area
+        // and add it to an array
+        for ($i = 0; $i < count($data['places']); $i++)
+        {
+            $data['locations'][$i] = $this->location_model->get(intval($data['places'][$i]['id']));
+            $data['locations'][$i]['name'] = $data['places'][$i]['name'];
+        }
+        
+        // Set output type as JSON
+        $this->output
+                ->set_content_type('application/json')
+                ->set_output(json_encode($data['locations']));
     }
 }
 
