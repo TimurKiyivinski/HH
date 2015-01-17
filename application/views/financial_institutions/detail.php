@@ -93,7 +93,7 @@
     </div>
     <!--Location content-->
     <div class="details-item">
-        <?=$place['address']?>
+        <a href="<?=site_url('map/index/'.$place['area_id'].'/'.$place['latitude'].'/'.$place['longitude'])?>"><?=$place['address']?></a>
     </div>
     <!--Contact title-->
     <div class=" details-title bg-primary">
