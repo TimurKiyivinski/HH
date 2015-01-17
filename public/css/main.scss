@@ -148,3 +148,28 @@ a:hover, a:focus {
     color: $a-link-colour;
     text-decoration: underline;}
 
+//Category
+.btn{
+    
+    &-category {
+        background-color: #FFFFFF;
+        margin: 10px;
+        border-radius: 10px;
+
+        @include box-shadow(3px $shadow #912322);
+    }
+}
+
+img.category-btn {
+    height: 40%;
+    width: 90%;
+}
+
+.btn-category:hover, .btn-category:focus {
+    background-color: #e0e0e0;
+    background-position: 0 -15px;
+}
+
+.center{
+    text-align: center;  
+}

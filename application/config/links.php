@@ -2,6 +2,7 @@
 // link of different pages
 $config['href']['search'] = 'search';
 $config['href']['map'] = 'map';
+$config['href']['area'] = 'area';
 
 // This config contains all the necessary links to specific functions
 $config['href']['places']['details'] = 'places/details';
