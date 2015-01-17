@@ -20,7 +20,7 @@
             <li data-target="#picture-carousel" data-slide-to="1"></li>
             <li data-target="#picture-carousel" data-slide-to="2"></li>
         </ol>
-        
+
         <!--Wrapper for slides-->
         <!--TODO: Load images dynamically-->
         <div class="carousel-inner" role="listbox">
@@ -34,7 +34,7 @@
                 <img class="picture-carousel-img" src="<?=base_url('public/images/places/accommodation/City_Inn.png')?>" alt="Xpress City Centre">
             </div>
         </div>
-        
+
         <!-- Controls -->
         <a class="left carousel-control" href="#picture-carousel" role="button" data-slide="prev">
             <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
@@ -68,12 +68,12 @@
     <!--Information title-->
     <div class=" details-title bg-primary">
         <div class="bg-primary">
-        Information 
+        Information
         </div>
     </div>
     <!--Information content-->
     <div class="details-item">
-        <?=$place['description']?>
+        <?= empty($place['description']) ? 'n/a' : $place['description'] ?>
     </div>
     <!--Open hours title-->
     <div class=" details-title bg-primary">
@@ -83,7 +83,7 @@
     </div>
     <!--Open hours content-->
     <div class="details-item">
-        <?=$place['opening_hours']?>
+        <?= empty($place['opening_hours']) ? 'n/a' : $place['opening_hours'] ?>
     </div>
     <!--Location title-->
     <div class=" details-title bg-primary">
@@ -93,7 +93,7 @@
     </div>
     <!--Location content-->
     <div class="details-item">
-        <?=$place['address']?>
+        <?= empty($place['address']) ? 'n/a' : $place['address'] ?>
     </div>
     <!--Contact title-->
     <div class=" details-title bg-primary">
@@ -103,9 +103,9 @@
     </div>
     <!--Contact content-->
     <div class="details-item">
-        Website: <?=$place['website']?>
+        Website: <?= empty($place['website']) ? 'n/a' : $place['website'] ?>
         <br />
-        Phone: <?=$place['telephone']?>
+        Phone: <?= empty($place['telephone']) ? 'n/a' : $place['telephone'] ?>
     </div>
     <?=$navbar?>
     <?=$js?>

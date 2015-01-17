@@ -20,7 +20,7 @@
             <li data-target="#picture-carousel" data-slide-to="1"></li>
             <li data-target="#picture-carousel" data-slide-to="2"></li>
         </ol>
-        
+
         <!--Wrapper for slides-->
         <!-- TODO: Load images dynamically-->
         <!-- TODO: Make desktop version look proper -->
@@ -35,7 +35,7 @@
                 <img class="picture-carousel-img" src="<?=base_url('public/images/places/accommodation/City_Inn.png')?>" alt="Xpress City Centre">
             </div>
         </div>
-        
+
         <!-- Controls -->
         <a class="left carousel-control" href="#picture-carousel" role="button" data-slide="prev">
             <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
@@ -69,7 +69,7 @@
     <!--Information title-->
     <div class=" details-title bg-primary">
         <div class="bg-primary">
-        Information 
+        Information
         </div>
     </div>
     <!--Information content-->
