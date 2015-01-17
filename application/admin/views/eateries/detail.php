@@ -22,8 +22,7 @@
         </ol>
         
         <!--Wrapper for slides-->
-        <!-- TODO: Load images dynamically-->
-        <!-- TODO: Make desktop version look proper -->
+        <!--TODO: Load images dynamically-->
         <div class="carousel-inner" role="listbox">
             <div class="item active">
                 <img class="picture-carousel-img" src="<?=base_url('public/images/places/accommodation/360_Xpress_City_Centre.png')?>" alt="Xpress City Centre">
@@ -76,15 +75,31 @@
     <div class="details-item">
         <?= empty($place['description']) ? 'n/a' : $place['description'] ?>
     </div>
-    <!--Rate title-->
+    <!--Food title-->
     <div class=" details-title bg-primary">
         <div class="bg-primary">
-        Room rate
+        Cuisine
         </div>
     </div>
-    <!--Rate content-->
+    <!--Food content-->
     <div class="details-item">
-        <?=empty($place['room_rate']) ? 'n/a' : $place['room_rate'] ?>
+        Types of dishes served: <?= empty($place['type']) ? 'n/a' : $place['type'] ?><br />
+        <?= empty($place['cuisine']) ? 'n/a' : $place['cuisine'] ?>
+    </div>
+    <!--Signature dish-->
+    <div class="curved-title">
+        <div>Signature Dish</div>
+    </div>
+    <?= empty($place['signature_dish']) ? 'n/a' : $place['signature_dish'] ?>
+    <!--Open hours title-->
+    <div class=" details-title bg-primary">
+        <div class="bg-primary">
+        Open hours
+        </div>
+    </div>
+    <!--Open hours content-->
+    <div class="details-item">
+        <?= empty($place['opening_hours']) ? 'n/a' : $place['opening_hours'] ?>
     </div>
     <!--Location title-->
     <div class=" details-title bg-primary">

@@ -39,13 +39,51 @@ class Place_model extends CI_Model
 
         $this->db->select('place.*, rating.total DIV rating.count AS rating, area.name AS area');
         $this->db->from($this->table);
-        $this->db->join('rating', 'rating.place_id = place.id');
+        $this->db->join('rating', 'rating.place_id = place.id', 'left');
         $this->db->join('area', 'place.area_id = area.id');
         $this->db->where('place.id', $id);
         $query = $this->db->get();
 
         if ($query->num_rows() === 1)
-            return $query->row_array();
+            $place =  $query->row_array();
+
+        // get the extra details
+        $this->db->from('place_detail');
+        $this->db->where('place_id', $id);
+        $extras = $this->db->get()->result_array();
+
+        // get the column names to append to result
+        $this->db->from('category_column');
+        $this->db->where('category_id', $place['category_id']);
+        $columns = $this->db->get()->result_array();
+
+        // format result by appending extra details
+        foreach($extras as $detail)
+        {
+            $col_name = $this->_get_column_name($detail['category_column_id'], $columns);
+            $place[$col_name['column_name']] = $detail['detail'];
+        }
+
+        return $place;
+    }
+
+    /**
+     * Returns category_name
+     *
+     * @param category_column_id
+     * @param array of associative array of category_columns
+     *
+     * @return an associative array of category_column
+     */
+    private function _get_column_name($id, $arr)
+    {
+        foreach($arr as $row)
+        {
+            if ($row['id'] == $id)
+            {
+                return $row;
+            }
+        }
     }
 
     /**
@@ -68,7 +106,7 @@ class Place_model extends CI_Model
         $this->db->select('place.id, place.name, place.approved,
             rating.total DIV rating.count AS rating, area.name AS area');
         $this->db->from($this->table);
-        $this->db->join('rating', 'rating.place_id = place.id');
+        $this->db->join('rating', 'rating.place_id = place.id', 'left');
         $this->db->join('area', 'area.id = place.area_id');
         $this->db->where('place.category_id', $category_id);
         $query = $this->db->get();
@@ -94,7 +132,7 @@ class Place_model extends CI_Model
         $this->db->select('place.id, place.name, place.approved,
             rating.total DIV rating.count AS rating, area.name AS area');
         $this->db->from($this->table);
-        $this->db->join('rating', 'rating.place_id = place.id');
+        $this->db->join('rating', 'rating.place_id = place.id', 'left');
         $this->db->join('area', 'area.id = place.area_id');
         $this->db->where('area_id', $area_id);
         $query = $this->db->get();
@@ -143,7 +181,33 @@ class Place_model extends CI_Model
         // By default, not approved.
         $data['approved'] = FALSE;
 
-        return $this->db->insert($this->table, $data);
+        if (empty($data['name']) OR empty($data['description']) OR empty($data['description']))
+        {
+            return FALSE;
+        }
+
+        // insert to place table
+        $this->db->insert($this->table, $data);
+
+        // get id of previous entry
+        $data['id'] = $this->db->insert_id();
+
+        // get extra columns
+        $this->db->from('category_column');
+        $this->db->where('category_id', $data['category_id']);
+        $query = $this->db->get()->result_array();
+
+        $batch = array();
+        foreach ($query as $row)
+        {
+            $batch[] = array(
+                'place_id' => $data['id'],
+                'category_column_id' => $this->input->post($row['column_name']),
+                'detail' => $this->input->post($row['column_name'].'_detail')
+            );
+        }
+
+        return $this->db->insert_batch('place_detail', $batch);
     }
 
     /**

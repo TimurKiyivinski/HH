@@ -12,14 +12,22 @@
     <?php endif?>
 </div><!-- /.category-title -->
 <div class="container">
+    <div class="row place-panel">
+        <div class="col-md-12">
+            <a href="<?=site_url('places/add/'.$category['id'])?>" class="btn btn-default btn-lg btn-block">Add Place</a>
+        </div>
+    </div>
+    
     <!-- Start listing places -->
     <!-- TODO: implement paging if there's too many places -->
     <?php foreach ($places as $place): ?>
     <div class="row place-panel">
-        <a class="" href="<?=site_url($href['places']['details'].'/'.$category['id'].'/'.$place['id'])?>">
+        <a class="" href="<?=site_url($href['places']['details'].'/'.$place['id'])?>">
             <div class="col-xs-3 col-sm-2 col-md-2">
                 <?php // TODO: Use a helper to convert img link to thumbnail links ?>
+                <?php if( ! empty($thumbnails) && isset($thumbnails[$place['id']])): ?>
                 <img class="img-thumbnail place-panel-img" src="<?=base_url($thumbnails[$place['id']])?>" alt="<?=$place['name']?>">
+                <?php endif ?>
             </div><!-- col-xs-3 -->
             <div class="col-xs-9 col-sm-8 col-md-8 place-panel-detail">
                 <div class="row">

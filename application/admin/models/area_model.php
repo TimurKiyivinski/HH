@@ -1,13 +1,13 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Category_model extends CI_Model
+class Area_model extends CI_Model
 {
     /**
      * id (PK, Auto Increment, int)
      * name (string)
      */
 
-    private $table = 'category';
+    private $table = 'area';
 
     public function __construct()
     {
@@ -18,7 +18,7 @@ class Category_model extends CI_Model
     }
 
     /**
-     * Get category by id
+     * Get area by id
      *
      * @param int, category id
      * @return associative array of data
@@ -39,7 +39,7 @@ class Category_model extends CI_Model
     }
 
     /**
-     * Query all the categories
+     * Query all the areas
      *
      * @return array of associative array of data
      */
@@ -51,7 +51,7 @@ class Category_model extends CI_Model
     }
 
     /**
-     * Add a new category
+     * Add a new area
      *
      * @return bool, status of operation
      **/
@@ -65,7 +65,7 @@ class Category_model extends CI_Model
     }
 
     /**
-     * Deletes a category by id
+     * Deletes an area by id
      *
      * @param int, category id
      * @return bool, status of operation
@@ -83,28 +83,8 @@ class Category_model extends CI_Model
 
         return TRUE;
     }
-
-    /**
-     * Get category columns of a category
-     *
-     * @param int, category id
-     * @return array of associative array of data
-     */
-    public function get_columns($id = FALSE)
-    {
-        log_msg(__CLASS__, __FUNCTION__, func_get_args());
-        if ($id === FALSE)
-        {
-            return NULL;
-        }
-
-        $this->db->from('category_column');
-        $this->db->where('category_id', $id);
-        $query = $this->db->get();
-
-        return $query->result_array();
-    }
 }
 
-/* End of file category_model.php */
-/* Location: application/models/category_model.php */
+/* End of file area_model.php */
+/* Location: application/models/area_model.php */
+

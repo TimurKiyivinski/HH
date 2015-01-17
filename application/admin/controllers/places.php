@@ -12,6 +12,7 @@ class Places extends CI_Controller {
         parent::__construct();
         log_msg(__CLASS__, __FUNCTION__, func_get_args());
         $this->data['href'] = $this->config->item('href');
+        $this->output->enable_profiler(TRUE);
     }
 
     /**
@@ -109,27 +110,24 @@ class Places extends CI_Controller {
      * @param int , category id
      * @param int , place id
      */
-    public function details($category_id = FALSE, $place_id = FALSE)
+    public function details($place_id = FALSE)
     {
         log_msg(__CLASS__, __FUNCTION__, func_get_args());
-        if ($category_id === FALSE OR $place_id === FALSE)
+        if ($place_id === FALSE)
         {
             show_404();
         }
+
+
+
+        $this->load->model('place_model');
+
+        // get data from db
+        $this->data['place'] = $this->place_model->get($place_id);
 
         // get category details
         $this->load->model('category_model');
-        $category = $this->category_model->get($category_id);
-
-        if (empty($category))
-        {
-            show_404();
-        }
-
-        $this->load->model('place_model', 'place');
-
-        // get data from db
-        $this->data['place'] = $this->place->get($place_id);
+        $category = $this->category_model->get($this->data['place']['category_id']);
 
         if (empty($this->data['place']))
         {
@@ -143,6 +141,55 @@ class Places extends CI_Controller {
         $this->data['navbar'] = $this->load->view('templates/navbar', $this->data, TRUE);
         $this->data['js'] = $this->load->view('templates/js', $this->data, TRUE);
         $this->load->view(url_title($category['name'], '_', TRUE).'/detail', $this->data);
+    }
+
+    /**
+     * Show add new place form
+     *
+     * @param int , category id
+     */
+    public function add($category_id = FALSE)
+    {
+        log_msg(__CLASS__, __FUNCTION__, func_get_args());
+        if ($category_id === FALSE)
+        {
+            show_404();
+        }
+
+        $this->load->model('category_model');
+        $this->load->model('area_model');
+
+        $category = $this->category_model->get($category_id);
+        $category_columns = $this->category_model->get_columns($category_id);
+        $areas = $this->area_model->get_all();
+
+        $this->load->library('form_validation');
+
+        if (empty($category))
+        {
+            show_404();
+        }
+
+        if ($this->input->post())
+        {
+            $this->load->model('place_model');
+            $query = $this->place_model->add_place();
+        }
+
+        $this->load->helper('form');
+        $this->load->helper('inflector');
+
+        $this->data['category'] = $category;
+        $this->data['areas'] = $areas;
+        $this->data['category_columns'] = $category_columns;
+
+        // load views
+        $this->data['title'] = $this->data['category']['name'];
+        $this->data['head'] = $this->load->view('templates/head', $this->data, TRUE);
+        $this->data['banner'] = $this->load->view('templates/banner', $this->data, TRUE);
+        $this->data['navbar'] = $this->load->view('templates/navbar', $this->data, TRUE);
+        $this->data['js'] = $this->load->view('templates/js', $this->data, TRUE);
+        $this->load->view(url_title($category['name'], '_', TRUE).'/add', $this->data);
     }
 }
 
