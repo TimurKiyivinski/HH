@@ -15,7 +15,7 @@
         };
         var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
         // Load locations onto the map
-        load_locations(<?= json_encode(site_url('map/get_places/'.$area))?>, map);
+        load_locations(<?= json_encode(site_url('map/get_places/'.$area))?>, map, <?=$latitude?>, <?=$longitude?>);
     }
     google.maps.event.addDomListener(window, 'load', initialize);
     </script>
