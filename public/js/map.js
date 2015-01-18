@@ -9,13 +9,21 @@ user_location['lat'] = -1;
 user_location['long'] = -1;
 
 var userMap;
+var myStyle;
 var myDestination;
+var directionsService;
+var directionsDisplay;
 
 /* *
  * Check for geolocation support &
  * handles support and error functions
  */
-function tryGeoLocation(){
+function tryGeoLocation(clickStyle){
+    if (clickStyle == 'walk'){
+        myStyle = google.maps.TravelMode.WALKING;
+    } else {
+        myStyle = google.maps.TravelMode.DRIVING; 
+    }
     // Check for geolocation support
     if (navigator.geolocation)
         navigator.geolocation.getCurrentPosition(enableNavigation, errorNavigation);
@@ -30,9 +38,6 @@ function enableNavigation(location){
     user_location['lat'] = location.coords.latitude;
     user_location['long'] = location.coords.longitude;
 
-    // Direction services
-    var directionsService = new google.maps.DirectionsService();
-    var directionsDisplay = new google.maps.DirectionsRenderer();
     directionsDisplay.setMap(userMap);
 
     // Logging
@@ -41,10 +46,10 @@ function enableNavigation(location){
     console.log(user_location['long']);
 
     // User location
-    var userStart = new google.maps.LatLng(user_location['lat'], user_location['long']);
+    var myStart = new google.maps.LatLng(user_location['lat'], user_location['long']);
 
     // Make a route
-    calcRoute(directionsService, directionsDisplay, userStart, myDestination);
+    calcRoute(myStart, myDestination, myStyle);
 }
 
 /* *
@@ -54,12 +59,12 @@ function errorNavigation(){
     console.log('An error has occured.');
 }
 
-function calcRoute(directionsService, directionsDisplay, origin, destination) {
+function calcRoute(origin, destination) {
     //var selectedMode = document.getElementById("mode").value;
     var request = {
         origin: origin,
         destination: destination,
-        travelMode: google.maps.TravelMode.WALKING
+        travelMode: myStyle
     };
     directionsService.route(request, function(response, status) {
         if (status == google.maps.DirectionsStatus.OK) {
@@ -75,7 +80,7 @@ function calcRoute(directionsService, directionsDisplay, origin, destination) {
 function load_locations(call_url, map, dest_lat, dest_long) {
     var locations;
 
-    var enableNavigation = (typeof dest_lat == 'undefined' || typeof dest_long == 'undefined') ?
+    var enableNavigation = (dest_lat == -1 || dest_long == -1) ?
         0 : 1;
 
     // JQuery AJAX call
@@ -105,7 +110,7 @@ function load_locations(call_url, map, dest_lat, dest_long) {
                 myMarker.setMap(map);
 
                 // Check if this marker is intended for navigation
-                if (enableNavigation){
+                if (enableNavigation == 1){
                     console.log('Navigation enabled.');
                     if (locations[i][0]['latitude'] == dest_lat && locations[i][0]['longitude'] == dest_long){
                         console.log('Destination acquired.');
@@ -114,8 +119,10 @@ function load_locations(call_url, map, dest_lat, dest_long) {
                 }
             }
 
-            if (enableNavigation){
-                tryGeoLocation();
+            if (enableNavigation == 1){
+                // Direction services
+                directionsService = new google.maps.DirectionsService();
+                directionsDisplay = new google.maps.DirectionsRenderer();
             }
         }
     });

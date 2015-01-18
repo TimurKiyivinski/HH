@@ -28,6 +28,17 @@
     </div>
     <!--Map-->
     <div id="map-canvas" class="map-canvas"></div>
+    <!--Navigation title-->
+    <div class=" details-title bg-primary" style="display: <?=$display?>">
+        <div class="bg-primary">
+        Navigate
+        </div>
+    </div>
+    <!--Navigation content-->
+    <div style="display: <?=$display?>">
+        <button class="btn btn-success btn-block" onclick="tryGeoLocation('walk')" >Walk</button>
+        <button class="btn btn-info btn-block" onclick="tryGeoLocation('drive')" >Drive</button>
+    </div>
     <?=$navbar?>
 </body>
 </html>

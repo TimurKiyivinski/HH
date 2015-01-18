@@ -11,7 +11,7 @@ class Map extends CI_Controller {
         $this->load->model('location_model');
     }
 
-    public function index($area = FALSE, $lat = FALSE, $long = FALSE)
+    public function index($area = FALSE, $lat = -1, $long = -1)
     {
         // TODO: Fix this error screen
         // or change default behaviour
@@ -24,17 +24,19 @@ class Map extends CI_Controller {
         $default_long = 110.344055;
 
         // Zoom in more if a place is in focus
-        if ($lat === FALSE || $long === FALSE)
+        if ($lat === -1 || $long === -1)
         {
             $this->data['zoom'] = 16;
             $this->data['latitude'] = $default_lat;
             $this->data['longitude'] = $default_long;
+            $this->data['display'] = 'none';
         }
         else
         {
             $this->data['zoom'] = 20;
             $this->data['latitude'] = $lat;
             $this->data['longitude'] = $long;
+            $this->data['display'] = 'block';
         }
 
         // TODO: Create a model to get the area name instead
