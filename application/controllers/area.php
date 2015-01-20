@@ -22,14 +22,9 @@ class Area extends CI_Controller {
         }
 
         // TODO: remove stub data
-        $this->load->model('category_model');
-        $this->load->model('accommodation_model');
+        $this->load->model('area_model');
 
-        $category = $this->category_model->get(1);
-        $places = $this->accommodation_model->get_all();
-
-        $this->data['category'] = $category;
-        $this->data['places'] = $places;
+        $this->data['areas'] = $this->area_model->get_all();
         // end stub data
 
         // load view
