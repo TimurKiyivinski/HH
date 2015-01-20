@@ -7,6 +7,7 @@ $box-colour: #ffffff;
 $thumb-colour: #866d65;
 $head-colour: #a5080a;
 $title-colour: #e23C3b;
+$a-link-colour :#ffffff;
 
 // sizes
 $margin: 10px;
@@ -16,6 +17,10 @@ $banner-height: 20px;
 $shadow: 3px;
 $thumb-size: 64px;
 $icon-size: 500%;
+$search-thumb-size: 80px;
+$search-banner-padding-topbottom : 5px;
+$search-banner-padding-leftright : 2px;
+$search-margin: 15px;
 
 // mixins
 @mixin box-shadow($shadows...) {
@@ -53,6 +58,18 @@ div.banner {
     @include box-shadow(3px $shadow $grey);
 }
 
+// search bar 
+div.search-bar {
+    text-align: center;
+    margin-bottom: $search-margin;
+
+    border-radius: 15px;
+
+    @include padding($search-banner-padding-topbottom $search-banner-padding-leftright $search-banner-padding-topbottom $search-banner-padding-leftright);
+    @include box-shadow(3px $shadow $grey);
+}
+
+
 // heading of category when listing places
 .category-title {
     & > div {
@@ -74,7 +91,7 @@ div.banner {
         top: $banner-height - $margin - 5px;
         right: 12%;
         background-color: $box-colour;
-        
+
         @include box-shadow(3px $shadow $grey);
     }
 }
@@ -99,9 +116,8 @@ div.banner {
     &-img {
         background-color: $thumb-colour;
         border: 1px solid $body-colour;
-
-        min-height: $thumb-size;
-        max-height: $thumb-size + 6px;
+        height: $search-thumb-size;
+        width: $search-thumb-size;
     }
 
     &-name {
@@ -126,7 +142,7 @@ div.banner {
     margin-bottom: $margin - 4px;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
-    
+
     @include box-shadow(3px $shadow $grey);
 
     & > div {
@@ -162,14 +178,14 @@ div.banner {
     & > div {
         margin-left: $margin;
     }
-    
+
     &-rating
     {
         position: relative;
 
         @include padding($margin null $margin $margin);
     }
-    
+
     &-img {
         position: absolute;
         width: $thumb-size;
@@ -177,7 +193,7 @@ div.banner {
         left: $margin;
         top: $margin;
     }
-    
+
     &-star {
         width: $thumb-size;
         height: $thumb-size;
@@ -192,9 +208,9 @@ div.banner {
     margin-right: auto;
     width: 60%;
     height: 40%;
-    
+
     @include padding($margin 5px $margin 5px);
-    
+
     &-img {
         max-height: 300px;
     }
@@ -209,7 +225,7 @@ div.banner {
     height: 80%;
     margin: $margin;
     padding: $margin;
-    
+
     @include box-shadow(3px $shadow $grey);
 }
 
@@ -227,11 +243,50 @@ img.nav-btn {
 //icons (glyphicons)
 .icon {
 
-  font-size: 300%;
-  color: $head-colour;
+    font-size: 300%;
+    color: $head-colour;
 
-  &-rating {
-    color: #DE3634;
+    &-rating {
+        color: #DE3634;
     font-size: $icon-size; }
+}
+
+//white text for links
+.white {
+color: $a-link-colour; }
+
+
+//Category
+.btn{
+
+    &-category {
+        background-color: #FFFFFF;
+        margin: 10px;
+        border-radius: 10px;
+
+        @include box-shadow(3px $shadow #912322);
+    }
+}
+
+img.category-btn {
+    height: 40%;
+    width: 90%;
+}
+
+.btn-category:hover, .btn-category:focus {
+    background-color: #e0e0e0;
+    background-position: 0 -15px;
+}
+
+.center{
+    text-align: center;  
+}
+
+.panel-category{
+    background-color: #FFFFFF;
+}
+
+.border{
+    border: 5px solid #a5080a;
 }
 
