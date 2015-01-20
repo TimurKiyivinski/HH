@@ -101,6 +101,34 @@ class Place_model extends CI_Model
         $query = $this->db->get();
         return $query->result_array();
     }
+    
+    /**
+     * Query all the places by area id and category id
+     *
+     * Keys: (id, name, approved, rating, area)
+     *
+     * @param int, area id
+     * @param int, category id
+     * @return array of associative array of data
+     */
+    public function get_by_area_category($area_id = FALSE, $category_id = FALSE)
+    {
+        log_msg(__CLASS__, __FUNCTION__, func_get_args());
+        if ($area_id === FALSE || $category_id === FALSE)
+        {
+            return NULL;
+        }
+
+        $this->db->select('place.id, place.name, place.approved,
+            rating.total DIV rating.count AS rating, area.name AS area');
+        $this->db->from($this->table);
+        $this->db->join('rating', 'rating.place_id = place.id');
+        $this->db->join('area', 'area.id = place.area_id');
+        $this->db->where('area_id', $area_id);
+        $this->db->where('category_id', $category_id);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
 
     /**
      * Query places by ids

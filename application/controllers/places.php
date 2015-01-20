@@ -20,7 +20,7 @@ class Places extends CI_Controller {
     public function index()
     {
         log_msg(__CLASS__, __FUNCTION__, func_get_args());
-        $this->list_categories();
+        $this->list_categories_by_area();
     }
 
     /**
@@ -43,6 +43,28 @@ class Places extends CI_Controller {
         $this->load->view('category', $this->data);
     }
 
+    public function list_categories_by_area($area_id = FALSE)
+    {
+        log_msg(__CLASS__, __FUNCTION__, func_get_args());
+        $this->load->model('category_model');
+        $this->load->model('place_model');
+        $this->data['categories'] = $this->category_model->get_by_area($area_id);
+        foreach ($this->data['categories'] as &$category)
+        {
+            $category['places'] = $this->place_model->get_by_area_category($area_id, $category['id']);
+        }
+
+        // load view
+        $this->data['title'] = 'Categories';
+        $this->data['head'] = $this->load->view('templates/head', $this->data, TRUE);
+        $this->data['banner'] = $this->load->view('templates/banner', $this->data, TRUE);
+        $this->data['navbar'] = $this->load->view('templates/navbar', $this->data, TRUE);
+        $this->data['js'] = $this->load->view('templates/js', $this->data, TRUE);
+
+        // output view
+        $this->load->view('category', $this->data);
+    }
+    
     /**
      * Shows list of places from a category
      *
