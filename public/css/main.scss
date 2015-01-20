@@ -144,9 +144,6 @@ img.nav-btn {
 .white {
     color: $a-link-colour; }
 
-a:hover, a:focus {
-    color: $a-link-colour;
-    text-decoration: underline;}
 
 //Category
 .btn{
@@ -173,3 +170,12 @@ img.category-btn {
 .center{
     text-align: center;  
 }
+
+.panel-category{
+    background-color: #FFFFFF;
+}
+
+.border{
+    border: 5px solid #a5080a;
+}
+
