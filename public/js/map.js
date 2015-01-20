@@ -14,6 +14,18 @@ var myDestination;
 var directionsService;
 var directionsDisplay;
 
+// Different pointers for different areas, $area - 1
+var mapPointers = [];
+mapPointers[0] = "http://www.google.com/mapfiles/ms/micons/blue-dot.png";
+mapPointers[1] = "http://www.google.com/mapfiles/ms/micons/red-dot.png";
+mapPointers[2] = "http://www.google.com/mapfiles/ms/micons/purple-dot.png";
+mapPointers[3] = "http://www.google.com/mapfiles/ms/micons/yellow-dot.png";
+mapPointers[4] = "http://www.google.com/mapfiles/ms/micons/green-dot.png";
+mapPointers[5] = "http://www.google.com/mapfiles/ms/micons/ltblue-dot.png";
+mapPointers[6] = "http://www.google.com/mapfiles/ms/micons/pink-dot.png";
+mapPointers[7] = "http://www.google.com/mapfiles/ms/micons/red-dot.png";
+mapPointers[8] = "http://www.google.com/mapfiles/ms/micons/range-dot.png";
+
 /* *
  * Check for geolocation support &
  * handles support and error functions
@@ -82,6 +94,8 @@ function load_locations(call_url, map, dest_lat, dest_long) {
 
     var enableNavigation = (dest_lat == -1 || dest_long == -1) ?
         0 : 1;
+    
+    var areaID = parseInt(call_url.substr(call_url.length - 1));
 
     // JQuery AJAX call
     $.ajax({
@@ -103,6 +117,7 @@ function load_locations(call_url, map, dest_lat, dest_long) {
                 var myMarker = new google.maps.Marker({
                     position: myPlace,
                     map: map,
+                    icon: mapPointers[areaID],
                     title: locations[i]['name']
                 });
 

@@ -14,8 +14,15 @@
                 zoom: <?=$zoom?>
         };
         var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+        //var areas = <?=json_encode($area_array)?>;
         // Load locations onto the map
-        load_locations(<?= json_encode(site_url('map/get_places/'.$area))?>, map, <?=$latitude?>, <?=$longitude?>);
+        <?php
+        foreach ($area_array as &$area_loop){
+            $area_id = $area_loop['id'];
+            $site_addr = json_encode(site_url('map/get_places/'.$area_id));
+            echo "load_locations($site_addr, map, $latitude, $longitude);";
+        }
+        ?>
     }
     google.maps.event.addDomListener(window, 'load', initialize);
     </script>
