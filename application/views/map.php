@@ -14,7 +14,6 @@
                 zoom: <?=$zoom?>
         };
         var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-        //var areas = <?=json_encode($area_array)?>;
         // Load locations onto the map
         <?php
         foreach ($area_array as &$area_loop){
