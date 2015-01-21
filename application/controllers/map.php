@@ -12,14 +12,10 @@ class Map extends CI_Controller {
         $this->load->model('category_model');
     }
 
-    public function index($area = FALSE, $lat = -1, $long = -1)
+    public function index($lat = -1, $long = -1)
     {
         // TODO: Fix this error screen
         // or change default behaviour
-        if ($area === FALSE)
-        {
-            show_error('There are no places here.', 505);
-        }
 
         $default_lat = 1.556316;
         $default_long = 110.344055;
@@ -41,9 +37,8 @@ class Map extends CI_Controller {
         }
 
         // TODO: Create a model to get the area name instead
-        $this->data['area'] = $area; 
         $this->data['area_array'] = $this->category_model->get_all();
-        $this->data['title'] = ucfirst($area); 
+        $this->data['title'] = 'Maps';
         $this->data['head'] = $this->load->view('templates/head', $this->data, TRUE);
         $this->data['banner'] = $this->load->view('templates/banner', $this->data, TRUE);
         $this->data['navbar'] = $this->load->view('templates/navbar', $this->data, TRUE);
