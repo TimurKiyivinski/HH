@@ -67,7 +67,7 @@ class Search extends CI_Controller {
             for ($i = 0; $i < sizeof($places_search); $i++)
             {
                 $places[$i] = $this->place_model->get($places_search[$i]);
-                $categories[$places[$i]['category_id']]['name'][] = $category_data[$places[$i]['category_id']]['name'];
+                $categories[$places[$i]['category_id']]['name'] = $category_data[$places[$i]['category_id']]['name'];
                 $categories[$places[$i]['category_id']]['places'][] = $places[$i];
             }
             $this->data['categories'] = $categories;
