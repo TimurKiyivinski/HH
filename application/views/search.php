@@ -11,6 +11,13 @@ if ($results == 1)
 else
     echo 'No results\n';
 ?>
+<!-- Dear Sean.. xD
+So $categories['x']['places'][y]['z']
+Where:
+x is the category id
+y is the place index
+z is the detail in place
+-->
 <div class="container">
 
     <div class="row search-bar bg-primary">

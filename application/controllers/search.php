@@ -39,6 +39,7 @@ class Search extends CI_Controller {
     public function query($param = FALSE)
     {
         log_msg(__CLASS__, __FUNCTION__, func_get_args());
+        $this->load->helper('form');
         if ($param === FALSE)
         {
             return null;
