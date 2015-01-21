@@ -11,6 +11,7 @@
         <div><?=$place['name']?></div>
     </div>
 
+    <!--Pictures loader-->
     <?php if (sizeof($place['photos']) == 0): ?>
         <div class="row search-bar bg-primary">
             <div class="col-xs-12 col-sm-12 col-dm-12">
@@ -33,7 +34,6 @@
                 </ol>
                 
                 <!--Wrapper for slides-->
-                <!--TODO: Load images dynamically-->
                 <div class="carousel-inner" role="listbox"> 
                     <?php for ($i = 0; $i < sizeof($place['photos']); $i++): ?>
                         <?php if ($i == 0): ?>
