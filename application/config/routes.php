@@ -37,7 +37,7 @@
 | in the URL cannot be matched to a valid route.
 |
 */
-$route['default_controller'] = 'places';
+$route['default_controller'] = 'area';
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

@@ -8,9 +8,9 @@
 <div class="container">
     <div class="row search-bar bg-primary">
         <div class="col-xs-12 col-sm-12 col-dm-12">
-            <?=form_open(current_url(), array('method' => 'get', 'class' => 'form-horizontal', 'role' => 'form'))?>
+            <?=form_open(site_url('search/by_area'), array('name' => 'search_form', 'method' => 'post', 'class' => 'form-horizontal', 'role' => 'form'))?>
                 <div class="input-group">
-                    <input name="search" class="text form-control" value="<?=$this->input->get('search')?>" type="search" placeholder="Search...">
+                    <input id="search" name="search" class="text form-control" value="<?=$this->input->post('search')?>" type="search" placeholder="Search...">
                     <span class="input-group-btn">
                         <button class="btn btn-primary btn-search">
                             <span class="glyphicon glyphicon-search" aria-hidden="true"></span>

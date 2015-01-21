@@ -12,27 +12,7 @@ class Search extends CI_Controller {
     }
 
     /**
-     * Shows the Search interface
-     *
-    public function index()
-    {
-        log_msg(__CLASS__, __FUNCTION__, func_get_args());
-        $this->load->helper('form');
-
-        // load view
-        $this->data['title'] = 'Search';
-        $this->data['head'] = $this->load->view('templates/head', $this->data, TRUE);
-        $this->data['banner'] = $this->load->view('templates/banner', $this->data, TRUE);
-        $this->data['navbar'] = $this->load->view('templates/navbar', $this->data, TRUE);
-        $this->data['js'] = $this->load->view('templates/js', $this->data, TRUE);
-
-        // output view
-        $this->load->view('search', $this->data);
-    }
-     */
-
-    /**
-     * Make a search query
+     * Main search page, searches all places
      *
      * @param string , search string
      * @return an array of places sorted by category
@@ -52,6 +32,7 @@ class Search extends CI_Controller {
             $this->load->model('category_model');
             $this->load->model('place_model');
             $this->load->model('search_model');
+            $this->load->model('photo_model');
 
             // To name the categories
             $category_data = $this->category_model->get_all();
@@ -74,6 +55,11 @@ class Search extends CI_Controller {
                 for ($i = 0; $i < sizeof($places_search); $i++)
                 {
                     $places[$i] = $this->place_model->get($places_search[$i]);
+                    $thumbnails = $this->photo_model->get_all($places[$i]['id']);
+                    if (sizeof($thumbnails) > 0)
+                        $places[$i]['thumbnail'] = $thumbnails[0]['photo_link'];
+                    else
+                        $places[$i]['thumbnail'] = 'public/images/places/public_toilet/Public_Toilet.png'; //TODO: Change image
                     $categories[$places[$i]['category_id']]['name'] = $category_data[$places[$i]['category_id'] - 1]['name'];
                     $categories[$places[$i]['category_id']]['places'][] = $places[$i];
                 }
@@ -91,6 +77,71 @@ class Search extends CI_Controller {
         $this->load->view('search', $this->data);
     }
 
+    /**
+     * Main search page, searches all places
+     *
+     * @param string , search string
+     * @return an array of places sorted by category
+     */
+    public function by_area()
+    {
+        log_msg(__CLASS__, __FUNCTION__, func_get_args());
+        $this->load->helper('form');
+        if($this->input->post('submit'))
+        {
+            $this->data['results'] = 0;
+        }
+        else
+        {
+            $search = $this->input->post('search');
+
+            $this->load->model('area_model');
+            $this->load->model('place_model');
+            $this->load->model('search_model');
+            $this->load->model('photo_model');
+
+            // To name the categories
+            $area_data = $this->area_model->get_all();
+
+            $places_search = [];
+
+            if ($search != "")
+                $places_search = $this->search_model->find_all($search);
+
+            // Check if there are any results
+            if (sizeof($places_search) == 0)
+            {
+                $this->data['results'] = 0;
+            }
+            else
+            {
+                $this->data['results'] = 1;
+
+                // Sort all the places by category
+                for ($i = 0; $i < sizeof($places_search); $i++)
+                {
+                    $places[$i] = $this->place_model->get($places_search[$i]);
+                    $thumbnails = $this->photo_model->get_all($places[$i]['id']);
+                    if (sizeof($thumbnails) > 0)
+                        $places[$i]['thumbnail'] = $thumbnails[0]['photo_link'];
+                    else
+                        $places[$i]['thumbnail'] = 'public/images/places/public_toilet/Public_Toilet.png'; //TODO: Change image
+                    $areas[$places[$i]['area_id']]['name'] = $area_data[$places[$i]['area_id'] - 1]['name'];
+                    $areas[$places[$i]['area_id']]['places'][] = $places[$i];
+                }
+                $this->data['areas'] = $areas;
+            }       
+        }
+
+        $this->data['title'] = 'Search';
+        $this->data['head'] = $this->load->view('templates/head', $this->data, TRUE);
+        $this->data['banner'] = $this->load->view('templates/banner', $this->data, TRUE);
+        $this->data['navbar'] = $this->load->view('templates/navbar', $this->data, TRUE);
+        $this->data['js'] = $this->load->view('templates/js', $this->data, TRUE);
+
+        // output view
+        $this->load->view('search_area', $this->data);
+    }
 }
 
 /* End of file search.php */

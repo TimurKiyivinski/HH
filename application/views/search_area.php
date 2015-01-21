@@ -23,14 +23,14 @@
 <?php if ($results == 1): ?>
         <div class="row">
             <div class="panel panel-primary" id="accordion" role="tablist" aria-multiselectable="true">
-                <?php foreach ($categories as &$category): ?>
-                    <div class="panel-heading" role="tab" id="heading<?=url_title($category['name'], '_')?>">
-                        <a class = "white"data-toggle="collapse" data-parent="#accordion" href="#collapse<?=url_title($category['name'], '_')?>" aria-expanded="true" aria-controls="collapse<?=url_title($category['name'], '_')?>">
-                            <h3 class="panel-title"><?=$category['name']?></h3>
+                <?php foreach ($areas as &$area): ?>
+                    <div class="panel-heading" role="tab" id="heading<?=url_title($area['name'], '_')?>">
+                        <a class = "white"data-toggle="collapse" data-parent="#accordion" href="#collapse<?=url_title($area['name'], '_')?>" aria-expanded="true" aria-controls="collapse<?=url_title($area['name'], '_')?>">
+                            <h3 class="panel-title"><?=$area['name']?></h3>
                         </a>
                     </div><!-- /.panel-heading -->
-                    <div class="list-group panel-collapse collapse in" id="collapse<?=url_title($category['name'], '_')?>" role="tabpanel" aria-labelledby="heading<?=url_title($category['name'], '_')?>">
-                        <?php foreach ($category['places'] as $place): ?>
+                    <div class="list-group panel-collapse collapse in" id="collapse<?=url_title($area['name'], '_')?>" role="tabpanel" aria-labelledby="heading<?=url_title($area['name'], '_')?>">
+                        <?php foreach ($area['places'] as $place): ?>
                         <a class="list-group-item panel-body" href="<?=site_url($href['places']['details'].'/'.$place['category_id'].'/'.$place['id'])?>">
                             <div class="row search-panel">
                                 <div class="col-xs-3 col-sm-2 col-md-2">
@@ -46,12 +46,12 @@
                                         <div class="col-xs-12 col-md-12 place-panel-rating">
                                             <h4>
                                             <?php for ($i = 0; $i < 5; $i++): ?>
-                                                <?php if ($category['places'][0]['rating'] > 0): ?>
+                                                <?php if ($area['places'][0]['rating'] > 0): ?>
                                                     <span class="glyphicon glyphicon-star"></span>
                                                 <?php else: ?>
                                                     <span class="glyphicon glyphicon-star-empty"></span>
                                                 <?php endif; ?>
-                                                <?php $category['places'][0]['rating']--; ?>
+                                                <?php $area['places'][0]['rating']--; ?>
                                             <?php endfor; ?>
                                             </h4>
                                         </div><!-- /.col-xs-12 -->
