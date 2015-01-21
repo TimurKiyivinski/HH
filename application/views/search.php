@@ -5,7 +5,12 @@
 </head>
 <body>
 <?=$banner?>
-
+<?php
+if ($results == 1)
+    echo 'Have!\n';
+else
+    echo 'No results\n';
+?>
 <div class="container">
 
     <div class="row search-bar bg-primary">

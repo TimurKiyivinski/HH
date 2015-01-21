@@ -19,22 +19,6 @@ class Search extends CI_Controller {
         log_msg(__CLASS__, __FUNCTION__, func_get_args());
         $this->load->helper('form');
 
-        if($this->input->get())
-        {
-            // TODO: load search resut
-        }
-
-        // TODO: remove stub data
-        $this->load->model('category_model');
-        $this->load->model('place_model');
-
-        $this->data['categories'] = $this->category_model->get_all();
-
-        foreach ($this->data['categories'] as &$category)
-        {
-            $category['places'] = $this->place_model->get_by_category($category['id']);
-        }
-
         // load view
         $this->data['title'] = 'Search';
         $this->data['head'] = $this->load->view('templates/head', $this->data, TRUE);
@@ -46,18 +30,56 @@ class Search extends CI_Controller {
         $this->load->view('search', $this->data);
     }
 
-    public function test($param = '')
+    /**
+     * Make a search query
+     *
+     * @param string , search string
+     * @return an array of places sorted by category
+     */
+    public function query($param = FALSE)
     {
         log_msg(__CLASS__, __FUNCTION__, func_get_args());
+        if ($param === FALSE)
+        {
+            return null;
+        }
+
+        $this->load->model('category_model');
+        $this->load->model('place_model');
         $this->load->model('search_model');
 
-        $result = $this->search_model->find_all($param);
+        // To name the categories
+        $category_data = $this->category_model->get_all();
 
-        $this->load->model('place_model');
+        $places_search = $this->search_model->find_all($param);
 
-        $query = $this->place_model->get_by_ids($result);
+        // Check if there are any results
+        if (sizeof($places_search) == 0)
+        {
+            $this->data['results'] = 0;
+        }
+        else
+        {
+            $this->data['results'] = 1;
+            
+            // Sort all the places by category
+            for ($i = 0; $i < sizeof($places_search); $i++)
+            {
+                $places[$i] = $this->place_model->get($places_search[$i]);
+                $categories[$places[$i]['category_id']]['name'][] = $category_data[$places[$i]['category_id']]['name'];
+                $categories[$places[$i]['category_id']]['places'][] = $places[$i];
+            }
+            $this->data['categories'] = $categories;
+        }       
+        
+        $this->data['title'] = 'Search';
+        $this->data['head'] = $this->load->view('templates/head', $this->data, TRUE);
+        $this->data['banner'] = $this->load->view('templates/banner', $this->data, TRUE);
+        $this->data['navbar'] = $this->load->view('templates/navbar', $this->data, TRUE);
+        $this->data['js'] = $this->load->view('templates/js', $this->data, TRUE);
 
-        var_dump($query);
+        // output view
+        $this->load->view('search', $this->data);
     }
 
 }
