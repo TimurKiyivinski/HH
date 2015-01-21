@@ -10,7 +10,7 @@
     <div class="curved-title">
         <div><?=$place['name']?></div>
     </div>
-    
+
     <?php if (sizeof($place['photos']) == 0): ?>
         <div class="row search-bar bg-primary">
             <div class="col-xs-12 col-sm-12 col-dm-12">
@@ -18,7 +18,6 @@
             </div>
         </div>
     <?php else: ?>
-        <img class="picture-carousel-img" src="<?=base_url($place['photos'][0]['photo_link'])?>" alt="Xpress City Centre">
             <!--Picture carousel-->
             <div class="picture-carousel">
                 <div id="picture-carousel" class="carousel slide" data-ride="carousel">
