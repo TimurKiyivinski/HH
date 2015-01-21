@@ -149,9 +149,12 @@ class Places extends CI_Controller {
         }
 
         $this->load->model('place_model', 'place');
+        $this->load->model('photo_model', 'photo');
 
         // get data from db
         $this->data['place'] = $this->place->get($place_id);
+        $this->data['place']['photos'] = $this->photo->get_all($place_id);
+        $this->data['photos_result'] = sizeof($this->data['place']['photos']) == 0 ? 0 : 1;
 
         if (empty($this->data['place']))
         {
