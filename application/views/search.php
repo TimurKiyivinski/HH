@@ -6,8 +6,6 @@
 <body>
 <?=$banner?>
 
-
-
 <div class="container">
 
     <div class="row search-bar bg-primary">

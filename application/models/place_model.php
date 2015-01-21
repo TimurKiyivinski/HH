@@ -48,6 +48,18 @@ class Place_model extends CI_Model
         if ($query->num_rows() === 1)
             return $query->row_array();
     }
+    
+    /**
+     * Query all the places
+     *
+     * @return array of associative array of data
+     */
+    public function get_all()
+    {
+        log_msg(__CLASS__, __FUNCTION__, func_get_args());
+        $query = $this->db->get($this->table);
+        return $query->result_array();
+    }
 
     /**
      * Query all the places by category id

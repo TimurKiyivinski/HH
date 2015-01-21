@@ -26,14 +26,14 @@ class Search extends CI_Controller {
 
         // TODO: remove stub data
         $this->load->model('category_model');
-        $this->load->model('accommodation_model');
+        $this->load->model('place_model');
 
-        $category = $this->category_model->get(1);
-        $places = $this->accommodation_model->get_all();
+        $this->data['categories'] = $this->category_model->get_all();
 
-        $this->data['category'] = $category;
-        $this->data['places'] = $places;
-        // end stub data
+        foreach ($this->data['categories'] as &$category)
+        {
+            $category['places'] = $this->place_model->get_by_category($category['id']);
+        }
 
         // load view
         $this->data['title'] = 'Search';
@@ -64,4 +64,3 @@ class Search extends CI_Controller {
 
 /* End of file search.php */
 /* Location: ./application/controllers/search.php */
-
