@@ -38,11 +38,11 @@
                     <?php for ($i = 0; $i < sizeof($place['photos']); $i++): ?>
                         <?php if ($i == 0): ?>
                             <div class="item active">
-                                <img class="picture-carousel-img" src="<?=base_url($place['photos'][$i]['photo_link'])?>" alt="Xpress City Centre">
+                                <img class="picture-carousel-img" src="<?=base_url($place['photos'][$i]['photo_link'])?>" alt="Unable to locate image.">
                             </div>
                         <?php else: ?>
                             <div class="item">
-                                <img class="picture-carousel-img" src="<?=base_url($place['photos'][$i]['photo_link'])?>" alt="Xpress City Centre">
+                                <img class="picture-carousel-img" src="<?=base_url($place['photos'][$i]['photo_link'])?>" alt="Unable to locate image.">
                             </div>
                         <?php endif; ?>
                     <?php endfor; ?>
