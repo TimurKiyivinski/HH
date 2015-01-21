@@ -48,10 +48,19 @@ class Places extends CI_Controller {
         log_msg(__CLASS__, __FUNCTION__, func_get_args());
         $this->load->model('category_model');
         $this->load->model('place_model');
+        $this->load->model('photo_model');
         $this->data['categories'] = $this->category_model->get_by_area($area_id);
         foreach ($this->data['categories'] as &$category)
         {
             $category['places'] = $this->place_model->get_by_area_category($area_id, $category['id']);
+            foreach ($category['places'] as &$place)
+            {
+                $thumbnails = $this->photo_model->get_all($place['id']);
+                if (sizeof($thumbnails) > 0)
+                    $place['thumbnail'] = $thumbnails[0]['photo_link'];
+                else
+                    $place['thumbnail'] = 'public/images/places/public_toilet/Public_Toilet.png'; //TODO: Change image
+            }
         }
 
         // load view

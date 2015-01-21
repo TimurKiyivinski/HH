@@ -38,7 +38,7 @@
                     <a class="list-group-item panel-body" href="<?=site_url($href['places']['details'].'/'.$category['id'].'/'.$place['id'])?>">
                         <div class="row search-panel">
                             <div class="col-xs-3 col-sm-2 col-md-2">
-                                <img class="img-thumbnail place-panel-img" src="<?=base_url('public/images/places/thumbnails/Merdeka_Palace_Hotel_thumb.png')?>" alt="">
+                                <img class="img-thumbnail place-panel-img" src="<?=base_url($place['thumbnail'])?>" alt="">
                             </div><!-- col-xs-3 -->
                             <div class="col-xs-9 col-sm-8 col-md-8 category-panel-detail">
                                 <div class="row">
