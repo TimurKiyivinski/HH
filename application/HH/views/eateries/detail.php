@@ -81,13 +81,29 @@
     <!--Information title-->
     <div class=" details-title bg-primary">
         <div class="bg-primary">
-        Information 
+        Information
         </div>
     </div>
     <!--Information content-->
     <div class="details-item">
         <?= empty($place['description']) ? 'n/a' : $place['description'] ?>
     </div>
+    <!--Food title-->
+    <div class=" details-title bg-primary">
+        <div class="bg-primary">
+        Cuisine
+        </div>
+    </div>
+    <!--Food content-->
+    <div class="details-item">
+        Types of dishes served: <?= empty($place['type']) ? 'n/a' : $place['type'] ?><br />
+        <?= empty($place['cuisine']) ? 'n/a' : $place['cuisine'] ?>
+    </div>
+    <!--Signature dish-->
+    <div class="curved-title">
+        <div>Signature Dish</div>
+    </div>
+    <?= empty($place['signature_dish']) ? 'n/a' : $place['signature_dish'] ?>
     <!--Open hours title-->
     <div class=" details-title bg-primary">
         <div class="bg-primary">
@@ -116,9 +132,9 @@
     </div>
     <!--Contact content-->
     <div class="details-item">
-        Website: <?=$place['website']?>
+        Website: <?= empty($place['website']) ? 'n/a' : $place['website'] ?>
         <br />
-        Phone: <?=$place['telephone']?>
+        Phone: <?= empty($place['telephone']) ? 'n/a' : $place['telephone'] ?>
     </div>
     <?=$navbar?>
     <?=$js?>

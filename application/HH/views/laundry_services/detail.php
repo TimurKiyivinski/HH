@@ -81,7 +81,7 @@
     <!--Information title-->
     <div class=" details-title bg-primary">
         <div class="bg-primary">
-        Information 
+        Information
         </div>
     </div>
     <!--Information content-->
@@ -116,9 +116,9 @@
     </div>
     <!--Contact content-->
     <div class="details-item">
-        Website: <?=$place['website']?>
+        Website: <?= empty($place['website']) ? 'n/a' : $place['website'] ?>
         <br />
-        Phone: <?=$place['telephone']?>
+        Phone: <?= empty($place['telephone']) ? 'n/a' : $place['telephone'] ?>
     </div>
     <?=$navbar?>
     <?=$js?>

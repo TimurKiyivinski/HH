@@ -12,11 +12,11 @@
 
     <!--Pictures loader-->
     <?php if (sizeof($place['photos']) == 0): ?>
-        <div class="row search-bar bg-primary">
-            <div class="col-xs-12 col-sm-12 col-dm-12">
-                No Pictures Avalaible.
-            </div>
+    <div class="row search-bar bg-primary">
+        <div class="col-xs-12 col-sm-12 col-dm-12">
+            No Pictures Avalaible.
         </div>
+    </div>
     <?php else: ?>
     <!--Picture carousel-->
     <div class="picture-carousel">
@@ -81,22 +81,23 @@
     <!--Information title-->
     <div class=" details-title bg-primary">
         <div class="bg-primary">
-        Information 
+        Information
         </div>
     </div>
     <!--Information content-->
+    <!-- TODO: If content is too long, ellipsize and give option to show more -->
     <div class="details-item">
         <?= empty($place['description']) ? 'n/a' : $place['description'] ?>
     </div>
-    <!--Open hours title-->
+    <!--Rate title-->
     <div class=" details-title bg-primary">
         <div class="bg-primary">
-        Open hours
+        Room rate
         </div>
     </div>
-    <!--Open hours content-->
+    <!--Rate content-->
     <div class="details-item">
-        <?= empty($place['opening_hours']) ? 'n/a' : $place['opening_hours'] ?>
+        <?=empty($place['room_rate']) ? 'n/a' : $place['room_rate'] ?>
     </div>
     <!--Location title-->
     <div class=" details-title bg-primary">
@@ -105,6 +106,7 @@
         </div>
     </div>
     <!--Location content-->
+    <!-- TODO: Add link to the button instead. -->
     <div class="details-item">
         <a href="<?=site_url('map/index/'.$place['area_id'].'/'.$place['latitude'].'/'.$place['longitude'])?>"><?=$place['address']?></a>
     </div>
@@ -116,9 +118,9 @@
     </div>
     <!--Contact content-->
     <div class="details-item">
-        Website: <?=$place['website']?>
+        Website: <?= empty($place['website']) ? 'n/a' : $place['website'] ?>
         <br />
-        Phone: <?=$place['telephone']?>
+        Phone: <?= empty($place['telephone']) ? 'n/a' : $place['telephone'] ?>
     </div>
     <?=$navbar?>
     <?=$js?>

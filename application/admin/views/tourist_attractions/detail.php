@@ -1,3 +1,4 @@
+<!-- TODO: refactor details page -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,55 +11,41 @@
         <div><?=$place['name']?></div>
     </div>
 
-    <!--Pictures loader-->
-    <?php if (sizeof($place['photos']) == 0): ?>
-        <div class="row search-bar bg-primary">
-            <div class="col-xs-12 col-sm-12 col-dm-12">
-                No Pictures Avalaible.
-            </div>
-        </div>
-    <?php else: ?>
     <!--Picture carousel-->
     <div class="picture-carousel">
         <div id="picture-carousel" class="carousel slide" data-ride="carousel">
         <!--Indicators-->
         <ol class="carousel-indicators">
-            <?php for ($i = 0; $i < sizeof($place['photos']); $i++): ?>
-                <?php if ($i == 0): ?>
-                    <li data-target="#picture-carousel" data-slide-to="<?=$i?>" class="active"></li>
-                <?php else: ?>
-                    <li data-target="#picture-carousel" data-slide-to="<?=$i?>"></li>
-                <?php endif; ?>
-            <?php endfor; ?>
+            <li data-target="#picture-carousel" data-slide-to="0" class="active"></li>
+            <li data-target="#picture-carousel" data-slide-to="1"></li>
+            <li data-target="#picture-carousel" data-slide-to="2"></li>
         </ol>
-        
+
         <!--Wrapper for slides-->
-        <div class="carousel-inner" role="listbox"> 
-            <?php for ($i = 0; $i < sizeof($place['photos']); $i++): ?>
-                <?php if ($i == 0): ?>
-                    <div class="item active">
-                        <img class="picture-carousel-img" src="<?=base_url($place['photos'][$i]['photo_link'])?>" alt="Unable to locate image.">
-                    </div>
-                <?php else: ?>
-                    <div class="item">
-                        <img class="picture-carousel-img" src="<?=base_url($place['photos'][$i]['photo_link'])?>" alt="Unable to locate image.">
-                    </div>
-                <?php endif; ?>
-            <?php endfor; ?>
+        <!--TODO: Load images dynamically-->
+        <div class="carousel-inner" role="listbox">
+            <div class="item active">
+                <img class="picture-carousel-img" src="<?=base_url('public/images/places/accommodation/360_Xpress_City_Centre.png')?>" alt="Xpress City Centre">
+            </div>
+            <div class="item">
+                <img class="picture-carousel-img" src="<?=base_url('public/images/places/accommodation/Abell_Hotel.png')?>" alt="Xpress City Centre">
+            </div>
+            <div class="item">
+                <img class="picture-carousel-img" src="<?=base_url('public/images/places/accommodation/City_Inn.png')?>" alt="Xpress City Centre">
+            </div>
         </div>
 
-            <!-- Controls -->
-            <a class="left carousel-control" href="#picture-carousel" role="button" data-slide="prev">
-                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="right carousel-control" href="#picture-carousel" role="button" data-slide="next">
-                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
+        <!-- Controls -->
+        <a class="left carousel-control" href="#picture-carousel" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#picture-carousel" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
         </div>
     </div>
-    <?php endif; ?>
 
     <!--Ratings title-->
     <div class=" details-title bg-primary">
@@ -81,7 +68,7 @@
     <!--Information title-->
     <div class=" details-title bg-primary">
         <div class="bg-primary">
-        Information 
+        Information
         </div>
     </div>
     <!--Information content-->
@@ -106,7 +93,7 @@
     </div>
     <!--Location content-->
     <div class="details-item">
-        <a href="<?=site_url('map/index/'.$place['area_id'].'/'.$place['latitude'].'/'.$place['longitude'])?>"><?=$place['address']?></a>
+        <?= empty($place['address']) ? 'n/a' : $place['address'] ?>
     </div>
     <!--Contact title-->
     <div class=" details-title bg-primary">
@@ -116,9 +103,9 @@
     </div>
     <!--Contact content-->
     <div class="details-item">
-        Website: <?=$place['website']?>
+        Website: <?= empty($place['website']) ? 'n/a' : $place['website'] ?>
         <br />
-        Phone: <?=$place['telephone']?>
+        Phone: <?= empty($place['telephone']) ? 'n/a' : $place['telephone'] ?>
     </div>
     <?=$navbar?>
     <?=$js?>
