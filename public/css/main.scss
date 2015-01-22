@@ -282,11 +282,14 @@ img.category-btn {
     text-align: center;  
 }
 
-.panel-category{
-    background-color: #FFFFFF;
-}
-
 .border{
     border: 5px solid #a5080a;
 }
 
+.shadow{
+    @include box-shadow(3px $shadow #912322);
+}
+
+a.list-group-item{
+    color: $head-colour;
+}
