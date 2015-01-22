@@ -12,8 +12,19 @@ class Map extends CI_Controller {
         $this->load->model('category_model');
     }
 
-    public function index($lat = -1, $long = -1)
+    /**
+     * Shows the main page
+     */
+    public function index()
     {
+        log_msg(__CLASS__, __FUNCTION__, func_get_args());
+        $this->go();
+    }
+
+    public function go($lat = -1, $long = -1)
+    {
+        log_msg(__CLASS__, __FUNCTION__, func_get_args());
+        
         // TODO: Fix this error screen
         // or change default behaviour
 

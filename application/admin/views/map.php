@@ -9,8 +9,7 @@
     // Initializes the map
     function initialize() {
         var mapOptions = {
-            // TODO: Pressing the address in detail view will be the default center
-        center: { lat: <?=$latitude?>, lng: <?=$longitude?>},
+                center: { lat: <?=$latitude?>, lng: <?=$longitude?>},
                 zoom: <?=$zoom?>
         };
         var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
@@ -18,8 +17,9 @@
         <?php
         foreach ($area_array as &$area_loop){
             $area_id = $area_loop['id'];
-            $site_addr = json_encode(site_url('map/get_places/'.$area_id));
-            echo "load_locations($site_addr, map, $latitude, $longitude);";
+            $site_addr = json_encode(site_url($href['ajax']['map'].'/'.$area_id));
+            $go_url = json_encode(site_url($href['places']['details'].'/'.$area_id));
+            echo "load_locations($site_addr, $go_url, map, $latitude, $longitude);";
         }
         ?>
     }
