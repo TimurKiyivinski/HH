@@ -50,22 +50,6 @@ class Category_model extends CI_Model
         return $query->result_array();
     }
 
-    public function get_by_area($area_id = FALSE)
-    {
-        log_msg(__CLASS__, __FUNCTION__, func_get_args());
-        if ($area_id === FALSE)
-        {
-            return NULL;
-        }
-
-        $this->db->select('category.name, category.id');
-        $this->db->from($this->table);
-        $this->db->join('place', 'place.category_id = category.id');
-        $this->db->where('place.area_id', $area_id);
-        $query = $this->db->get();
-        return $query->result_array();
-    }
-
     /**
      * Add a new category
      *

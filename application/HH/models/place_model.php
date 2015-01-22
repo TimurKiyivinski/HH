@@ -24,7 +24,6 @@ class Place_model extends CI_Model
 
     /**
      * Query for a place by it's id
-     * TODO: Include the extra data from place_detail table
      *
      * @param int, place id
      * @return associative array of data
@@ -37,16 +36,55 @@ class Place_model extends CI_Model
             return NULL;
         }
 
-        $this->db->select('place.*, location.longitude, location.latitude, rating.total DIV rating.count AS rating, area.name AS area');
+        $this->db->select('place.*, rating.total DIV rating.count AS rating, area.name AS area');
         $this->db->from($this->table);
-        $this->db->join('rating', 'rating.place_id = place.id');
+        $this->db->join('rating', 'rating.place_id = place.id', 'left');
         $this->db->join('area', 'place.area_id = area.id');
-        $this->db->join('location', 'location.place_id = place.id');
         $this->db->where('place.id', $id);
         $query = $this->db->get();
 
+        $place = array();
+
         if ($query->num_rows() === 1)
-            return $query->row_array();
+            $place = $query->row_array();
+
+        // get the extra details
+        $this->db->from('place_detail');
+        $this->db->where('place_id', $id);
+        $extras = $this->db->get()->result_array();
+
+        // get the column names to append to result
+        $this->db->from('category_column');
+        $this->db->where('category_id', $place['category_id']);
+        $columns = $this->db->get()->result_array();
+
+        // format result by appending extra details
+        foreach($extras as $detail)
+        {
+            $col_name = $this->_get_column_name($detail['category_column_id'], $columns);
+            $place[$col_name['column_name']] = $detail['detail'];
+        }
+
+        return $place;
+    }
+
+    /**
+     * Returns category_name
+     *
+     * @param category_column_id
+     * @param array of associative array of category_columns
+     *
+     * @return an associative array of category_column
+     */
+    private function _get_column_name($id, $arr)
+    {
+        foreach($arr as $row)
+        {
+            if ($row['id'] == $id)
+            {
+                return $row;
+            }
+        }
     }
     
     /**
@@ -167,7 +205,6 @@ class Place_model extends CI_Model
 
     /**
      * Adds a new place to the db
-     * TODO: Also add into the extra table in place_detail
      *
      * @return bool, status of operation
      */
@@ -181,10 +218,51 @@ class Place_model extends CI_Model
         $data['description'] = $this->input->post('description');
         $data['address'] = $this->input->post('address');
 
-        // By default, not approved.
+        // By default, not approved and rating 0
         $data['approved'] = FALSE;
 
-        return $this->db->insert($this->table, $data);
+        if (empty($data['name']) OR empty($data['description']) OR empty($data['description']))
+        {
+            return FALSE;
+        }
+
+        // insert to place table
+        $this->db->insert($this->table, $data);
+
+        // get id of previous entry
+        $data['id'] = $this->db->insert_id();
+
+        // initialize rating to 0
+        $rating['total'] = 0;
+        $rating['count'] = 0;
+        $rating['place_id'] = $data['id'];
+
+        $this->db->insert('rating', $rating);
+
+        // add location to db
+        $location['place_id'] = $data['id'];
+        $location['latitude'] = $this->input->post('latitude');
+        $location['longitude'] = $this->input->post('longitude');
+
+        $this->db->insert('location', $location);
+
+        // get extra columns
+        $this->db->from('category_column');
+        $this->db->where('category_id', $data['category_id']);
+        $query = $this->db->get()->result_array();
+
+        // insert data to extra columns
+        $batch = array();
+        foreach ($query as $row)
+        {
+            $batch[] = array(
+                'place_id' => $data['id'],
+                'category_column_id' => $this->input->post($row['column_name']),
+                'detail' => $this->input->post($row['column_name'].'_detail')
+            );
+        }
+
+        return $this->db->insert_batch('place_detail', $batch);
     }
 
     /**

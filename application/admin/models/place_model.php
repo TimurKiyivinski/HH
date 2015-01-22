@@ -44,8 +44,10 @@ class Place_model extends CI_Model
         $this->db->where('place.id', $id);
         $query = $this->db->get();
 
+        $place = array();
+
         if ($query->num_rows() === 1)
-            $place =  $query->row_array();
+            $place = $query->row_array();
 
         // get the extra details
         $this->db->from('place_detail');
@@ -164,7 +166,6 @@ class Place_model extends CI_Model
 
     /**
      * Adds a new place to the db
-     * TODO: Also add into the extra table in place_detail
      *
      * @return bool, status of operation
      */
