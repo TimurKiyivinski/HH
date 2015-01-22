@@ -9,10 +9,10 @@ user_location['lat'] = -1;
 user_location['long'] = -1;
 
 var userMap;
-var myStyle;
 var myDestination;
 var directionsService;
 var directionsDisplay;
+var enableNav;
 
 // Different pointers for different areas, $area - 1
 var mapPointers = [];
@@ -30,49 +30,80 @@ mapPointers[8] = "http://www.google.com/mapfiles/ms/micons/range-dot.png";
  * Check for geolocation support &
  * handles support and error functions
  */
-function tryGeoLocation(clickStyle){
-    if (clickStyle == 'walk'){
-        myStyle = google.maps.TravelMode.WALKING;
-    } else {
-        myStyle = google.maps.TravelMode.DRIVING; 
-    }
+function tryGeoLocation(enable_navigation){
+    enableNav = enable_navigation;
     // Check for geolocation support
     if (navigator.geolocation)
-        navigator.geolocation.getCurrentPosition(enableNavigation, errorNavigation);
+        navigator.geolocation.getCurrentPosition(getUserLocation, errorLocation);
+}
+
+/* *
+ * Gets the user's current location
+ * */
+function getUserLocation(location)
+{
+    console.log('Getting location');
+    
+    user_location['lat'] = location.coords.latitude;
+    user_location['long'] = location.coords.longitude;
+    
+    // Logging
+    console.log('User location:');
+    console.log(user_location['lat']);
+    console.log(user_location['long']);
+    
+    if (enableNav == 0)
+        enableUserMarker();
+    else
+        enableNavigation();
+}
+
+/* *
+ * Enables a marker for the user's current location
+ * */
+function enableUserMarker()
+{
+    // User location
+    var myStart = new google.maps.LatLng(user_location['lat'], user_location['long']);
+
+    // Create a marker at the user
+    var userMarker = new google.maps.Marker({
+        position: myStart,
+        map: userMap,
+        icon: mapPointers[0],
+        title: 'You are here',
+        animation: google.maps.Animation.DROP
+    });
+
+    // Assign the marker to a map
+    userMarker.setMap(userMap);
 }
 
 /* *
  * Enables navigation functionality on the map
  */
 function enableNavigation(location){
-    console.log('Getting location');
-    // Get latitude & longitude
-    user_location['lat'] = location.coords.latitude;
-    user_location['long'] = location.coords.longitude;
 
     directionsDisplay.setMap(userMap);
-
-    // Logging
-    console.log('User location:');
-    console.log(user_location['lat']);
-    console.log(user_location['long']);
 
     // User location
     var myStart = new google.maps.LatLng(user_location['lat'], user_location['long']);
 
     // Make a route
-    calcRoute(myStart, myDestination, myStyle);
+    calcRoute(myStart, myDestination);
 }
 
 /* *
  * Alerts the user that the navigation failed
  */
-function errorNavigation(){
+function errorLocation(){
     console.log('An error has occured.');
+    alert('Error getting location!');
 }
 
 function calcRoute(origin, destination) {
-    //var selectedMode = document.getElementById("mode").value;
+    userMap.setCenter(origin);
+    var myStyle = google.maps.TravelMode.WALKING;
     var request = {
         origin: origin,
         destination: destination,
@@ -117,7 +148,7 @@ function load_locations(call_url, go_url, map, dest_lat, dest_long) {
                 var myMarker = new google.maps.Marker({
                     position: myPlace,
                     map: map,
-                    icon: mapPointers[areaID],
+                    icon: mapPointers[areaID + 1],
                     title: locations[i]['name'],
                     animation: google.maps.Animation.DROP
                 });
