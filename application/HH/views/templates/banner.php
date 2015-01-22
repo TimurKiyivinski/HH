@@ -1,3 +1,5 @@
 <div class="banner bg-primary">
-        Halaman Heritage
+       <?=$title?>
 </div><!-- /.banner -->
+
+

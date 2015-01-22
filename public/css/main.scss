@@ -202,12 +202,11 @@ div.search-bar {
 
 .picture-carousel {
     position: relative;
-    border-radius: $image-curve;
-    background-color: $head-colour;
     margin-left: auto;
     margin-right: auto;
     width: 60%;
     height: 40%;
+    color: $head-colour;
 
     @include padding($margin 5px $margin 5px);
 
@@ -245,10 +244,43 @@ img.nav-btn {
 
     font-size: 300%;
     color: $head-colour;
+    padding-top: 2%;
 
     &-rating {
         color: #DE3634;
     font-size: $icon-size; }
+}
+
+.flaticon{
+    &-info2:before{
+        color: #4453A4;
+        font-size: 150%;
+    }
+    &-clock97:before{
+        color: #4453A4;
+        font-size: 150%;
+    }
+    &-auricular6:before{
+        color: #FF8800;
+        font-size: 150%;
+    }
+    &-map49:before{
+        color: #17B64A;
+        font-size: 150%;
+    }
+    &-dollar179:before{
+        color: #729245;
+        font-size: 150%;
+    }
+    &-internet5:before{
+        color: #4453A4;
+        font-size: 150%;
+    }
+    &-lunch4:before{
+        color: #818181;
+        font-size: 150%;
+    }
+    
 }
 
 //white text for links
@@ -282,11 +314,49 @@ img.category-btn {
     text-align: center;  
 }
 
-.panel-category{
-    background-color: #FFFFFF;
-}
-
 .border{
     border: 5px solid #a5080a;
 }
+
+.shadow{
+    @include box-shadow(3px $shadow #912322);
+}
+
+a.red{
+    color: $head-colour;
+}
+.carousel-control, {
+    width: 0%;
+    
+}
+
+.carousel-control.left, .carousel-control.right{
+    background-image: none;
+}
+
+.list-group-item{
+
+
+    &-details{
+        background-color: $body-colour;
+        border: 0px solid #ddd;
+        border-top: 1px solid #ddd;
+        border-bottom: 1px solid #ddd;
+    }
+}
+
+.panel{
+    background-color: #000000;
+}
+
+.detail-panel {
+    text-align: left;
+    padding-left: 5px;
+    @include padding(3px null 3px null);
+}
+
+.panel-body{
+    padding: 0px;
+}
+
 

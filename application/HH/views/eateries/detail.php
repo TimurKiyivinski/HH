@@ -1,3 +1,4 @@
+<!-- TODO: @sean clean it up! and remove this -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -60,6 +61,162 @@
     </div>
     <?php endif; ?>
 
+    <div class="panel-group list-group ">
+        <div class="panel-body list-group-item-details red" >
+            <h3 class="panel-title">
+                <div class="row detail-panel">
+                    <div class="col-xs-3 col-sm-2 col-md-2">
+                         <span class="glyphicon glyphicon-star icon-rating"></span>
+                    </div><!-- col-xs-3 -->
+                    <div class="col-xs-9 col-sm-8 col-md-8 category-panel-detail">
+                        <div class="row">
+                            <div class="col-xs-12 col-md-12 category-panel-name">
+                                <?php for ($i = 0; $i < 5; $i++): ?>
+                                    <?php if ($place['rating'] > 0): ?>
+                                        <span class="glyphicon glyphicon-star icon"></span>
+                                    <?php else: ?>
+                                        <span class="glyphicon glyphicon-star-empty icon"></span>
+                                    <?php endif; ?>
+                                <?php $place['rating']--; ?>
+                                <?php endfor; ?>
+                            </div><!-- category-panel-name -->
+                        </div><!-- /.row -->
+                    </div><!-- /. category-panel-detail -->
+                </div>
+            </h3> 
+        </div>
+
+        <div class="panel-body list-group-item-details red" >
+            <h3 class="panel-title">
+                <div class="row detail-panel">
+                    <div class="col-xs-3 col-sm-2 col-md-2">
+                         <h1 class="flaticon-info2"></h1>
+                    </div><!-- col-xs-3 -->
+                    <div class="col-xs-9 col-sm-8 col-md-8 category-panel-detail">
+                        <div class="row">
+                            <div class="col-xs-12 col-md-12 category-panel-name">
+                                <?= empty($place['description']) ? 'n/a' : $place['description'] ?>
+                            </div><!-- category-panel-name -->
+                        </div><!-- /.row -->
+                    </div><!-- /. category-panel-detail -->
+                </div>
+            </h3> 
+        </div>
+
+         <div class="panel-body list-group-item-details red" >
+            <h3 class="panel-title">
+                <div class="row detail-panel">
+                    <div class="col-xs-3 col-sm-2 col-md-2">
+                         <h1 class="flaticon-lunch4"></h1>
+                    </div><!-- col-xs-3 -->
+                    <div class="col-xs-9 col-sm-8 col-md-8 category-panel-detail">
+                        <div class="row">
+                            <div class="col-xs-12 col-md-12 category-panel-name">
+                                    <?php if ( ! empty($place['type'])): ?>
+                                    <div class="details-item">
+                                        Types of dishes served: <?=$place['type']?><br />
+                                        <?=$place['cuisine']?>
+                                    </div>
+                                    <?php endif ?>
+                                    <div class="details-item">
+                                        Signature Dish:<?= empty($place['signature_dish']) ? 'n/a' : $place['signature_dish'] ?><br />                                       
+                                    </div>
+                            </div><!-- category-panel-name -->
+                        </div><!-- /.row -->
+                    </div><!-- /. category-panel-detail -->
+                </div>
+            </h3> 
+        </div>
+
+            <!--Food title-->
+    <div class=" details-title bg-primary">
+        <div class="bg-primary">
+        Cuisine
+        </div>
+    </div>
+    <!--Food content-->
+    <div class="details-item">
+        Types of dishes served: <?=$place['type']?><br />
+        <?=$place['cuisine']?>
+    </div>
+    <!--Signature dish-->
+    <div class="curved-title">
+        <div>Signature Dish</div>
+    </div>
+    <?=$place['signature_dish']?>
+
+        <div class="panel-body list-group-item-details red" >
+            <h3 class="panel-title">
+                <div class="row detail-panel">
+                    <div class="col-xs-3 col-sm-2 col-md-2">
+                         <h1 class="flaticon-clock97"></h1>
+                    </div><!-- col-xs-3 -->
+                    <div class="col-xs-9 col-sm-8 col-md-8 category-panel-detail">
+                        <div class="row">
+                            <div class="col-xs-12 col-md-12 category-panel-name">
+                                 <?=$place['opening_hours']?>
+                            </div><!-- category-panel-name -->
+                        </div><!-- /.row -->
+                    </div><!-- /. category-panel-detail -->
+                </div>
+            </h3> 
+        </div>
+
+        <div class="panel-body list-group-item-details red" >
+            <h3 class="panel-title">
+                <div class="row detail-panel">
+                    <div class="col-xs-3 col-sm-2 col-md-2">
+                         <h1 class="flaticon-map49"></h1>
+                    </div><!-- col-xs-3 -->
+                    <div class="col-xs-9 col-sm-8 col-md-8 category-panel-detail">
+                        <div class="row">
+                            <div class="col-xs-12 col-md-12 category-panel-name">
+                                <h3><a href="<?=site_url('map/index/'.$place['area_id'].'/'.$place['latitude'].'/'.$place['longitude'])?>"><?=$place['address']?></a></h3>
+
+                            </div><!-- category-panel-name -->
+                        </div><!-- /.row -->
+                    </div><!-- /. category-panel-detail -->
+                </div>
+            </h3> 
+        </div>
+
+        <div class="panel-body list-group-item-details red" >
+            <h3 class="panel-title">
+                <div class="row detail-panel">
+                    <div class="col-xs-3 col-sm-2 col-md-2">
+                         <h1 class="flaticon-auricular6"></h1>
+                    </div><!-- col-xs-3 -->
+                    <div class="col-xs-9 col-sm-8 col-md-8 category-panel-detail">
+                        <div class="row">
+                            <div class="col-xs-12 col-md-12 category-panel-name">
+                                <?=$place['telephone']?>
+                            </div><!-- category-panel-name -->
+                        </div><!-- /.row -->
+                    </div><!-- /. category-panel-detail -->
+                </div>
+            </h3> 
+        </div>
+
+        <div class="panel-body list-group-item-details red" >
+            <h3 class="panel-title">
+                <div class="row detail-panel">
+                    <div class="col-xs-3 col-sm-2 col-md-2">
+                         <h1 class="flaticon-internet5"></h1>
+                    </div><!-- col-xs-3 -->
+                    <div class="col-xs-9 col-sm-8 col-md-8 category-panel-detail">
+                        <div class="row">
+                            <div class="col-xs-12 col-md-12 category-panel-name">
+                                <?=$place['website']?>
+                            </div><!-- category-panel-name -->
+                        </div><!-- /.row -->
+                    </div><!-- /. category-panel-detail -->
+                </div>
+            </h3> 
+        </div>
+    </div><!-- /.list-group -->
+
+
+
     <!--Ratings title-->
     <div class=" details-title bg-primary">
         <div class="bg-primary">
@@ -81,12 +238,12 @@
     <!--Information title-->
     <div class=" details-title bg-primary">
         <div class="bg-primary">
-        Information
+        Information 
         </div>
     </div>
     <!--Information content-->
     <div class="details-item">
-        <?= empty($place['description']) ? 'n/a' : $place['description'] ?>
+        <?=$place['description']?>
     </div>
     <!--Food title-->
     <div class=" details-title bg-primary">
@@ -96,14 +253,14 @@
     </div>
     <!--Food content-->
     <div class="details-item">
-        Types of dishes served: <?= empty($place['type']) ? 'n/a' : $place['type'] ?><br />
-        <?= empty($place['cuisine']) ? 'n/a' : $place['cuisine'] ?>
+        Types of dishes served: <?=$place['type']?><br />
+        <?=$place['cuisine']?>
     </div>
     <!--Signature dish-->
     <div class="curved-title">
         <div>Signature Dish</div>
     </div>
-    <?= empty($place['signature_dish']) ? 'n/a' : $place['signature_dish'] ?>
+    <?=$place['signature_dish']?>
     <!--Open hours title-->
     <div class=" details-title bg-primary">
         <div class="bg-primary">
@@ -112,7 +269,7 @@
     </div>
     <!--Open hours content-->
     <div class="details-item">
-        <?= empty($place['opening_hours']) ? 'n/a' : $place['opening_hours'] ?>
+        <?=$place['opening_hours']?>
     </div>
     <!--Location title-->
     <div class=" details-title bg-primary">
@@ -132,9 +289,9 @@
     </div>
     <!--Contact content-->
     <div class="details-item">
-        Website: <?= empty($place['website']) ? 'n/a' : $place['website'] ?>
+        Website: <?=$place['website']?>
         <br />
-        Phone: <?= empty($place['telephone']) ? 'n/a' : $place['telephone'] ?>
+        Phone: <?=$place['telephone']?>
     </div>
     <?=$navbar?>
     <?=$js?>

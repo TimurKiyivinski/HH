@@ -48,11 +48,11 @@
         </div>
 
             <!-- Controls -->
-            <a class="left carousel-control" href="#picture-carousel" role="button" data-slide="prev">
+            <a class="left carousel-control red" href="#picture-carousel" role="button" data-slide="prev">
                 <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
                 <span class="sr-only">Previous</span>
             </a>
-            <a class="right carousel-control" href="#picture-carousel" role="button" data-slide="next">
+            <a class="right carousel-control red" href="#picture-carousel" role="button" data-slide="next">
                 <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                 <span class="sr-only">Next</span>
             </a>
@@ -60,68 +60,117 @@
     </div>
     <?php endif; ?>
 
-    <!--Ratings title-->
-    <div class=" details-title bg-primary">
-        <div class="bg-primary">
-        Ratings
+    <div class="panel-group list-group ">
+        <div class="panel-body list-group-item-details red" >
+            <h3 class="panel-title">
+                <div class="row detail-panel">
+                    <div class="col-xs-3 col-sm-2 col-md-2">
+                         <span class="glyphicon glyphicon-star icon-rating"></span>
+                    </div><!-- col-xs-3 -->
+                    <div class="col-xs-9 col-sm-8 col-md-8 category-panel-detail">
+                        <div class="row">
+                            <div class="col-xs-12 col-md-12 category-panel-name">
+                                <?php for ($i = 0; $i < 5; $i++): ?>
+                                    <?php if ($place['rating'] > 0): ?>
+                                        <span class="glyphicon glyphicon-star icon"></span>
+                                    <?php else: ?>
+                                        <span class="glyphicon glyphicon-star-empty icon"></span>
+                                    <?php endif; ?>
+                                <?php $place['rating']--; ?>
+                                <?php endfor; ?>
+                            </div><!-- category-panel-name -->
+                        </div><!-- /.row -->
+                    </div><!-- /. category-panel-detail -->
+                </div>
+            </h3> 
         </div>
-    </div>
-    <!--Ratings content-->
-    <div class="details-item-rating">
-        <span class="glyphicon glyphicon-star icon-rating"></span>
-        <?php for ($i = 0; $i < 5; $i++): ?>
-            <?php if ($place['rating'] > 0): ?>
-                <span class="glyphicon glyphicon-star icon"></span>
-            <?php else: ?>
-                <span class="glyphicon glyphicon-star-empty icon"></span>
-            <?php endif; ?>
-        <?php $place['rating']--; ?>
-        <?php endfor; ?>
-    </div>
-    <!--Information title-->
-    <div class=" details-title bg-primary">
-        <div class="bg-primary">
-        Information
+
+        <div class="panel-body list-group-item-details red" >
+            <h3 class="panel-title">
+                <div class="row detail-panel">
+                    <div class="col-xs-3 col-sm-2 col-md-2">
+                         <h1 class="flaticon-info2"></h1>
+                    </div><!-- col-xs-3 -->
+                    <div class="col-xs-9 col-sm-8 col-md-8 category-panel-detail">
+                        <div class="row">
+                            <div class="col-xs-12 col-md-12 category-panel-name">
+                                <?= empty($place['description']) ? 'n/a' : $place['description'] ?>
+                            </div><!-- category-panel-name -->
+                        </div><!-- /.row -->
+                    </div><!-- /. category-panel-detail -->
+                </div>
+            </h3> 
         </div>
-    </div>
-    <!--Information content-->
-    <!-- TODO: If content is too long, ellipsize and give option to show more -->
-    <div class="details-item">
-        <?= empty($place['description']) ? 'n/a' : $place['description'] ?>
-    </div>
-    <!--Rate title-->
-    <div class=" details-title bg-primary">
-        <div class="bg-primary">
-        Room rate
+
+        <div class="panel-body list-group-item-details red" >
+            <h3 class="panel-title">
+                <div class="row detail-panel">
+                    <div class="col-xs-3 col-sm-2 col-md-2">
+                         <h1 class="flaticon-dollar179"></h1>
+                    </div><!-- col-xs-3 -->
+                    <div class="col-xs-9 col-sm-8 col-md-8 category-panel-detail">
+                        <div class="row">
+                            <div class="col-xs-12 col-md-12 category-panel-name">
+                                <?=empty($place['room_rate']) ? 'n/a' : $place['room_rate'] ?>
+                            </div><!-- category-panel-name -->
+                        </div><!-- /.row -->
+                    </div><!-- /. category-panel-detail -->
+                </div>
+            </h3> 
         </div>
-    </div>
-    <!--Rate content-->
-    <div class="details-item">
-        <?=empty($place['room_rate']) ? 'n/a' : $place['room_rate'] ?>
-    </div>
-    <!--Location title-->
-    <div class=" details-title bg-primary">
-        <div class="bg-primary">
-        Location
+
+        <div class="panel-body list-group-item-details red" >
+            <h3 class="panel-title">
+                <div class="row detail-panel">
+                    <div class="col-xs-3 col-sm-2 col-md-2">
+                         <h1 class="flaticon-map49"></h1>
+                    </div><!-- col-xs-3 -->
+                    <div class="col-xs-9 col-sm-8 col-md-8 category-panel-detail">
+                        <div class="row">
+                            <div class="col-xs-12 col-md-12 category-panel-name">
+                                <h3><a href="<?=site_url('map/index/'.$place['area_id'].'/'.$place['latitude'].'/'.$place['longitude'])?>"><?=$place['address']?></a></h3>
+                            </div><!-- category-panel-name -->
+                        </div><!-- /.row -->
+                    </div><!-- /. category-panel-detail -->
+                </div>
+            </h3> 
         </div>
-    </div>
-    <!--Location content-->
-    <!-- TODO: Add link to the button instead. -->
-    <div class="details-item">
-        <a href="<?=site_url('map/index/'.$place['area_id'].'/'.$place['latitude'].'/'.$place['longitude'])?>"><?=$place['address']?></a>
-    </div>
-    <!--Contact title-->
-    <div class=" details-title bg-primary">
-        <div class="bg-primary">
-        Contact
+
+        <div class="panel-body list-group-item-details red" >
+            <h3 class="panel-title">
+                <div class="row detail-panel">
+                    <div class="col-xs-3 col-sm-2 col-md-2">
+                         <h1 class="flaticon-auricular6"></h1>
+                    </div><!-- col-xs-3 -->
+                    <div class="col-xs-9 col-sm-8 col-md-8 category-panel-detail">
+                        <div class="row">
+                            <div class="col-xs-12 col-md-12 category-panel-name">
+                                <?= empty($place['telephone']) ? 'n/a' : $place['telephone'] ?>
+                            </div><!-- category-panel-name -->
+                        </div><!-- /.row -->
+                    </div><!-- /. category-panel-detail -->
+                </div>
+            </h3> 
         </div>
-    </div>
-    <!--Contact content-->
-    <div class="details-item">
-        Website: <?= empty($place['website']) ? 'n/a' : $place['website'] ?>
-        <br />
-        Phone: <?= empty($place['telephone']) ? 'n/a' : $place['telephone'] ?>
-    </div>
+
+        <div class="panel-body list-group-item-details red" >
+            <h3 class="panel-title">
+                <div class="row detail-panel">
+                    <div class="col-xs-3 col-sm-2 col-md-2">
+                         <h1 class="flaticon-internet5"></h1>
+                    </div><!-- col-xs-3 -->
+                    <div class="col-xs-9 col-sm-8 col-md-8 category-panel-detail">
+                        <div class="row">
+                            <div class="col-xs-12 col-md-12 category-panel-name">
+                                <?= empty($place['website']) ? 'n/a' : $place['website'] ?>
+                            </div><!-- category-panel-name -->
+                        </div><!-- /.row -->
+                    </div><!-- /. category-panel-detail -->
+                </div>
+            </h3> 
+        </div>
+    </div><!-- /.list-group -->
+
     <?=$navbar?>
     <?=$js?>
 </body>
