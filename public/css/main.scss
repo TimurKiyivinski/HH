@@ -293,11 +293,19 @@ color: $a-link-colour; }
 
     &-category {
         background-color: #FFFFFF;
-        margin: 10px;
+        margin: 5px;
+        margin-top: 20px;
         border-radius: 10px;
 
         @include box-shadow(3px $shadow #912322);
     }
+    &-category-name {
+        background-color: #FFFFFF;
+        border-radius: 10px;
+
+        @include box-shadow(3px $shadow #912322);
+    }
+
 }
 
 img.category-btn {

@@ -23,15 +23,29 @@
     <?php for ($i = 1; $i < sizeof($areas); $i++): ?>
     <div class="row ">
         <div class="col-xs-6 col-md-6 col-sm-6 col-dm-6 center">
-            <a class="btn btn-category" href="<?=site_url('places/list_categories_by_area/'.$i)?>">
-                <img class="category-btn" src="<?=base_url('public/images/icons/')?><?='/'.url_title($areas[$i-1]['name'], '_', TRUE).'_icon.png'?>">
-            </a>
+            <div class="row">
+                <a class="btn btn-category" href="<?=site_url('places/list_categories_by_area/'.$i)?>">
+                    <img class="category-btn" src="<?=base_url('public/images/icons/')?><?='/'.url_title($areas[$i-1]['name'], '_', TRUE).'_icon.png'?>">
+                </a>
+            </div>
+            <div class="row">
+                <a class="btn btn-category-name" href="<?=site_url('places/list_categories_by_area/'.$i)?>">
+                    <?=$areas[$i-1]['name']?>
+                </a>
+            </div>
         </div>
     <?php $i++ ?>
         <div class="col-xs-6 col-md-6 col-sm-6 col-dm-6 center">
-            <a class="btn btn-category" href="<?=site_url('places/list_categories_by_area/'.$i)?>">
-                <img class="category-btn" src="<?=base_url('public/images/icons/')?><?='/'.url_title($areas[$i-1]['name'], '_',TRUE).'_icon.png'?>">
-            </a>
+            <div class="row">
+                <a class="btn btn-category" href="<?=site_url('places/list_categories_by_area/'.$i)?>">
+                    <img class="category-btn" src="<?=base_url('public/images/icons/')?><?='/'.url_title($areas[$i-1]['name'], '_', TRUE).'_icon.png'?>">
+                </a>
+            </div>
+            <div class="row">
+                <a class="btn btn-category-name" href="<?=site_url('places/list_categories_by_area/'.$i)?>">
+                    <?=$areas[$i-1]['name']?>
+                </a>
+            </div>
         </div>
     </div><!-- /.row -->
     <?php endfor ?>
