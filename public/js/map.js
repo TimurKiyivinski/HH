@@ -89,12 +89,12 @@ function calcRoute(origin, destination) {
  * Returns an array of JSON data
  * @param int, area
  * */
-function load_locations(call_url, map, dest_lat, dest_long) {
+function load_locations(call_url, go_url, map, dest_lat, dest_long) {
     var locations;
 
     var enableNavigation = (dest_lat == -1 || dest_long == -1) ?
         0 : 1;
-    
+
     var areaID = parseInt(call_url.substr(call_url.length - 1));
 
     // JQuery AJAX call
@@ -105,24 +105,30 @@ function load_locations(call_url, map, dest_lat, dest_long) {
             // Set locations as the returned JSON
             locations = response;
             console.log('Received JSON data');
-            
+
             userMap = map;
 
             // Add the markers
             for (var i = 0; i < locations.length; i++){
                 // Create a new place
-                var myPlace = new google.maps.LatLng(locations[i][0]['latitude'],locations[i][0]['longitude']);
+                var myPlace = new google.maps.LatLng(locations[i][0]['latitude'], locations[i][0]['longitude']);
 
                 // Create a marker at the place
                 var myMarker = new google.maps.Marker({
                     position: myPlace,
                     map: map,
                     icon: mapPointers[areaID],
-                    title: locations[i]['name']
+                    title: locations[i]['name'],
+                    animation: google.maps.Animation.DROP
                 });
 
                 // Assign the place to a map
                 myMarker.setMap(map);
+                with ({ goto_url: go_url, place: locations[i]}) {
+                    google.maps.event.addListener(myMarker, 'click', function() {
+                        window.location = goto_url + '/' + place[0]['place_id'];
+                    });
+                }
 
                 // Check if this marker is intended for navigation
                 if (enableNavigation == 1){

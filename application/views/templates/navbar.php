@@ -7,7 +7,7 @@
             <a class="btn" href="<?=site_url()?>">
                 <img class="nav-btn" src="<?=base_url('public/images/icons/home.png')?>">
             </a>
-            <a class="btn" href="<?=site_url($href['map'])?>">
+            <a class="btn" href="<?=site_url($href['map']['index'])?>">
                 <img class="nav-btn" src="<?=base_url('public/images/icons/box_button.png')?>">
             </a>
         </div>

@@ -123,7 +123,7 @@
     </div>
     <!--Location content-->
     <div class="details-item">
-        <a href="<?=site_url('map/index/'.$place['area_id'].'/'.$place['latitude'].'/'.$place['longitude'])?>"><?=$place['address']?></a>
+        <a href="<?=site_url($href['map']['go'].'/'.$place['latitude'].'/'.$place['longitude'])?>"><?=$place['address']?></a>
     </div>
     <!--Contact title-->
     <div class=" details-title bg-primary">
