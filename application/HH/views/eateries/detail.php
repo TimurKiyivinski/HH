@@ -128,23 +128,6 @@
             </h3> 
         </div>
 
-            <!--Food title-->
-    <div class=" details-title bg-primary">
-        <div class="bg-primary">
-        Cuisine
-        </div>
-    </div>
-    <!--Food content-->
-    <div class="details-item">
-        Types of dishes served: <?=$place['type']?><br />
-        <?=$place['cuisine']?>
-    </div>
-    <!--Signature dish-->
-    <div class="curved-title">
-        <div>Signature Dish</div>
-    </div>
-    <?=$place['signature_dish']?>
-
         <div class="panel-body list-group-item-details red" >
             <h3 class="panel-title">
                 <div class="row detail-panel">
@@ -214,85 +197,6 @@
             </h3> 
         </div>
     </div><!-- /.list-group -->
-
-
-
-    <!--Ratings title-->
-    <div class=" details-title bg-primary">
-        <div class="bg-primary">
-        Ratings
-        </div>
-    </div>
-    <!--Ratings content-->
-    <div class="details-item-rating">
-        <span class="glyphicon glyphicon-star icon-rating"></span>
-        <?php for ($i = 0; $i < 5; $i++): ?>
-            <?php if ($place['rating'] > 0): ?>
-                <span class="glyphicon glyphicon-star icon"></span>
-            <?php else: ?>
-                <span class="glyphicon glyphicon-star-empty icon"></span>
-            <?php endif; ?>
-        <?php $place['rating']--; ?>
-        <?php endfor; ?>
-    </div>
-    <!--Information title-->
-    <div class=" details-title bg-primary">
-        <div class="bg-primary">
-        Information 
-        </div>
-    </div>
-    <!--Information content-->
-    <div class="details-item">
-        <?=$place['description']?>
-    </div>
-    <!--Food title-->
-    <div class=" details-title bg-primary">
-        <div class="bg-primary">
-        Cuisine
-        </div>
-    </div>
-    <!--Food content-->
-    <div class="details-item">
-        Types of dishes served: <?=$place['type']?><br />
-        <?=$place['cuisine']?>
-    </div>
-    <!--Signature dish-->
-    <div class="curved-title">
-        <div>Signature Dish</div>
-    </div>
-    <?=$place['signature_dish']?>
-    <!--Open hours title-->
-    <div class=" details-title bg-primary">
-        <div class="bg-primary">
-        Open hours
-        </div>
-    </div>
-    <!--Open hours content-->
-    <div class="details-item">
-        <?=$place['opening_hours']?>
-    </div>
-    <!--Location title-->
-    <div class=" details-title bg-primary">
-        <div class="bg-primary">
-        Location
-        </div>
-    </div>
-    <!--Location content-->
-    <div class="details-item">
-        <a href="<?=site_url('map/index/'.$place['area_id'].'/'.$place['latitude'].'/'.$place['longitude'])?>"><?=$place['address']?></a>
-    </div>
-    <!--Contact title-->
-    <div class=" details-title bg-primary">
-        <div class="bg-primary">
-        Contact
-        </div>
-    </div>
-    <!--Contact content-->
-    <div class="details-item">
-        Website: <?=$place['website']?>
-        <br />
-        Phone: <?=$place['telephone']?>
-    </div>
     <?=$navbar?>
     <?=$js?>
 </body>
