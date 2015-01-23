@@ -128,7 +128,7 @@
                     <div class="col-xs-9 col-sm-8 col-md-8 category-panel-detail">
                         <div class="row">
                             <div class="col-xs-12 col-md-12 category-panel-name">
-                                <h3><a href="<?=site_url('map/index/'.$place['area_id'].'/'.$place['latitude'].'/'.$place['longitude'])?>"><?=$place['address']?></a></h3>
+                                <h3><a href="<?=site_url($href['map']['go'].'/'.$place['latitude'].'/'.$place['longitude'])?>"><?=$place['address']?></a></h3>
                             </div><!-- category-panel-name -->
                         </div><!-- /.row -->
                     </div><!-- /. category-panel-detail -->
