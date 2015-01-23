@@ -128,6 +128,7 @@ class Places extends CI_Controller {
         $this->data['head'] = $this->load->view('templates/head', $this->data, TRUE);
         $this->data['banner'] = $this->load->view('templates/banner', $this->data, TRUE);
         $this->data['navbar'] = $this->load->view('templates/navbar', $this->data, TRUE);
+        $this->data['topbar'] = $this->load->view('templates/topbar', $this->data, TRUE);
         $this->data['js'] = $this->load->view('templates/js', $this->data, TRUE);
 
         // output view

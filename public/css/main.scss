@@ -89,7 +89,8 @@ div.search-bar {
 
         position: absolute;
         top: $banner-height - $margin - 5px;
-        right: 12%;
+        top: 60px;
+        right: 0%;
         background-color: $box-colour;
 
         @include box-shadow(3px $shadow $grey);
@@ -290,6 +291,7 @@ color: $a-link-colour; }
 
 //Category
 .btn{
+    
 
     &-category {
         background-color: #FFFFFF;
@@ -297,6 +299,12 @@ color: $a-link-colour; }
         margin-top: 20px;
         border-radius: 10px;
 
+        @include box-shadow(3px $shadow #912322);
+    }
+    &-topbar {
+        background-color: #FFFFFF;
+        border-radius: 10px;
+        padding: 3px 6px;
         @include box-shadow(3px $shadow #912322);
     }
     &-category-name {
@@ -309,6 +317,11 @@ color: $a-link-colour; }
 }
 
 img.category-btn {
+    height: 40%;
+    width: 90%;
+}
+
+img.topbar-btn {
     height: 40%;
     width: 90%;
 }
@@ -366,5 +379,21 @@ a.red{
 .panel-body{
     padding: 0px;
 }
+
+
+.col-md-2,
+.col-dm-2{
+    width: 11%
+}
+
+.col-xs-2,
+.col-sm-2{
+    width: 12.5%;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-left: 5px;
+}
+
+
 
 

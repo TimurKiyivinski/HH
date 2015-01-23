@@ -5,10 +5,12 @@
 </head>
 <body>
 <?=$banner?>
+<?=$topbar?>
 <div class="category-title bg-primary">
+
     <div class="bg-primary"><?=$category['name']?></div>
     <?php if ($src['category_icon'] !== FALSE): ?>
-    <img class="img-thumbnail" alt="<?=$category['name']?>" src="<?=base_url($src['category_icon'])?>">
+    <img class="hidden-xs img-thumbnail" alt="<?=$category['name']?>" src="<?=base_url($src['category_icon'])?>">
     <?php endif?>
 </div><!-- /.category-title -->
 <div class="container">
