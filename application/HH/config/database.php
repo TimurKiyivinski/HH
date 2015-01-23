@@ -49,9 +49,9 @@ $active_group = 'default';
 $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'Seanx999';
-$db['default']['password'] = '4308131';
-$db['default']['database'] = 'halamanheritage';
+$db['default']['username'] = 'HH';
+$db['default']['password'] = 'halaman';
+$db['default']['database'] = 'HH';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
