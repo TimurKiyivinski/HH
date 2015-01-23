@@ -105,8 +105,8 @@ div.search-bar {
 
     &-img {
         background-color: transparent;
-        width: $thumb-size;
-        height: $thumb-size;
+        width: 45px;
+        height: 45px;
     }
 }
 
@@ -231,6 +231,8 @@ div.search-bar {
 
 .search-panel {
     text-align: center;
+    margin-left: 4px;
+    margin-right: 4px;
 
     @include padding(3px null 3px null);
 }
@@ -321,6 +323,11 @@ img.category-btn {
     width: 90%;
 }
 
+.img-thumbnail{
+    padding: 1px;
+}
+
+
 img.topbar-btn {
     height: 40%;
     width: 90%;
@@ -367,7 +374,7 @@ a.red{
 }
 
 .panel{
-    background-color: #000000;
+    background-color: $head-colour;
 }
 
 .detail-panel {
@@ -394,6 +401,8 @@ a.red{
     margin-left: 5px;
 }
 
-
+.list-group-item{
+    border: 1px solid $head-colour;
+}
 
 
