@@ -77,6 +77,7 @@ function enableUserMarker()
 
     // Assign the marker to a map
     userMarker.setMap(userMap);
+    userMap.setCenter(myStart);
 }
 
 /* *
