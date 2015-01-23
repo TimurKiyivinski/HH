@@ -10,7 +10,7 @@
     <div class="panel panel-group list-group ">
         <?php foreach ($categories as $category): ?>
             <!--TODO: In the future, category_id here will be removed for details-->
-            <a class="panel-body list-group-item red" href="<?=site_url('places/list_places'.'/'.$category['id'])?>">
+            <a class="panel-body list-group-item red" href="<?=site_url($href['places']['list'].'/'.$area_id.'/'.$category['id'])?>">
                 <div class="row search-panel">
                     <h3 class="panel-title">
                         <div class="row search-panel">

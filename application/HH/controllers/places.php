@@ -20,17 +20,23 @@ class Places extends CI_Controller {
     public function index()
     {
         log_msg(__CLASS__, __FUNCTION__, func_get_args());
-        $this->list_categories_by_area();
+        $this->list_categories();
     }
 
     /**
      * List out all categories
      */
-    public function list_categories()
+    public function list_categories($area_id = FALSE)
     {
         log_msg(__CLASS__, __FUNCTION__, func_get_args());
+        if ($area_id === FALSE)
+        {
+            redirect($this->data['href']['area']);
+        }
+        
         $this->load->model('category_model');
         $this->data['categories'] = $this->category_model->get_all();
+        $this->data['area_id'] = $area_id;
 
         // load view
         $this->data['title'] = 'Categories';
@@ -73,13 +79,13 @@ class Places extends CI_Controller {
         // output view
         $this->load->view('category', $this->data);
     }
-    
+
     /**
      * Shows list of places from a category
      *
      * @param int, category id
      */
-    public function list_places($category_id = FALSE)
+    public function list_places($area_id = FALSE, $category_id = FALSE)
     {
         log_msg(__CLASS__, __FUNCTION__, func_get_args());
         if ($category_id === FALSE)
@@ -89,6 +95,8 @@ class Places extends CI_Controller {
 
         // get category details
         $this->load->model('category_model');
+        $categories = $this->category_model->get_all();
+        //$category = $categories[$category_id];
         $category = $this->category_model->get($category_id);
 
         if (empty($category))
@@ -97,6 +105,7 @@ class Places extends CI_Controller {
         }
 
         $this->data['src']['category_icon'] = 'public/images/icons/'.url_title($category['name'], '_', TRUE).'_icon.png';
+        
         if ( ! file_exists(FCPATH . $this->data['src']['category_icon']))
         {
             $this->data['src']['category_icon'] = FALSE;
@@ -107,21 +116,27 @@ class Places extends CI_Controller {
         $this->load->model('photo_model', 'photos');
 
         // get data from db
-        $places = $this->place->get_by_category($category_id);
-        $photos = $this->photos->get_by_places($places);
+        $places = $this->place->get_by_area_category($area_id, $category_id);
 
         if (empty($places))
         {
             // TODO: tell user that this category is empty
         }
-
-        foreach ($photos as $img)
+        else
         {
-            $this->data['thumbnails'][$img['place_id']] = $img['photo_link'];
+
+            $photos = $this->photos->get_by_places($places);
+
+            foreach ($photos as $img)
+            {
+                $this->data['thumbnails'][$img['place_id']] = $img['photo_link'];
+            }
         }
 
         $this->data['places'] = $places;
+        $this->data['categories'] = $categories;
         $this->data['category'] = $category;
+        $this->data['area_id'] = $area_id;
 
         // load view
         $this->data['title'] = $category['name'] . ' List';

@@ -24,12 +24,12 @@
     <div class="row ">
         <div class="col-xs-6 col-md-6 col-sm-6 col-dm-6 center">
             <div class="row">
-                <a class="btn btn-category" href="<?=site_url('places/list_categories_by_area/'.$i)?>">
+                <a class="btn btn-category" href="<?=site_url($href['places']['categories'].'/'.$i)?>">
                     <img class="category-btn" src="<?=base_url('public/images/icons/')?><?='/'.url_title($areas[$i-1]['name'], '_', TRUE).'_icon.png'?>">
                 </a>
             </div>
             <div class="row">
-                <a class="btn btn-category-name" href="<?=site_url('places/list_categories_by_area/'.$i)?>">
+                <a class="btn btn-category-name" href="<?=site_url($href['places']['categories'].'/'.$i)?>">
                     <?=$areas[$i-1]['name']?>
                 </a>
             </div>
@@ -37,12 +37,12 @@
     <?php $i++ ?>
         <div class="col-xs-6 col-md-6 col-sm-6 col-dm-6 center">
             <div class="row">
-                <a class="btn btn-category" href="<?=site_url('places/list_categories_by_area/'.$i)?>">
+                <a class="btn btn-category" href="<?=site_url($href['places']['categories'].'/'.$i)?>">
                     <img class="category-btn" src="<?=base_url('public/images/icons/')?><?='/'.url_title($areas[$i-1]['name'], '_', TRUE).'_icon.png'?>">
                 </a>
             </div>
             <div class="row">
-                <a class="btn btn-category-name" href="<?=site_url('places/list_categories_by_area/'.$i)?>">
+                <a class="btn btn-category-name" href="<?=site_url($href['places']['categories'].'/'.$i)?>">
                     <?=$areas[$i-1]['name']?>
                 </a>
             </div>
