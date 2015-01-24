@@ -73,7 +73,7 @@
                     <div class="col-xs-2 col-sm-2 col-md-2">
                          <span class="glyphicon glyphicon-star icon-rating"></span>
                     </div><!-- col-xs-3 -->
-                    <div class="col-xs-8 col-md-8 category-panel-name">
+                    <div class="col-xs-6 col-md-6 category-panel-name">
                         <?php for ($i = 0; $i < 5; $i++): ?>
                             <?php if ($place['rating'] > 0): ?>
                                 <span class="glyphicon glyphicon-star icon"></span>
@@ -93,13 +93,9 @@
                     <div class="col-xs-3 col-sm-2 col-md-2">
                          <h1 class="flaticon-info2"></h1>
                     </div><!-- col-xs-3 -->
-                    <div class="col-xs-9 col-sm-8 col-md-8 category-panel-detail">
-                        <div class="row">
-                            <div class="col-xs-12 col-md-12 category-panel-name">
-                                <?= empty($place['description']) ? 'n/a' : $place['description'] ?>
-                            </div><!-- category-panel-name -->
-                        </div><!-- /.row -->
-                    </div><!-- /. category-panel-detail -->
+                    <div class="col-xs-10 col-md-10 category-panel-name">
+                        <?= empty($place['description']) ? 'n/a' : $place['description'] ?>
+                    </div><!-- category-panel-name -->
                 </div>
             </h3> 
         </div>
@@ -110,13 +106,9 @@
                     <div class="col-xs-3 col-sm-2 col-md-2">
                          <h1 class="flaticon-clock97"></h1>
                     </div><!-- col-xs-3 -->
-                    <div class="col-xs-9 col-sm-8 col-md-8 category-panel-detail">
-                        <div class="row">
-                            <div class="col-xs-12 col-md-12 category-panel-name">
-                                <?= empty($place['opening_hours']) ? 'n/a' : $place['opening_hours'] ?>
-                            </div><!-- category-panel-name -->
-                        </div><!-- /.row -->
-                    </div><!-- /. category-panel-detail -->
+                    <div class="col-xs-10 col-md-10 category-panel-name">
+                        <?= empty($place['opening_hours']) ? 'n/a' : $place['opening_hours'] ?>
+                    </div><!-- category-panel-name -->
                 </div>
             </h3> 
         </div>
@@ -127,13 +119,9 @@
                     <div class="col-xs-3 col-sm-2 col-md-2">
                          <h1 class="flaticon-map49"></h1>
                     </div><!-- col-xs-3 -->
-                    <div class="col-xs-9 col-sm-8 col-md-8 category-panel-detail">
-                        <div class="row">
-                            <div class="col-xs-12 col-md-12 category-panel-name">
-                                <h3><a href="<?=site_url($href['map']['go'].'/'.$place['latitude'].'/'.$place['longitude'])?>"><?=$place['address']?></a></h3>
-                            </div><!-- category-panel-name -->
-                        </div><!-- /.row -->
-                    </div><!-- /. category-panel-detail -->
+                    <div class="col-xs-10 col-md-10 category-panel-name">
+                        <h3><a href="<?=site_url($href['map']['go'].'/'.$place['latitude'].'/'.$place['longitude'])?>"><?=$place['address']?></a></h3>
+                    </div><!-- category-panel-name -->
                 </div>
             </h3> 
         </div>
@@ -144,13 +132,9 @@
                     <div class="col-xs-3 col-sm-2 col-md-2">
                          <h1 class="flaticon-auricular6"></h1>
                     </div><!-- col-xs-3 -->
-                    <div class="col-xs-9 col-sm-8 col-md-8 category-panel-detail">
-                        <div class="row">
-                            <div class="col-xs-12 col-md-12 category-panel-name">
-                                <?= empty($place['telephone']) ? 'n/a' : $place['telephone'] ?>
-                            </div><!-- category-panel-name -->
-                        </div><!-- /.row -->
-                    </div><!-- /. category-panel-detail -->
+                    <div class="col-xs-10 col-md-10 category-panel-name">
+                        <?= empty($place['telephone']) ? 'n/a' : $place['telephone'] ?>
+                    </div><!-- category-panel-name -->
                 </div>
             </h3> 
         </div>
@@ -161,13 +145,9 @@
                     <div class="col-xs-3 col-sm-2 col-md-2">
                          <h1 class="flaticon-internet5"></h1>
                     </div><!-- col-xs-3 -->
-                    <div class="col-xs-9 col-sm-8 col-md-8 category-panel-detail">
-                        <div class="row">
-                            <div class="col-xs-12 col-md-12 category-panel-name">
-                                <?= empty($place['website']) ? 'n/a' : $place['website'] ?>
-                            </div><!-- category-panel-name -->
-                        </div><!-- /.row -->
-                    </div><!-- /. category-panel-detail -->
+                    <div class="col-xs-10 col-md-10 category-panel-name">
+                        <?= empty($place['website']) ? 'n/a' : $place['website'] ?>
+                    </div><!-- category-panel-name -->
                 </div>
             </h3> 
         </div>
