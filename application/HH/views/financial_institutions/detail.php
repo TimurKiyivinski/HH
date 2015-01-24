@@ -64,23 +64,19 @@
         <div class="panel-body list-group-item-details red" >
             <h3 class="panel-title">
                 <div class="row detail-panel">
-                    <div class="col-xs-3 col-sm-2 col-md-2">
+                    <div class="col-xs-2 col-sm-2 col-md-2">
                          <span class="glyphicon glyphicon-star icon-rating"></span>
                     </div><!-- col-xs-3 -->
-                    <div class="col-xs-9 col-sm-8 col-md-8 category-panel-detail">
-                        <div class="row">
-                            <div class="col-xs-12 col-md-12 category-panel-name">
-                                <?php for ($i = 0; $i < 5; $i++): ?>
-                                    <?php if ($place['rating'] > 0): ?>
-                                        <span class="glyphicon glyphicon-star icon"></span>
-                                    <?php else: ?>
-                                        <span class="glyphicon glyphicon-star-empty icon"></span>
-                                    <?php endif; ?>
-                                <?php $place['rating']--; ?>
-                                <?php endfor; ?>
-                            </div><!-- category-panel-name -->
-                        </div><!-- /.row -->
-                    </div><!-- /. category-panel-detail -->
+                    <div class="col-xs-8 col-md-8 category-panel-name">
+                        <?php for ($i = 0; $i < 5; $i++): ?>
+                            <?php if ($place['rating'] > 0): ?>
+                                <span class="glyphicon glyphicon-star icon"></span>
+                            <?php else: ?>
+                                <span class="glyphicon glyphicon-star-empty icon"></span>
+                            <?php endif; ?>
+                        <?php $place['rating']--; ?>
+                        <?php endfor; ?>
+                    </div><!-- category-panel-name -->
                 </div>
             </h3> 
         </div>
