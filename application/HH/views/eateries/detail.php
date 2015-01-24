@@ -68,7 +68,7 @@
                     <div class="col-xs-2 col-sm-2 col-md-2">
                          <span class="glyphicon glyphicon-star icon-rating"></span>
                     </div><!-- col-xs-3 -->
-                    <div class="col-xs-8 col-md-8 category-panel-name">
+                    <div class="col-xs-10 col-md-10 category-panel-name">
                         <?php for ($i = 0; $i < 5; $i++): ?>
                             <?php if ($place['rating'] > 0): ?>
                                 <span class="glyphicon glyphicon-star icon"></span>
