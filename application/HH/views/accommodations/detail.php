@@ -87,12 +87,23 @@
                     <div class="col-xs-3 col-sm-2 col-md-2">
                          <h1 class="flaticon-info2"></h1>
                     </div><!-- col-xs-3 -->
-                    <div class="col-xs-9 col-md-9 category-panel-name">
+                    <div class="col-xs-9 col-md-9 category-panel-name seemoreless">
                         <?= empty($place['description']) ? 'n/a' : $place['description'] ?>
+
                     </div><!-- category-panel-name -->
                 </div>
             </h3> 
         </div>
+
+        <!-- test -->
+        <a data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+          Link with href
+        </a>
+        <div class="collapse" id="collapseExample">
+            ...
+        </div>
+        <!-- test -->
+
 
         <div class="panel-body list-group-item-details red" >
             <h3 class="panel-title">
@@ -114,7 +125,20 @@
                          <h1 class="flaticon-map49"></h1>
                     </div><!-- col-xs-3 -->
                     <div class="col-xs-9 col-md-9 category-panel-name">
-                        <h3><a href="<?=site_url($href['map']['go'].'/'.$place['latitude'].'/'.$place['longitude'])?>"><?=$place['address']?></a></h3>
+                        <?=$place['address']?>
+                    </div><!-- category-panel-name -->
+                </div>
+            </h3> 
+        </div>
+
+        <div class="panel-body list-group-item-details red" >
+            <h3 class="panel-title">
+                <div class="row detail-panel">
+                    <div class="col-xs-3 col-sm-2 col-md-2">
+                         <h1 class="flaticon-compass109"></h1>
+                    </div><!-- col-xs-3 -->
+                    <div class="col-xs-9 col-md-9 category-panel-name">
+                        <h3><a href="<?=site_url($href['map']['go'].'/'.$place['latitude'].'/'.$place['longitude'])?>">Navigate Here</a></h3>
                     </div><!-- category-panel-name -->
                 </div>
             </h3> 
@@ -149,5 +173,34 @@
 
     <?=$navbar?>
     <?=$js?>
+
+    <!-- test -->
+
+    <?=word_limiter($place['description'], 20);?>
+    <br>
+    <?= substr(word_limiter($place['description'], 20) ,0,-7);?>
+    <?=$place['description'];?>
+    
+    <script>
+    $(document).ready(function()
+    {   
+        <?php $hidetext = 20; ?>
+
+        var hidetext = <?=$hidetext?>;
+
+        if (<?=strlen($place['description'])?> > hidetext) 
+            {      
+                // Append the parsed HTML
+                $( ".seemoreless" ).text("")
+                $( ".seemoreless" ).append( $.parseHTML("<?=word_limiter($place['description'], 20);?>" ) );
+
+                $( ".seemoreless" ).append( $.parseHTML("<a data-toggle='collapse' href='#collapseExample' aria-expanded='false' aria-controls='collapseExample'>(Click For More Info)</a><div class='collapse' id='collapseExample'>REPLACE WITH DESCRIPTION</div>"));
+
+            };
+        
+    });
+    </script>
+
+    <!-- test -->
 </body>
 </html>

@@ -159,6 +159,10 @@ class Places extends CI_Controller {
     public function details($category_id = FALSE, $place_id = FALSE)
     {
         log_msg(__CLASS__, __FUNCTION__, func_get_args());
+        
+        //helpers
+        $this->load->helper('text');
+
         if ($category_id === FALSE OR $place_id === FALSE)
         {
             show_404();
@@ -185,6 +189,8 @@ class Places extends CI_Controller {
         {
             show_404();
         }
+
+
 
         // load views
         $this->data['title'] = $this->data['place']['name'];

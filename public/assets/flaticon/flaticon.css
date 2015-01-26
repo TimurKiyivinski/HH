@@ -20,15 +20,21 @@ margin-left: 20px;
 .flaticon-clock97:before {
 	content: "\e001";
 }
-.flaticon-dollar179:before {
+.flaticon-compass109:before {
 	content: "\e002";
 }
-.flaticon-info2:before {
+.flaticon-dollar179:before {
 	content: "\e003";
 }
-.flaticon-internet5:before {
+.flaticon-info2:before {
 	content: "\e004";
 }
-.flaticon-map49:before {
+.flaticon-internet5:before {
 	content: "\e005";
+}
+.flaticon-lunch4:before {
+	content: "\e006";
+}
+.flaticon-map49:before {
+	content: "\e007";
 }
