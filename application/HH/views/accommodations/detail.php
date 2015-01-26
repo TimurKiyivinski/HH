@@ -87,12 +87,22 @@
                     <div class="col-xs-3 col-sm-2 col-md-2">
                          <h1 class="flaticon-info2"></h1>
                     </div><!-- col-xs-3 -->
-                    <div class="col-xs-9 col-md-9 category-panel-name">
+                    <div class="col-xs-9 col-md-9 category-panel-name seemoreless">
                         <?= empty($place['description']) ? 'n/a' : $place['description'] ?>
+
                     </div><!-- category-panel-name -->
                 </div>
             </h3> 
         </div>
+
+        <!-- test -->
+        <a data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+          Link with href
+        </a>
+        <div class="collapse" id="collapseExample">
+            ...
+        </div>
+        <!-- test -->
 
 
         <div class="panel-body list-group-item-details red" >
@@ -163,5 +173,34 @@
 
     <?=$navbar?>
     <?=$js?>
+
+    <!-- test -->
+
+    <?=word_limiter($place['description'], 20);?>
+    <br>
+    <?= substr(word_limiter($place['description'], 20) ,0,-7);?>
+    <?=$place['description'];?>
+    
+    <script>
+    $(document).ready(function()
+    {   
+        <?php $hidetext = 20; ?>
+
+        var hidetext = <?=$hidetext?>;
+
+        if (<?=strlen($place['description'])?> > hidetext) 
+            {      
+                // Append the parsed HTML
+                $( ".seemoreless" ).text("")
+                $( ".seemoreless" ).append( $.parseHTML("<?=word_limiter($place['description'], 20);?>" ) );
+
+                $( ".seemoreless" ).append( $.parseHTML("<a data-toggle='collapse' href='#collapseExample' aria-expanded='false' aria-controls='collapseExample'>(Click For More Info)</a><div class='collapse' id='collapseExample'>REPLACE WITH DESCRIPTION</div>"));
+
+            };
+        
+    });
+    </script>
+
+    <!-- test -->
 </body>
 </html>
