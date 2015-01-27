@@ -251,13 +251,13 @@ img.nav-btn {
 //icons (glyphicons)
 .icon {
 
-    font-size: 250%;
+    font-size: $icon-size;
     color: $head-colour;
     padding-top: 1%;
 
     &-rating {
         color: #DE3634;
-        font-size: 250%;
+        font-size: $icon-size;
         padding-left: 10px; }
 }
 
@@ -379,8 +379,15 @@ a.red{
     background-color: $head-colour;
 }
 
+.vertical-align {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
 // description section of the details page
-#description > p {
+#filler, #description > p {
     text-align: justify;
 }
 
