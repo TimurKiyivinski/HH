@@ -160,6 +160,24 @@
         </div>
         </a>
         <?php endif ?>
+        <!-- ratable -->
+        <hr />
+        <div class="row vertical-align">
+            <div class="col-xs-2 col-sm-2 col-md-2">
+                <span class="details-icon"></span>
+            </div>
+            <div class="col-xs-10 col-sm-10 col-md-10">
+                <div id="ratable">
+                <?=form_open()?>
+                <?php for ($i = 1; $i <= 5; $i++): ?>
+                    <a href="#" data-rate="<?=$i?>"><span class="glyphicon glyphicon-star-empty ratable"></span></a>
+                <?php endfor ?>
+                <input value="<?=current_url()?>" type="hidden" name="rate_url">
+                <input value="<?=$place['id']?>" type="hidden" name="place_id">
+                <?=form_close()?>
+                </div>
+            </div>
+        </div>
     </div><!-- /.container -->
     <?=$navbar?>
     <?=$js?>

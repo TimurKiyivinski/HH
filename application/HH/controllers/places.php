@@ -153,31 +153,29 @@ class Places extends CI_Controller {
     /**
      * Display the details of a place
      *
-     * @param int , category id
      * @param int , place id
      */
-    public function details($category_id = FALSE, $place_id = FALSE)
+    public function details($place_id = FALSE)
     {
         log_msg(__CLASS__, __FUNCTION__, func_get_args());
+        if ($this->input->post()) {
+            // update rating if there's any post method
+            $this->_update_rating();
+            $this->output->set_status_header('204');
+            return;
+        }
 
         //helpers
         $this->load->helper('text');
+        $this->load->helper('form');
 
-        if ($category_id === FALSE OR $place_id === FALSE)
-        {
-            show_404();
-        }
-
-        // get category details
-        $this->load->model('category_model');
-        $category = $this->category_model->get($category_id);
-
-        if (empty($category))
+        if ($place_id === FALSE)
         {
             show_404();
         }
 
         $this->load->model('place_model', 'place');
+        $this->load->model('category_model', 'category');
         $this->load->model('photo_model', 'photo');
 
         // get data from db
@@ -190,6 +188,8 @@ class Places extends CI_Controller {
             show_404();
         }
 
+        $category = $this->category->get($this->data['place']['category_id']);
+
         // load views
         $this->data['title'] = $this->data['place']['name'];
         $this->data['head'] = $this->load->view('templates/head', $this->data, TRUE);
@@ -197,6 +197,14 @@ class Places extends CI_Controller {
         $this->data['navbar'] = $this->load->view('templates/navbar', $this->data, TRUE);
         $this->data['js'] = $this->load->view('templates/js', $this->data, TRUE);
         $this->load->view(url_title($category['name'], '_', TRUE).'/detail', $this->data);
+    }
+
+    private function _update_rating()
+    {
+        log_msg(__CLASS__, __FUNCTION__, func_get_args());
+
+        $this->load->model('rating_model', 'rating');
+        $this->rating->update();
     }
 }
 
