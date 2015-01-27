@@ -16,7 +16,7 @@ $banner-padding: 3px;
 $banner-height: 20px;
 $shadow: 3px;
 $thumb-size: 64px;
-$icon-size: 150%;
+$icon-size: 220%;
 $search-thumb-size: 80px;
 $search-banner-padding-topbottom : 5px;
 $search-banner-padding-leftright : 2px;
@@ -269,6 +269,12 @@ img.nav-btn {
     &-info2:before{
         color: #4453A4;
     }
+    &-info6:before{
+        color: #4453A4;
+    }
+    &-info6ver:before{
+        color: #4453A4;
+    }
     &-clock97:before{
         color: #4453A4;
     }
@@ -288,6 +294,12 @@ img.nav-btn {
         color: #818181;
     }
     &-compass109:before{
+        color: #C80000;
+    }
+     &-award18:before{
+        color: #C80000;
+    }
+    &-review2:before{
         color: #C80000;
     }
 }
@@ -348,6 +360,9 @@ img.topbar-btn {
 .border{
     border: 5px solid #a5080a;
 }
+.border-details{
+    border: 1px solid #a5080a;
+}
 
 .shadow{
     @include box-shadow(3px $shadow #912322);
@@ -401,4 +416,6 @@ a.red{
     border: 1px solid $head-colour;
 }
 
-
+.ratable{
+    font-size: $icon-size;
+}
