@@ -33,22 +33,21 @@ class Search_model extends CI_Model
         $this->db->from('place');
         $this->db->join('category', 'place.category_id = category.id', 'left');
         $this->db->join('area', 'place.area_id = area.id', 'left');
+        $this->db->join('place_detail', 'place.id = place_detail.place_id', 'left');
         $this->db->or_like('place.name', $str, 'both');
         $this->db->or_like('place.description', $str, 'both');
         $this->db->or_like('place.address', $str, 'both');
         $this->db->or_like('category.name', $str, 'both');
         $this->db->or_like('area.name', $str, 'both');
+        $this->db->or_like('place_detail.detail', $str, 'both');
 
         $query = $this->db->get()->result_array();
 
         foreach ($query as $row)
         {
-            $result[] += $row['id'];
-        }
-
-        foreach ($query as $row)
-        {
-            $result[] += $row['id'];
+            # Only add to list if does not already exist
+            if (! in_array($row['id'], $result))
+                $result[] += $row['id'];
         }
 
         // return the non-duplicated search result;
