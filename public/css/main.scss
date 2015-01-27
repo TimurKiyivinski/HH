@@ -16,7 +16,7 @@ $banner-padding: 3px;
 $banner-height: 20px;
 $shadow: 3px;
 $thumb-size: 64px;
-$icon-size: 500%;
+$icon-size: 150%;
 $search-thumb-size: 80px;
 $search-banner-padding-topbottom : 5px;
 $search-banner-padding-leftright : 2px;
@@ -110,7 +110,6 @@ div.search-bar {
     }
 
     &-name{
-        padding-left: 60px;
         padding-right: 0px;
         padding-top: 1%;
         padding-bottom: 1%;
@@ -252,7 +251,11 @@ img.nav-btn {
 //icons (glyphicons)
 .icon {
 
+<<<<<<< HEAD
     font-size: 200%;
+=======
+    font-size: $icon-size;
+>>>>>>> origin/developing
     color: $head-colour;
     padding-top: 1%;
 
@@ -262,9 +265,14 @@ img.nav-btn {
         padding-left: 10px; }
 }
 
+.details-icon:before{
+    font-size: $icon-size;
+}
+
 .flaticon{
     &-info2:before{
         color: #4453A4;
+<<<<<<< HEAD
         font-size: 120%;
     }
     &-info6:before{
@@ -302,6 +310,29 @@ img.nav-btn {
     &-award18:before{
         color: #DE3634;
         font-size: 100%;
+=======
+    }
+    &-clock97:before{
+        color: #4453A4;
+    }
+    &-auricular6:before{
+        color: #FF8800;
+    }
+    &-map49:before{
+        color: #17B64A;
+    }
+    &-dollar179:before{
+        color: #729245;
+    }
+    &-internet5:before{
+        color: #4453A4;
+    }
+    &-lunch4:before{
+        color: #818181;
+    }
+    &-compass109:before{
+        color: #C80000;
+>>>>>>> origin/developing
     }
 }
     
@@ -313,8 +344,6 @@ color: $a-link-colour; }
 
 //Category
 .btn{
-    
-
     &-category {
         background-color: #FFFFFF;
         margin: 5px;
@@ -347,7 +376,6 @@ img.category-btn {
     padding: 1px;
 }
 
-
 img.topbar-btn {
     height: 40%;
     width: 90%;
@@ -373,9 +401,9 @@ img.topbar-btn {
 a.red{
     color: $head-colour;
 }
+
 .carousel-control, {
     width: 0%;
-    
 }
 
 .carousel-control.left, .carousel-control.right{
@@ -383,7 +411,6 @@ a.red{
 }
 
 .list-group-item{
-
 
     &-details{
         background-color: $body-colour;
@@ -397,28 +424,22 @@ a.red{
     background-color: $head-colour;
 }
 
+.vertical-align {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+// description section of the details page
+#filler, #description > p {
+    text-align: justify;
+}
+
 .detail-panel {
     text-align: left;
     padding-left: 5px;
     @include padding(3px null 3px null);
-}
-
-.panel-body{
-    padding: 0px;
-}
-
-
-.col-md-2,
-.col-dm-2{
-    width: 11%
-}
-
-.col-xs-2,
-.col-sm-2{
-    width: 12.5%;
-    padding-left: 5px;
-    padding-right: 5px;
-    margin-left: 5px;
 }
 
 .list-group-item{

@@ -46,14 +46,6 @@ class Search_model extends CI_Model
             $result[] += $row['id'];
         }
 
-        $this->db->select('place_detail.place_id AS "id"');
-        $this->db->from('category_column');
-        $this->db->join('place_detail', 'place_detail.category_column_id = category_column.id');
-        $this->db->like('place_detail.detail', $str, 'both');
-        $this->db->group_by('place_detail.place_id');
-
-        $query = $this->db->get()->result_array();
-
         foreach ($query as $row)
         {
             $result[] += $row['id'];
