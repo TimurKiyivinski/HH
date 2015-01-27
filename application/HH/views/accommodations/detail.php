@@ -60,6 +60,7 @@
             </div>
         </div>
         <?php endif; ?>
+        
         <hr/>
         <div class="row vertical-align">
             <div class="col-xs-2 col-sm-2 col-md-2">
@@ -110,54 +111,58 @@
         <?php endif ?>
         <?php if ( ! empty($place['address'])): ?>
         
-        <hr/><a href="<?=site_url($href['map']['go'].'/'.$place['latitude'].'/'.$place['longitude'])?>">
-        <div class="row vertical-align">
-            <div class="col-xs-2 col-sm-2 col-md-2">
-                    <span class="details-icon flaticon-map49"></span>
-            </div><!-- col-xs-2 -->
-            <div class="col-xs-10 col-md-10 category-panel-name">
-                <?=$place['address']?>
-            </div><!-- category-panel-name -->
-        </div>
+        <hr/>
+        <a href="<?=site_url($href['map']['go'].'/'.$place['latitude'].'/'.$place['longitude'])?>">
+            <div class="row vertical-align">
+                <div class="col-xs-2 col-sm-2 col-md-2">
+                        <span class="details-icon flaticon-map49"></span>
+                </div><!-- col-xs-2 -->
+                <div class="col-xs-10 col-md-10 category-panel-name">
+                    <?=$place['address']?>
+                </div><!-- category-panel-name -->
+            </div>
         </a>
         <?php endif ?>
         <?php if ( ! empty($place['latitude']) && ! empty($place['longitude'])): ?>
         
-        <hr/><a href="<?=site_url($href['map']['go'].'/'.$place['latitude'].'/'.$place['longitude'])?>">
-        <div class="row vertical-align">
-            <div class="col-xs-2 col-sm-2 col-md-2">
-                <span class="details-icon flaticon-compass109"></span>
-            </div><!-- col-xs-2 -->
-            <div class="col-xs-10 col-md-10 category-panel-name">
-                Navigate Here
-            </div><!-- category-panel-name -->
-        </div>
+        <hr/>
+        <a href="<?=site_url($href['map']['go'].'/'.$place['latitude'].'/'.$place['longitude'])?>">
+            <div class="row vertical-align">
+                <div class="col-xs-2 col-sm-2 col-md-2">
+                    <span class="details-icon flaticon-compass109"></span>
+                </div><!-- col-xs-2 -->
+                <div class="col-xs-10 col-md-10 category-panel-name">
+                    Navigate Here
+                </div><!-- category-panel-name -->
+            </div>
         </a>
         <?php endif ?>
         <?php if ( ! empty($place['telephone'])): ?>
         
-        <hr/><a href="tel:<?=$place['telephone']?>">
-        <div class="row vertical-align">
-            <div class="col-xs-2 col-sm-2 col-md-2">
-                <span class="details-icon flaticon-auricular6"></span>
-            </div><!-- col-xs-2 -->
-            <div class="col-xs-10 col-md-10 category-panel-name">
-                <?=$place['telephone']?>
-            </div><!-- category-panel-name -->
-        </div>
+        <hr/>
+        <a href="tel:<?=$place['telephone']?>">
+            <div class="row vertical-align">
+                <div class="col-xs-2 col-sm-2 col-md-2">
+                    <span class="details-icon flaticon-auricular6"></span>
+                </div><!-- col-xs-2 -->
+                <div class="col-xs-10 col-md-10 category-panel-name">
+                    <?=$place['telephone']?>
+                </div><!-- category-panel-name -->
+            </div>
         </a>
         <?php endif ?>
         <?php if ( ! empty($place['website']) ): ?>
         
-        <hr/><a href="<?=$place['website']?>">
-        <div class="row vertical-align">
-            <div class="col-xs-2 col-sm-2 col-md-2">
-                <span class="details-icon flaticon-internet5"></span>
-            </div><!-- col-xs-2 -->
-            <div class="col-xs-10 col-md-10 category-panel-name">
-            <?= $place['website']?>
-            </div><!-- category-panel-name -->
-        </div>
+        <hr/>
+        <a href="<?=$place['website']?>">
+            <div class="row vertical-align">
+                <div class="col-xs-2 col-sm-2 col-md-2">
+                    <span class="details-icon flaticon-internet5"></span>
+                </div><!-- col-xs-2 -->
+                <div class="col-xs-10 col-md-10 category-panel-name">
+                <?= $place['website']?>
+                </div><!-- category-panel-name -->
+            </div>
         </a>
         <?php endif ?>
         <?php if ( ! $this->input->cookie('hh_place_'.$place['id'])): ?>

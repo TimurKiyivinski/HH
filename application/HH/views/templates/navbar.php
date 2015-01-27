@@ -8,7 +8,7 @@
                 <span class="details-icon flaticon-home151"></span>
             </a>
             <a class="btn" href="<?=site_url($href['map']['index'])?>">
-                <span class="details-icon flaticon-compass109"></span>
+                <span class="details-icon flaticon-basic6"></span>
             </a>
         </div>
     </div>
