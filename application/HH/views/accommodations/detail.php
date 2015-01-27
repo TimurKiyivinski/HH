@@ -160,6 +160,7 @@
         </div>
         </a>
         <?php endif ?>
+        <?php if ( ! $this->input->cookie('hh_place_'.$place['id'])): ?>
         <!-- ratable -->
         <hr />
         <div class="row vertical-align">
@@ -178,6 +179,7 @@
                 </div>
             </div>
         </div>
+        <?php endif ?>
     </div><!-- /.container -->
     <?=$navbar?>
     <?=$js?>

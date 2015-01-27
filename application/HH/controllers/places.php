@@ -158,9 +158,23 @@ class Places extends CI_Controller {
     public function details($place_id = FALSE)
     {
         log_msg(__CLASS__, __FUNCTION__, func_get_args());
+        // change rating if there's any post method call
         if ($this->input->post()) {
-            // update rating if there's any post method
+            if ($this->input->cookie('hh_place_'.$place_id)) {
+                $this->output->set_status_header('200');
+                return;
+            }
+
             $this->_update_rating();
+
+            $cookie = array(
+                'name'   => 'place_'.$place_id,
+                'value'  => 'set',
+                'expire' => '2628000', // 1 month in seconds
+                'path'   => '/',
+            );
+
+            $this->input->set_cookie($cookie);
             $this->output->set_status_header('204');
             return;
         }
