@@ -33,7 +33,7 @@ class Places extends CI_Controller {
         {
             redirect($this->data['href']['area']);
         }
-        
+
         $this->load->model('category_model');
         $this->data['categories'] = $this->category_model->get_all();
         $this->data['area_id'] = $area_id;
@@ -105,7 +105,7 @@ class Places extends CI_Controller {
         }
 
         $this->data['src']['category_icon'] = 'public/images/icons/'.url_title($category['name'], '_', TRUE).'_icon.png';
-        
+
         if ( ! file_exists(FCPATH . $this->data['src']['category_icon']))
         {
             $this->data['src']['category_icon'] = FALSE;
@@ -159,7 +159,7 @@ class Places extends CI_Controller {
     public function details($category_id = FALSE, $place_id = FALSE)
     {
         log_msg(__CLASS__, __FUNCTION__, func_get_args());
-        
+
         //helpers
         $this->load->helper('text');
 
@@ -189,8 +189,6 @@ class Places extends CI_Controller {
         {
             show_404();
         }
-
-
 
         // load views
         $this->data['title'] = $this->data['place']['name'];

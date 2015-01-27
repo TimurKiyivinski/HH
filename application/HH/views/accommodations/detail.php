@@ -81,35 +81,36 @@
             </h3> 
         </div>
 
+        <?php if ( ! empty($place['description'])): ?>
         <div class="panel-body list-group-item-details red" >
             <h3 class="panel-title">
                 <div class="row detail-panel">
                     <div class="col-xs-3 col-sm-2 col-md-2">
-                         <h1 class="flaticon-info2"></h1>
+                         <span class="details-icon flaticon-info2"></span>
                     </div><!-- col-xs-3 -->
                     <div class="col-xs-9 col-md-9 category-panel-name seemoreless">
-                        <?= empty($place['description']) ? 'n/a' : $place['description'] ?>
-
+                        <div id="filler">
+                            <?=word_limiter($place['description'], 20);?>
+                            <p>
+                                <a data-toggle="collapse" href="#description" aria-expanded="false" aria-controls="description">
+                                    See more
+                                </a>
+                            </p>
+                        </div>
+                        <div class="collapse" id="description">
+                            <p><?=$place['description']?></p>
+                        </div>
                     </div><!-- category-panel-name -->
                 </div>
             </h3> 
         </div>
-
-        <!-- test -->
-        <a data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-          Link with href
-        </a>
-        <div class="collapse" id="collapseExample">
-            ...
-        </div>
-        <!-- test -->
-
-
+        <?php endif ?>
+        <?php if ( ! empty($place['room_rate'])): ?>
         <div class="panel-body list-group-item-details red" >
             <h3 class="panel-title">
                 <div class="row detail-panel">
                     <div class="col-xs-3 col-sm-2 col-md-2">
-                         <h1 class="flaticon-dollar179"></h1>
+                         <span class="details-icon flaticon-dollar179"></span>
                     </div><!-- col-xs-3 -->
                     <div class="col-xs-9 col-md-9 category-panel-name">
                         <?=empty($place['room_rate']) ? 'n/a' : $place['room_rate'] ?>
@@ -117,90 +118,78 @@
                 </div>
             </h3> 
         </div>
-
+        <?php endif ?>
+        <?php if ( ! empty($place['address'])): ?>
+        <a href="<?=site_url($href['map']['go'].'/'.$place['latitude'].'/'.$place['longitude'])?>">
         <div class="panel-body list-group-item-details red" >
             <h3 class="panel-title">
                 <div class="row detail-panel">
+                    <address>
                     <div class="col-xs-3 col-sm-2 col-md-2">
-                         <h1 class="flaticon-map49"></h1>
+                            <span class="details-icon flaticon-map49"></span>
                     </div><!-- col-xs-3 -->
                     <div class="col-xs-9 col-md-9 category-panel-name">
                         <?=$place['address']?>
                     </div><!-- category-panel-name -->
+                    </address>
                 </div>
             </h3> 
         </div>
-
+        </a>
+        <?php endif ?>
+        <?php if ( ! empty($place['latitude']) && ! empty($place['longitude'])): ?>
+        <a href="<?=site_url($href['map']['go'].'/'.$place['latitude'].'/'.$place['longitude'])?>">
         <div class="panel-body list-group-item-details red" >
             <h3 class="panel-title">
                 <div class="row detail-panel">
                     <div class="col-xs-3 col-sm-2 col-md-2">
-                         <h1 class="flaticon-compass109"></h1>
+                         <span class="details-icon flaticon-compass109"></span>
                     </div><!-- col-xs-3 -->
                     <div class="col-xs-9 col-md-9 category-panel-name">
-                        <h3><a href="<?=site_url($href['map']['go'].'/'.$place['latitude'].'/'.$place['longitude'])?>">Navigate Here</a></h3>
+                        Navigate Here
                     </div><!-- category-panel-name -->
                 </div>
             </h3> 
         </div>
-
+        </a>
+        <?php endif ?>
+        <?php if ( ! empty($place['telephone'])): ?>
+        <a href="tel:<?=$place['telephone']?>">
         <div class="panel-body list-group-item-details red" >
             <h3 class="panel-title">
                 <div class="row detail-panel">
                     <div class="col-xs-3 col-sm-2 col-md-2">
-                         <h1 class="flaticon-auricular6"></h1>
+                         <span class="details-icon flaticon-auricular6"></span>
                     </div><!-- col-xs-3 -->
                     <div class="col-xs-9 col-md-9 category-panel-name">
-                        <?= empty($place['telephone']) ? 'n/a' : $place['telephone'] ?>
+                        <?=$place['telephone']?>
                     </div><!-- category-panel-name -->
                 </div>
             </h3> 
         </div>
-
+        </a>
+        <?php endif ?>
+        <?php if ( ! empty($place['website']) ): ?>
+        <a href="<?=$place['website']?>">
         <div class="panel-body list-group-item-details red" >
             <h3 class="panel-title">
                 <div class="row detail-panel">
                     <div class="col-xs-3 col-sm-2 col-md-2">
-                         <h1 class="flaticon-internet5"></h1>
+                         <span class="details-icon flaticon-internet5"></span>
                     </div><!-- col-xs-3 -->
                     <div class="col-xs-9 col-md-9 category-panel-name">
-                        <?= empty($place['website']) ? 'n/a' : $place['website'] ?>
+                    <?= $place['website']?>
                     </div><!-- category-panel-name -->
                 </div>
             </h3> 
         </div>
+        </a>
+        <?php endif ?>
     </div><!-- /.list-group -->
 
     <?=$navbar?>
     <?=$js?>
-
-    <!-- test -->
-
-    <?=word_limiter($place['description'], 20);?>
-    <br>
-    <?= substr(word_limiter($place['description'], 20) ,0,-7);?>
-    <?=$place['description'];?>
-    
-    <script>
-    $(document).ready(function()
-    {   
-        <?php $hidetext = 20; ?>
-
-        var hidetext = <?=$hidetext?>;
-
-        if (<?=strlen($place['description'])?> > hidetext) 
-            {      
-                // Append the parsed HTML
-                $( ".seemoreless" ).text("")
-                $( ".seemoreless" ).append( $.parseHTML("<?=word_limiter($place['description'], 20);?>" ) );
-
-                $( ".seemoreless" ).append( $.parseHTML("<a data-toggle='collapse' href='#collapseExample' aria-expanded='false' aria-controls='collapseExample'>(Click For More Info)</a><div class='collapse' id='collapseExample'>REPLACE WITH DESCRIPTION</div>"));
-
-            };
-        
-    });
-    </script>
-
-    <!-- test -->
+    <script src="<?=base_url('public/js/details.js')?>"></script>
+   
 </body>
 </html>
