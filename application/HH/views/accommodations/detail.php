@@ -176,8 +176,9 @@
                 <input value="<?=current_url()?>" type="hidden" name="rate_url">
                 <input value="<?=$place['id']?>" type="hidden" name="place_id">
                 <?=form_close()?>
-                </div>
                 Please Rate Us
+                </div>
+                
             </div>
         </div>
         <?php endif ?>

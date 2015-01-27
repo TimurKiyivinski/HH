@@ -2,13 +2,13 @@
     <div class="container">
         <div class="btn-group btn-group-justified" role="group" aria-label="navigation">
             <a class="btn" href="<?=site_url($href['search'])?>">
-                <img class="nav-btn" src="<?=base_url('public/images/icons/search.png')?>">
+                <span class="details-icon flaticon-magnifying55"></span>
             </a>
             <a class="btn" href="<?=site_url()?>">
-                <img class="nav-btn" src="<?=base_url('public/images/icons/home.png')?>">
+                <span class="details-icon flaticon-home151"></span>
             </a>
             <a class="btn" href="<?=site_url($href['map']['index'])?>">
-                <img class="nav-btn" src="<?=base_url('public/images/icons/box_button.png')?>">
+                <span class="details-icon flaticon-compass109"></span>
             </a>
         </div>
     </div>
