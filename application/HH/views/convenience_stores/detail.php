@@ -106,7 +106,7 @@
                 </div>
             </h3> 
         </div>
-
+        
         <div class="panel-body list-group-item-details red" >
             <h3 class="panel-title">
                 <div class="row detail-panel">
@@ -114,7 +114,20 @@
                          <h1 class="flaticon-map49"></h1>
                     </div><!-- col-xs-3 -->
                     <div class="col-xs-9 col-md-9 category-panel-name">
-                        <h3><a href="<?=site_url($href['map']['go'].'/'.$place['latitude'].'/'.$place['longitude'])?>"><?=$place['address']?></a></h3>
+                        <?=$place['address']?>
+                    </div><!-- category-panel-name -->
+                </div>
+            </h3> 
+        </div>
+
+        <div class="panel-body list-group-item-details red" >
+            <h3 class="panel-title">
+                <div class="row detail-panel">
+                    <div class="col-xs-3 col-sm-2 col-md-2">
+                         <h1 class="flaticon-compass109"></h1>
+                    </div><!-- col-xs-3 -->
+                    <div class="col-xs-9 col-md-9 category-panel-name">
+                        <h3><a href="<?=site_url($href['map']['go'].'/'.$place['latitude'].'/'.$place['longitude'])?>">Navigate Here</a></h3>
                     </div><!-- category-panel-name -->
                 </div>
             </h3> 

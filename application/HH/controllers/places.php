@@ -33,7 +33,7 @@ class Places extends CI_Controller {
         {
             redirect($this->data['href']['area']);
         }
-        
+
         $this->load->model('category_model');
         $this->data['categories'] = $this->category_model->get_all();
         $this->data['area_id'] = $area_id;
@@ -105,7 +105,7 @@ class Places extends CI_Controller {
         }
 
         $this->data['src']['category_icon'] = 'public/images/icons/'.url_title($category['name'], '_', TRUE).'_icon.png';
-        
+
         if ( ! file_exists(FCPATH . $this->data['src']['category_icon']))
         {
             $this->data['src']['category_icon'] = FALSE;
@@ -153,27 +153,43 @@ class Places extends CI_Controller {
     /**
      * Display the details of a place
      *
-     * @param int , category id
      * @param int , place id
      */
-    public function details($category_id = FALSE, $place_id = FALSE)
+    public function details($place_id = FALSE)
     {
         log_msg(__CLASS__, __FUNCTION__, func_get_args());
-        if ($category_id === FALSE OR $place_id === FALSE)
-        {
-            show_404();
+        // change rating if there's any post method call
+        if ($this->input->post()) {
+            if ($this->input->cookie('hh_place_'.$place_id)) {
+                $this->output->set_status_header('200');
+                return;
+            }
+
+            $this->_update_rating();
+
+            $cookie = array(
+                'name'   => 'place_'.$place_id,
+                'value'  => 'set',
+                'expire' => '2628000', // 1 month in seconds
+                'path'   => '/',
+            );
+
+            $this->input->set_cookie($cookie);
+            $this->output->set_status_header('204');
+            return;
         }
 
-        // get category details
-        $this->load->model('category_model');
-        $category = $this->category_model->get($category_id);
+        //helpers
+        $this->load->helper('text');
+        $this->load->helper('form');
 
-        if (empty($category))
+        if ($place_id === FALSE)
         {
             show_404();
         }
 
         $this->load->model('place_model', 'place');
+        $this->load->model('category_model', 'category');
         $this->load->model('photo_model', 'photo');
 
         // get data from db
@@ -186,6 +202,8 @@ class Places extends CI_Controller {
             show_404();
         }
 
+        $category = $this->category->get($this->data['place']['category_id']);
+
         // load views
         $this->data['title'] = $this->data['place']['name'];
         $this->data['head'] = $this->load->view('templates/head', $this->data, TRUE);
@@ -193,6 +211,14 @@ class Places extends CI_Controller {
         $this->data['navbar'] = $this->load->view('templates/navbar', $this->data, TRUE);
         $this->data['js'] = $this->load->view('templates/js', $this->data, TRUE);
         $this->load->view(url_title($category['name'], '_', TRUE).'/detail', $this->data);
+    }
+
+    private function _update_rating()
+    {
+        log_msg(__CLASS__, __FUNCTION__, func_get_args());
+
+        $this->load->model('rating_model', 'rating');
+        $this->rating->update();
     }
 }
 
