@@ -17,24 +17,30 @@ margin-left: 20px;
 }.flaticon-auricular6:before {
 	content: "\e000";
 }
-.flaticon-clock97:before {
+.flaticon-award18:before {
 	content: "\e001";
 }
-.flaticon-compass109:before {
+.flaticon-clock97:before {
 	content: "\e002";
 }
-.flaticon-dollar179:before {
+.flaticon-compass109:before {
 	content: "\e003";
 }
-.flaticon-info2:before {
+.flaticon-dollar179:before {
 	content: "\e004";
 }
-.flaticon-internet5:before {
+.flaticon-info2:before {
 	content: "\e005";
 }
-.flaticon-lunch4:before {
+.flaticon-info6:before {
 	content: "\e006";
 }
-.flaticon-map49:before {
+.flaticon-internet5:before {
 	content: "\e007";
+}
+.flaticon-lunch4:before {
+	content: "\e008";
+}
+.flaticon-map49:before {
+	content: "\e009";
 }

@@ -252,7 +252,7 @@ img.nav-btn {
 //icons (glyphicons)
 .icon {
 
-    font-size: 250%;
+    font-size: 200%;
     color: $head-colour;
     padding-top: 1%;
 
@@ -265,38 +265,46 @@ img.nav-btn {
 .flaticon{
     &-info2:before{
         color: #4453A4;
-        font-size: 150%;
+        font-size: 120%;
+    }
+    &-info6:before{
+        color: #4453A4;
+        font-size: 120%;
     }
     &-clock97:before{
         color: #4453A4;
-        font-size: 150%;
+        font-size: 120%;
     }
     &-auricular6:before{
         color: #FF8800;
-        font-size: 150%;
+        font-size: 120%;
     }
     &-map49:before{
         color: #17B64A;
-        font-size: 150%;
+        font-size: 120%;
     }
     &-dollar179:before{
         color: #729245;
-        font-size: 150%;
+        font-size: 120%;
     }
     &-internet5:before{
         color: #4453A4;
-        font-size: 150%;
+        font-size: 120%;
     }
     &-lunch4:before{
         color: #818181;
-        font-size: 150%;
+        font-size: 100%;
     }
     &-compass109:before{
         color: #C80000;
-        font-size: 150%;
+        font-size: 100%;
     }
-    
+    &-award18:before{
+        color: #DE3634;
+        font-size: 100%;
+    }
 }
+    
 
 //white text for links
 .white {

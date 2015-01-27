@@ -65,7 +65,7 @@
             <h3 class="panel-title">
                 <div class="row detail-panel">
                     <div class="col-xs-2 col-sm-2 col-md-2">
-                         <span class="glyphicon glyphicon-star icon-rating"></span>
+                         <h1 class="flaticon-award18"></h1>
                     </div><!-- col-xs-3 -->
                     <div class="col-xs-10 col-md-10 category-panel-name">
                         <?php for ($i = 0; $i < 5; $i++): ?>
@@ -85,11 +85,10 @@
             <h3 class="panel-title">
                 <div class="row detail-panel">
                     <div class="col-xs-3 col-sm-2 col-md-2">
-                         <h1 class="flaticon-info2"></h1>
+                         <h1 class="flaticon-info6"></h1>
                     </div><!-- col-xs-3 -->
                     <div class="col-xs-9 col-md-9 category-panel-name seemoreless">
                         <?= empty($place['description']) ? 'n/a' : $place['description'] ?>
-
                     </div><!-- category-panel-name -->
                 </div>
             </h3> 
@@ -180,7 +179,7 @@
     <br>
     <?= substr(word_limiter($place['description'], 20) ,0,-7);?>
     <?=$place['description'];?>
-    
+
     <script>
     $(document).ready(function()
     {   
