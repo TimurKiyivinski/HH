@@ -18,7 +18,7 @@
     <!-- TODO: implement paging if there's too many places -->
     <?php foreach ($places as $place): ?>
     <div class="row place-panel">
-        <a class="" href="<?=site_url($href['places']['details'].'/'.$category['id'].'/'.$place['id'])?>">
+        <a class="" href="<?=site_url($href['places']['details'].'/'.$place['id'])?>">
             <div class="col-xs-3 col-sm-2 col-md-2">
                 <?php // TODO: Use a helper to convert img link to thumbnail links ?>
                 <?php if( ! empty($thumbnails) && isset($thumbnails[$place['id']])): ?>
