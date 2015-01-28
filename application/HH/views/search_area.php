@@ -34,7 +34,11 @@
                         <a class="list-group-item panel-body" href="<?=site_url($href['places']['details'].'/'.$place['id'])?>">
                             <div class="row search-panel">
                                 <div class="col-xs-3 col-sm-2 col-md-2">
-                                    <img class="img-thumbnail place-panel-img" src="<?=base_url($place['thumbnail'])?>" alt="<?=$place['name']?>">
+                                    <?php if ( ! empty($place['thumbnail'])): ?>
+                                        <img class="img-thumbnail place-panel-img" src="<?=base_url($place['thumbnail'])?>" alt="<?=$place['name']?>">
+                                    <?php else: ?>
+                                        <img class="img-thumbnail place-panel-img" src="<?=base_url('public/images/icons/noimage_icon.png')?>" alt="<?=$place['name']?>">
+                                    <?php endif ?>
                                 </div><!-- col-xs-3 -->
                                 <div class="col-xs-9 col-sm-8 col-md-8 place-panel-detail">
                                     <div class="row">
