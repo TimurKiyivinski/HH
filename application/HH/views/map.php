@@ -1,9 +1,9 @@
 <html>
 <head>
     <?=$head?>
+    <?=$js?>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8a5UQ6-o8U8ftyBe5AuSUuAq-4kRH01c">
     </script>
-    <script type="text/javascript" src="<?=base_url('public/js/jquery-2.1.1.js')?>"></script>
     <script type="text/javascript" src="<?=base_url('public/js/map.js')?>"></script>
     <script type="text/javascript">
     // Initializes the map
