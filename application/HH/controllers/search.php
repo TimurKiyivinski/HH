@@ -58,8 +58,6 @@ class Search extends CI_Controller {
                     $thumbnails = $this->photo_model->get_all($places[$i]['id']);
                     if (sizeof($thumbnails) > 0)
                         $places[$i]['thumbnail'] = $thumbnails[0]['photo_link'];
-                    else
-                        $places[$i]['thumbnail'] = 'public/images/places/public_toilet/Public_Toilet.png'; //TODO: Change image
                     $categories[$places[$i]['category_id']]['name'] = $category_data[$places[$i]['category_id'] - 1]['name'];
                     $categories[$places[$i]['category_id']]['places'][] = $places[$i];
                 }
@@ -124,8 +122,6 @@ class Search extends CI_Controller {
                     $thumbnails = $this->photo_model->get_all($places[$i]['id']);
                     if (sizeof($thumbnails) > 0)
                         $places[$i]['thumbnail'] = $thumbnails[0]['photo_link'];
-                    else
-                        $places[$i]['thumbnail'] = 'public/images/places/public_toilet/Public_Toilet.png'; //TODO: Change image
                     $areas[$places[$i]['area_id']]['name'] = $area_data[$places[$i]['area_id'] - 1]['name'];
                     $areas[$places[$i]['area_id']]['places'][] = $places[$i];
                 }
