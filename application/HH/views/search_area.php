@@ -31,7 +31,7 @@
                     </div><!-- /.panel-heading -->
                     <div class="list-group panel-collapse collapse in" id="collapse<?=url_title($area['name'], '_')?>" role="tabpanel" aria-labelledby="heading<?=url_title($area['name'], '_')?>">
                         <?php foreach ($area['places'] as $place): ?>
-                        <a class="list-group-item panel-body" href="<?=site_url($href['places']['details'].'/'.$place['category_id'].'/'.$place['id'])?>">
+                        <a class="list-group-item panel-body" href="<?=site_url($href['places']['details'].'/'.$place['id'])?>">
                             <div class="row search-panel">
                                 <div class="col-xs-3 col-sm-2 col-md-2">
                                     <img class="img-thumbnail place-panel-img" src="<?=base_url($place['thumbnail'])?>" alt="<?=$place['name']?>">
