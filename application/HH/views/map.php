@@ -15,12 +15,21 @@
         var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
         // Load locations onto the map
         <?php
-        foreach ($area_array as &$area_loop){
-            $area_id = $area_loop['id'];
-            $site_addr = json_encode(site_url($href['ajax']['map'].'/'.$area_id));
-            $go_url = json_encode(site_url($href['places']['details'].'/'.$area_id));
-            echo "load_locations($site_addr, $go_url, map, $latitude, $longitude);";
-        }
+if ($enable_navigation == 0)
+{
+    foreach ($area_array as &$area_loop){
+        $area_id = $area_loop['id'];
+        $site_addr = json_encode(site_url($href['ajax']['map'].'/'.$area_id));
+        $go_url = json_encode(site_url($href['places']['details']));
+        echo "load_locations($site_addr, $go_url, map, $latitude, $longitude);";
+    }
+}
+else
+{
+        $site_addr = json_encode(site_url($href['ajax']['nav'].'/'.$place_id));
+        $go_url = json_encode(site_url($href['places']['details']));
+        echo "load_locations($site_addr, $go_url, map, $latitude, $longitude);";
+}
         ?>
     }
     google.maps.event.addDomListener(window, 'load', initialize);
