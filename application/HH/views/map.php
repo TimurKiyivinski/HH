@@ -29,12 +29,14 @@
 </head>
 <body>
     <?=$banner?>
-    <!--Title-->
-    <div class="curved-title">
-        <div>Maps</div>
+        <div class="container">
+        <!--Title-->
+        <div class="curved-title">
+            <div>Maps</div>
+        </div>
+        <!--Map-->
+        <div id="map-canvas" class="map-canvas"></div>
     </div>
-    <!--Map-->
-    <div id="map-canvas" class="map-canvas"></div>
     <?=$navbar?>
 </body>
 </html>
