@@ -158,7 +158,7 @@
             <div class="col-xs-2 col-sm-2 col-md-2">
                 <span class="details-icon flaticon-award18"></span>
             </div>
-            <div class="col-xs-10 col-sm-10 col-md-10">
+            <div class="col-xs-10 col-sm-10 col-md-10 category-panel-name">
                 <div id="ratable">
                 <?=form_open()?>
                 <?php for ($i = 1; $i <= 5; $i++): ?>
