@@ -205,7 +205,7 @@ class Places extends CI_Controller {
         $category = $this->category->get($this->data['place']['category_id']);
 
         // load views
-        $this->data['title'] = $this->data['place']['name'];
+        $this->data['title'] = $category['name'];
         $this->data['head'] = $this->load->view('templates/head', $this->data, TRUE);
         $this->data['banner'] = $this->load->view('templates/banner', $this->data, TRUE);
         $this->data['navbar'] = $this->load->view('templates/navbar', $this->data, TRUE);
