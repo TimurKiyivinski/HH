@@ -38,7 +38,7 @@ var ratePlace = function (rate) {
     })
     .done(function () {
         $('#rate_row').remove();
-        // TODO: Update the actual rating?
+        location.reload(true);
     });
 };
 

@@ -35,42 +35,12 @@ class Places extends CI_Controller {
         }
 
         $this->load->model('category_model');
+        $this->load->model('area_model');
         $this->data['categories'] = $this->category_model->get_all();
         $this->data['area_id'] = $area_id;
-
+        
         // load view
-        $this->data['title'] = 'Categories';
-        $this->data['head'] = $this->load->view('templates/head', $this->data, TRUE);
-        $this->data['banner'] = $this->load->view('templates/banner', $this->data, TRUE);
-        $this->data['navbar'] = $this->load->view('templates/navbar', $this->data, TRUE);
-        $this->data['js'] = $this->load->view('templates/js', $this->data, TRUE);
-
-        // output view
-        $this->load->view('category', $this->data);
-    }
-
-    public function list_categories_by_area($area_id = FALSE)
-    {
-        log_msg(__CLASS__, __FUNCTION__, func_get_args());
-        $this->load->model('category_model');
-        $this->load->model('place_model');
-        $this->load->model('photo_model');
-        $this->data['categories'] = $this->category_model->get_by_area($area_id);
-        foreach ($this->data['categories'] as &$category)
-        {
-            $category['places'] = $this->place_model->get_by_area_category($area_id, $category['id']);
-            foreach ($category['places'] as &$place)
-            {
-                $thumbnails = $this->photo_model->get_all($place['id']);
-                if (sizeof($thumbnails) > 0)
-                    $place['thumbnail'] = $thumbnails[0]['photo_link'];
-                else
-                    $place['thumbnail'] = 'public/images/places/public_toilet/Public_Toilet.png'; //TODO: Change image
-            }
-        }
-
-        // load view
-        $this->data['title'] = 'Categories';
+        $this->data['title'] = $this->area_model->get($area_id)['name'];
         $this->data['head'] = $this->load->view('templates/head', $this->data, TRUE);
         $this->data['banner'] = $this->load->view('templates/banner', $this->data, TRUE);
         $this->data['navbar'] = $this->load->view('templates/navbar', $this->data, TRUE);
@@ -95,8 +65,8 @@ class Places extends CI_Controller {
 
         // get category details
         $this->load->model('category_model');
+        $this->load->model('area_model');
         $categories = $this->category_model->get_all();
-        //$category = $categories[$category_id];
         $category = $this->category_model->get($category_id);
 
         if (empty($category))
@@ -128,7 +98,7 @@ class Places extends CI_Controller {
         $this->data['area_id'] = $area_id;
 
         // load view
-        $this->data['title'] = $category['name'] . ' List';
+        $this->data['title'] = $this->area_model->get($area_id)['name'];
         $this->data['head'] = $this->load->view('templates/head', $this->data, TRUE);
         $this->data['banner'] = $this->load->view('templates/banner', $this->data, TRUE);
         $this->data['navbar'] = $this->load->view('templates/navbar', $this->data, TRUE);
