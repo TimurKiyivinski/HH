@@ -152,7 +152,7 @@
         <?php if ( ! $this->input->cookie('hh_place_'.$place['id'])): ?>
         <!-- ratable -->
         <hr/>
-        <div class="row vertical-align">
+        <div id="rate_row" class="row vertical-align">
             <div class="col-xs-2 col-sm-2 col-md-2">
                 <span class="details-icon flaticon-award18"></span>
             </div>

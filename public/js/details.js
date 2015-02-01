@@ -37,7 +37,7 @@ var ratePlace = function (rate) {
         data: { csrf_hh: token, place_id: id, rate: rate  },
     })
     .done(function () {
-        $('#ratable').remove();
+        $('#rate_row').remove();
         // TODO: Update the actual rating?
     });
 };
