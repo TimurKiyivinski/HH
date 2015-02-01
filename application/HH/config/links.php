@@ -2,6 +2,8 @@
 // link of different pages
 $config['href']['search'] = 'search';
 $config['href']['area'] = 'area';
+$config['href']['icon'] = 'public/images/icons';
+$config['href']['thumb'] = 'public/images/places/thumbnails';
 
 // This config contains all the necessary links to specific functions
 $config['href']['places']['details'] = 'places/details';

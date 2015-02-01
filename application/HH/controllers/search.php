@@ -32,7 +32,6 @@ class Search extends CI_Controller {
             $this->load->model('category_model');
             $this->load->model('place_model');
             $this->load->model('search_model');
-            $this->load->model('photo_model');
 
             // To name the categories
             $category_data = $this->category_model->get_all();
@@ -55,9 +54,6 @@ class Search extends CI_Controller {
                 for ($i = 0; $i < sizeof($places_search); $i++)
                 {
                     $places[$i] = $this->place_model->get($places_search[$i]);
-                    $thumbnails = $this->photo_model->get_all($places[$i]['id']);
-                    if (sizeof($thumbnails) > 0)
-                        $places[$i]['thumbnail'] = $thumbnails[0]['photo_link'];
                     $categories[$places[$i]['category_id']]['name'] = $category_data[$places[$i]['category_id'] - 1]['name'];
                     $categories[$places[$i]['category_id']]['places'][] = $places[$i];
                 }
@@ -96,7 +92,6 @@ class Search extends CI_Controller {
             $this->load->model('area_model');
             $this->load->model('place_model');
             $this->load->model('search_model');
-            $this->load->model('photo_model');
 
             // To name the categories
             $area_data = $this->area_model->get_all();
@@ -119,9 +114,6 @@ class Search extends CI_Controller {
                 for ($i = 0; $i < sizeof($places_search); $i++)
                 {
                     $places[$i] = $this->place_model->get($places_search[$i]);
-                    $thumbnails = $this->photo_model->get_all($places[$i]['id']);
-                    if (sizeof($thumbnails) > 0)
-                        $places[$i]['thumbnail'] = $thumbnails[0]['photo_link'];
                     $areas[$places[$i]['area_id']]['name'] = $area_data[$places[$i]['area_id'] - 1]['name'];
                     $areas[$places[$i]['area_id']]['places'][] = $places[$i];
                 }

@@ -113,7 +113,6 @@ class Places extends CI_Controller {
 
         // load required libaries
         $this->load->model('place_model', 'place');
-        $this->load->model('photo_model', 'photos');
 
         // get data from db
         $places = $this->place->get_by_area_category($area_id, $category_id);
@@ -121,16 +120,6 @@ class Places extends CI_Controller {
         if (empty($places))
         {
             // TODO: tell user that this category is empty
-        }
-        else
-        {
-
-            $photos = $this->photos->get_by_places($places);
-
-            foreach ($photos as $img)
-            {
-                $this->data['thumbnails'][$img['place_id']] = $img['photo_link'];
-            }
         }
 
         $this->data['places'] = $places;

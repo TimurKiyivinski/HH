@@ -20,10 +20,11 @@
     <div class="row place-panel">
         <a class="" href="<?=site_url($href['places']['details'].'/'.$place['id'])?>">
             <div class="col-xs-3 col-sm-2 col-md-2">
-                <?php // TODO: Use a helper to convert img link to thumbnail links ?>
-                <?php if( ! empty($thumbnails) && isset($thumbnails[$place['id']])): ?>
-                <img class="img-thumbnail place-panel-img" src="<?=base_url($thumbnails[$place['id']])?>" alt="<?=$place['name']?>">
-                <?php endif ?>
+            <?php if(file_exists($href['thumb'].'/'.url_title($place['name'], '_').'_thumb.png')): ?>
+                <img class="img-thumbnail place-panel-img" src="<?=base_url($href['thumb'].'/'.url_title($place['name'], '_').'_thumb.png')?>" alt="<?=$place['name']?>">
+            <?php else: ?>
+                <img class="img-thumbnail place-panel-img" src="<?=base_url($href['icon'].'/'.'noimage_icon.png')?>" alt="<?=$place['name']?>">
+            <?php endif ?>
             </div><!-- col-xs-3 -->
             <div class="col-xs-9 col-sm-8 col-md-8 place-panel-detail">
                 <div class="row">
