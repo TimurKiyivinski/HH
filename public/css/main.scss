@@ -125,8 +125,8 @@ div.search-bar {
     &-img {
         background-color: $thumb-colour;
         border: 1px solid $body-colour;
-        height: $search-thumb-size;
-        width: $search-thumb-size;
+        height: auto;
+        width: 100%;
     }
 
     &-name {
