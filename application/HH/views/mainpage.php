@@ -5,7 +5,7 @@
 </head>
 <body>
 <?=$banner?>
-<img src="<?=base_url($href['base'])?>/homepage.png" class="img-responsive">
+<img src="<?=base_url($href['base'])?>/homepage.png" class="img-responsive col-xs-12 col-md-12 col-sm-12 col-dm-12">
 <hr class="mainpage" />
 <div class="container">
 
