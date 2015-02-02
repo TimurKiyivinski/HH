@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Area extends CI_Controller {
+class Mainpage extends CI_Controller {
 
     private $data;
 
@@ -11,28 +11,22 @@ class Area extends CI_Controller {
         $this->data['href'] = $this->config->item('href');
     }
 
-  public function index()
+    public function index()
     {
         log_msg(__CLASS__, __FUNCTION__, func_get_args());
-        $this->load->helper('form');
-
-        $this->load->model('area_model');
-
-        $this->data['areas'] = $this->area_model->get_all();
-        // end stub data
 
         // load view
-        $this->data['title'] = 'Area';
+        $this->data['title'] = 'Halaman Heritage';
         $this->data['head'] = $this->load->view('templates/head', $this->data, TRUE);
         $this->data['banner'] = $this->load->view('templates/banner', $this->data, TRUE);
         $this->data['navbar'] = $this->load->view('templates/navbar', $this->data, TRUE);
         $this->data['js'] = $this->load->view('templates/js', $this->data, TRUE);
 
         // output view
-        $this->load->view('area', $this->data);
+        $this->load->view('mainpage.php', $this->data);
     }
 
 }
 
-/* End of file area.php */
-/* Location: ./application/controllers/area.php */
+/* End of file mainpage.php */
+/* Location: ./application/controllers/mainpage.php */

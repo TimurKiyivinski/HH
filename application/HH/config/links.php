@@ -3,6 +3,7 @@
 $config['href']['search'] = 'search';
 $config['href']['area'] = 'area';
 $config['href']['icon'] = 'public/images/icons';
+$config['href']['base'] = 'public/images/base';
 $config['href']['thumb'] = 'public/images/places/thumbnails';
 
 // This config contains all the necessary links to specific functions
