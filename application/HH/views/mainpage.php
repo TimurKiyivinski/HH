@@ -17,7 +17,7 @@
         </div>
         <div class="row">
             <a class="btn btn-category-name" href="<?=site_url($href['area'])?>">
-                Hotspots
+                Areas
             </a>
         </div>
     </div>
