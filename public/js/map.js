@@ -77,7 +77,7 @@ function enableUserMarker()
 
     // Assign the marker to a map
     userMarker.setMap(userMap);
-    userMap.setCenter(myStart);
+    //userMap.setCenter(myStart);
 }
 
 /* *
@@ -98,12 +98,11 @@ function enableNavigation(location){
  * Alerts the user that the navigation failed
  */
 function errorLocation(){
-    console.log('An error has occured.');
-    alert('Error getting location!');
+    console.log('Navigation disabled.');
 }
 
 function calcRoute(origin, destination) {
-    userMap.setCenter(origin);
+    //userMap.setCenter(origin);
     var myStyle = google.maps.TravelMode.WALKING;
     var request = {
         origin: origin,
