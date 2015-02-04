@@ -29,7 +29,7 @@
                 </a>
             </div>
             <div class="row">
-                <a class="btn btn-category-name" href="<?=site_url($href['places']['categories'].'/'.$i)?>">
+                <a href="<?=site_url($href['places']['categories'].'/'.$i)?>">
                     <?=$areas[$i-1]['name']?>
                 </a>
             </div>
@@ -42,7 +42,7 @@
                 </a>
             </div>
             <div class="row">
-                <a class="btn btn-category-name" href="<?=site_url($href['places']['categories'].'/'.$i)?>">
+                <a href="<?=site_url($href['places']['categories'].'/'.$i)?>">
                     <?=$areas[$i-1]['name']?>
                 </a>
             </div>

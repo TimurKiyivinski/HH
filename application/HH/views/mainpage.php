@@ -16,7 +16,7 @@
             </a>
         </div>
         <div class="row">
-            <a class="btn btn-category-name" href="<?=site_url($href['area'])?>">
+            <a  href="<?=site_url($href['area'])?>">
                 Areas
             </a>
         </div>
@@ -29,7 +29,7 @@
             </a>  
         </div>
         <div class="row">
-            <a class="btn btn-category-name" href="<?=site_url($href['map']['go'])?>">
+            <a  href="<?=site_url($href['map']['go'])?>">
                 Locate On Map
             </a>
         </div>
