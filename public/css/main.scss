@@ -454,3 +454,22 @@ hr.mainpage{
     border-top: 4px solid #404041;
     border-bottom: 4px solid #404041;
 }
+
+div.hr{
+    background: $head-colour;
+    height: 10px; 
+    margin-top: 0px;
+    border-top: 4px solid #404041;
+    border-bottom: 4px solid #404041;
+}
+
+.clearfix{
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
