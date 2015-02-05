@@ -38,7 +38,7 @@ class Places extends CI_Controller {
         $this->load->model('area_model');
         $this->data['categories'] = $this->category_model->get_all();
         $this->data['area_id'] = $area_id;
-        
+
         // load view
         $this->data['title'] = $this->area_model->get($area_id)['name'];
         $this->data['head'] = $this->load->view('templates/head', $this->data, TRUE);
@@ -153,13 +153,18 @@ class Places extends CI_Controller {
 
         // get data from db
         $this->data['place'] = $this->place->get($place_id);
-        $this->data['place']['photos'] = $this->photo->get_all($place_id);
-        $this->data['photos_result'] = sizeof($this->data['place']['photos']) == 0 ? 0 : 1;
 
         if (empty($this->data['place']))
         {
             show_404();
         }
+
+        $this->data['place']['photos'] = $this->photo->get_all($place_id);
+        if (! empty($this->data['place']['website']))
+        {
+            $this->data['place']['website'] = prep_url($this->data['place']['website']);
+        }
+        $this->data['photos_result'] = sizeof($this->data['place']['photos']) == 0 ? 0 : 1;
 
         $category = $this->category->get($this->data['place']['category_id']);
 
