@@ -284,6 +284,8 @@ class Place_model extends CI_Model
         $this->db->where('id', $id);
         $this->db->delete($this->table);
 
+        $this->db->where('place_detail.place_id', $id);
+        $this->db->delete('place_detail');
         return TRUE;
     }
 }
