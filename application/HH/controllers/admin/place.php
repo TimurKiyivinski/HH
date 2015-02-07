@@ -40,6 +40,17 @@ class Place extends CI_Controller {
      * */
     public function read()
     {
+        $this->load->model('place_model');
+        $this->data['places'] = $this->place_model->get_all();
+        
+        // Load the view
+        $this->data['title'] = 'All places';
+        $this->data['head'] = $this->load->view('templates/head', $this->data, TRUE);
+        $this->data['banner'] = $this->load->view('templates/banner', $this->data, TRUE);
+        $this->data['navbar'] = $this->load->view('templates/navbar', $this->data, TRUE);
+        $this->data['js'] = $this->load->view('templates/js', $this->data, TRUE);
+        
+        $this->load->view('admin/view', $this->data);
     }
 
     /* *
@@ -69,6 +80,9 @@ class Place extends CI_Controller {
     {
         $this->load->model('place_model');
         $this->place_model->remove_place($place_id);
+
+        // Reload places page after a place is removed
+        read();
     }
 }
 

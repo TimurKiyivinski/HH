@@ -15,3 +15,7 @@ $config['href']['map']['go'] = 'map/go';
 $config['href']['map']['nav'] = 'map/nav';
 $config['href']['ajax']['map'] = 'map/get_places';
 $config['href']['ajax']['nav'] = 'map/get_place';
+$config['href']['admin']['new'] = 'admin/place/create';
+$config['href']['admin']['view'] = 'admin/place/read';
+$config['href']['admin']['edit'] = 'admin/place/update';
+$config['href']['admin']['pop'] = 'admin/place/remove';
