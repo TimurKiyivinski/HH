@@ -42,14 +42,14 @@ class Place extends CI_Controller {
     {
         $this->load->model('place_model');
         $this->data['places'] = $this->place_model->get_all();
-        
+
         // Load the view
         $this->data['title'] = 'All places';
         $this->data['head'] = $this->load->view('templates/head', $this->data, TRUE);
         $this->data['banner'] = $this->load->view('templates/banner', $this->data, TRUE);
         $this->data['navbar'] = $this->load->view('templates/navbar', $this->data, TRUE);
         $this->data['js'] = $this->load->view('templates/js', $this->data, TRUE);
-        
+
         $this->load->view('admin/view', $this->data);
     }
 
@@ -67,7 +67,31 @@ class Place extends CI_Controller {
         }
         else
         {
+            // Required models
+            $this->load->model('place_model');
+            $this->load->model('area_model');
+            $this->load->model('category_model');
+            $this->load->model('column_model');
+            
+            // Get the desired place
+            $this->data['place'] = $this->place_model->get($place_id);
+
+            // Data required
+            $this->data['areas'] = $this->area_model->get_all();
+            $this->data['categories'] = $this->category_model->get_all();
+            $this->data['columns'] = $this->column_model->get_all();
+            echo json_encode($this->data['place']);
+            echo json_encode($this->data['columns']);
+
             // Load the view for user to modify details
+            // Load the view
+            $this->data['title'] = 'All places';
+            $this->data['head'] = $this->load->view('templates/head', $this->data, TRUE);
+            $this->data['banner'] = $this->load->view('templates/banner', $this->data, TRUE);
+            $this->data['navbar'] = $this->load->view('templates/navbar', $this->data, TRUE);
+            $this->data['js'] = $this->load->view('templates/js', $this->data, TRUE);
+
+            $this->load->view('admin/edit', $this->data);
         }
     }
 
