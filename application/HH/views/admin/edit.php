@@ -17,6 +17,7 @@ function changeDIV(selectObj) {
     for ( i = 0 ; i < detailShow.length; i++)
         detailShow[i].style.display = '';
 }
+window.onload = changeDIV(document.getElementById('place_category_id'));
 </script>
 </head>
 <body>
@@ -61,20 +62,28 @@ function changeDIV(selectObj) {
     </div><!-- Category -->
     <!-- Category specific details -->
     <div class="form-group">
+    <h4>Category specific details:</h4>
     <?php foreach ($categories as &$category): ?>
     <?php foreach ($columns as &$column): ?>
     <?php if ($category['id'] == $column['category_id']): ?>
     <div class="form-group category_detail category_detail_<?=$category['id']?>">
-    <label for="column_<?=$column['id']?>"><?=$column['column_name']?></label>
-    <input class="form-control" type="text" name="column_<?=$column['id']?>" id="column_<?=$column['id']?>" value=""/>
+    <label for="column_<?=$column['id']?>"><?=$column['column_name']?>:</label>
+    <input class="form-control" type="text" name="column_<?=$column['id']?>" id="column_<?=$column['id']?>" value="<?php if (isset($place[$column['column_name']])) { echo $place[$column['column_name']]; }?>"/>
     </div><!-- Name -->
     <?php endif ?>
     <?php endforeach ?>
     <?php endforeach ?>
     </div>
+    <div class="form-group">
+        <button type="button" class="btn btn-success">Save</button>
+        <button type="button" class="btn btn-warning">Cancel</button>
+    </div>
 </form>
 </div><!-- /.container -->
 <?=$navbar?>
 <?=$js?>
+<script type="text/javascript" >
+window.onload = changeDIV(document.getElementById('place_category_id'));
+</script>
 </body>
 </html>

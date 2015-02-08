@@ -80,8 +80,6 @@ class Place extends CI_Controller {
             $this->data['areas'] = $this->area_model->get_all();
             $this->data['categories'] = $this->category_model->get_all();
             $this->data['columns'] = $this->column_model->get_all();
-            echo json_encode($this->data['place']);
-            echo json_encode($this->data['columns']);
 
             // Load the view for user to modify details
             // Load the view
