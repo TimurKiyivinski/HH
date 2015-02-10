@@ -26,29 +26,29 @@ window.onload = changeDIV(document.getElementById('place_category_id'));
 <?=form_open(current_url(), array('name' => 'new_form', 'method' => 'post', 'role' => 'form'))?>
     <div class="form-group">
     <label for="place_name">Name:</label>
-    <input class="form-control" type="text" name="place_name" id="place_name" value="<?=$place['name']?>"/>
+    <input class="form-control" type="text" name="place_name" id="place_name" value=""/>
     </div><!-- Name -->
     <div class="form-group">
     <label for="place_address">Address:</label>
-    <input class="form-control" type="text" name="place_address" id="place_address" value="<?=$place['address']?>"/>
+    <input class="form-control" type="text" name="place_address" id="place_address" value=""/>
     </div><!-- Address -->
     <div class="form-group">
     <label for="place_description">Description:</label>
-    <textarea class="form-control" name="place_description" id="place_description"><?=$place['description']?></textarea>
+    <textarea class="form-control" name="place_description" id="place_description"></textarea>
     </div><!-- Description -->
     <div class="form-group">
     <label for="place_latitude">Latitude:</label>
-    <input class="form-control" type="number" name="place_latitude" id="place_latitude" value="<?=$place['latitude']?>"/>
+    <input class="form-control" type="number" name="place_latitude" id="place_latitude" value=""/>
     </div><!-- Latitude -->
     <div class="form-group">
     <label for="place_longitude">Longitude:</label>
-    <input class="form-control" type="number" name="place_longitude" id="place_longitude" value="<?=$place['longitude']?>"/>
+    <input class="form-control" type="number" name="place_longitude" id="place_longitude" value=""/>
     </div><!-- Longitude -->
     <div class="form-group">
     <label for="place_area_id">Area:</label>
     <select class="form-control" name="place_area_id" id="place_area_id"/>
         <?php foreach ($areas as &$area): ?>
-        <option <?php if ($area['id'] == $place['area_id']): ?>selected="selected"<?php endif?> value="<?=$area['id']?>"><?=$area['name']?></option>
+        <option <?php if ($area['id'] == 1): ?>selected="selected"<?php endif?> value="<?=$area['id']?>"><?=$area['name']?></option>
         <?php endforeach ?>
     </select>
     </div><!-- Area -->
@@ -56,7 +56,7 @@ window.onload = changeDIV(document.getElementById('place_category_id'));
     <label for="place_category_id">Category:</label>
     <select class="form-control" name="place_category_id" id="place_category_id" onchange="changeDIV(this)"/>
         <?php foreach ($categories as &$category): ?>
-        <option <?php if ($category['id'] == $place['category_id']): ?>selected="selected"<?php endif?> id="category_<?=$category['id']?>" value="<?=$category['id']?>"><?=$category['name']?></option>
+        <option <?php if ($category['id'] == 1): ?>selected="selected"<?php endif?> id="category_<?=$category['id']?>" value="<?=$category['id']?>"><?=$category['name']?></option>
         <?php endforeach ?>
     </select>
     </div><!-- Category -->
@@ -68,7 +68,7 @@ window.onload = changeDIV(document.getElementById('place_category_id'));
     <?php if ($category['id'] == $column['category_id']): ?>
     <div class="form-group category_detail category_detail_<?=$category['id']?>">
     <label for="column_<?=$column['id']?>"><?=$column['column_name']?>:</label>
-    <input class="form-control" type="text" name="column_<?=$column['id']?>" id="column_<?=$column['id']?>" value="<?php if (isset($place[$column['column_name']])) { echo $place[$column['column_name']]; }?>"/>
+    <input class="form-control" type="text" name="column_<?=$column['id']?>" id="column_<?=$column['id']?>" value=""/>
     </div><!-- Name -->
     <?php endif ?>
     <?php endforeach ?>

@@ -212,17 +212,19 @@ class Place_model extends CI_Model
     public function add_place()
     {
         log_msg(__CLASS__, __FUNCTION__, func_get_args());
+        echo json_encode($_POST);
+        
         $data = array();
-        $data['category_id'] = $this->input->post('category_id');
-        $data['area_id'] = $this->input->post('area_id');
-        $data['name'] = $this->input->post('name');
-        $data['description'] = $this->input->post('description');
-        $data['address'] = $this->input->post('address');
+        $data['category_id'] = $this->input->post('place_category_id');
+        $data['area_id'] = $this->input->post('place_area_id');
+        $data['name'] = $this->input->post('place_name');
+        $data['description'] = $this->input->post('place_description');
+        $data['address'] = $this->input->post('place_address');
 
         // By default, not approved and rating 0
         $data['approved'] = FALSE;
 
-        if (empty($data['name']) OR empty($data['description']) OR empty($data['description']))
+        if (empty($data['name']) OR empty($data['description']))
         {
             return FALSE;
         }
@@ -242,8 +244,8 @@ class Place_model extends CI_Model
 
         // add location to db
         $location['place_id'] = $data['id'];
-        $location['latitude'] = $this->input->post('latitude');
-        $location['longitude'] = $this->input->post('longitude');
+        $location['latitude'] = $this->input->post('place_latitude');
+        $location['longitude'] = $this->input->post('place_longitude');
 
         $this->db->insert('location', $location);
 
@@ -258,8 +260,8 @@ class Place_model extends CI_Model
         {
             $batch[] = array(
                 'place_id' => $data['id'],
-                'category_column_id' => $this->input->post($row['column_name']),
-                'detail' => $this->input->post($row['column_name'].'_detail')
+                'category_column_id' => $row['id'],
+                'detail' => $this->input->post('column_'.$row['id'])
             );
         }
 

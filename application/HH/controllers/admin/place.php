@@ -25,13 +25,36 @@ class Place extends CI_Controller {
      * */
     public function create()
     {
+        $this->load->helper('form');
         if($this->input->post('submit'))
         {
-            // Load data from form & create a new place
+            // Load data from form & modify place details
+            // then load the place detail page
+            $this->load->model('place_model');
+            $this->place_model->add_place();
         }
         else
         {
-            // Load the view for user to insert details
+            // Required models
+            $this->load->model('place_model');
+            $this->load->model('area_model');
+            $this->load->model('category_model');
+            $this->load->model('column_model');
+
+            // Data required
+            $this->data['areas'] = $this->area_model->get_all();
+            $this->data['categories'] = $this->category_model->get_all();
+            $this->data['columns'] = $this->column_model->get_all();
+
+            // Load the view for user to modify details
+            // Load the view
+            $this->data['title'] = 'Create New Place';
+            $this->data['head'] = $this->load->view('templates/head', $this->data, TRUE);
+            $this->data['banner'] = $this->load->view('templates/banner', $this->data, TRUE);
+            $this->data['navbar'] = $this->load->view('templates/navbar', $this->data, TRUE);
+            $this->data['js'] = $this->load->view('templates/js', $this->data, TRUE);
+
+            $this->load->view('admin/new', $this->data);
         }
     }
 
@@ -61,9 +84,13 @@ class Place extends CI_Controller {
      * */
     public function update($place_id = FALSE)
     {
+        $this->load->helper('form');
         if($this->input->post('submit'))
         {
             // Load data from form & modify place details
+            // then load the place detail page
+            $this->load->model('place_model');
+            $this->place_model->modify_place();
         }
         else
         {
@@ -83,7 +110,7 @@ class Place extends CI_Controller {
 
             // Load the view for user to modify details
             // Load the view
-            $this->data['title'] = 'All places';
+            $this->data['title'] = 'Modify '.$this->data['place']['name'];
             $this->data['head'] = $this->load->view('templates/head', $this->data, TRUE);
             $this->data['banner'] = $this->load->view('templates/banner', $this->data, TRUE);
             $this->data['navbar'] = $this->load->view('templates/navbar', $this->data, TRUE);
