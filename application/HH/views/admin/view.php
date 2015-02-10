@@ -5,7 +5,10 @@
 </head>
 <body>
 <?=$banner?>
-<div class="container">
+<div class="container button button-warning">
+<div class="curved-title">
+    <div><a href="<?=site_url($href['admin']['new'])?>">Add place</a></div>
+</div>
 <?php foreach ($places as &$place): ?>
 <div class="list-group-item panel-body">
     <div class="row">

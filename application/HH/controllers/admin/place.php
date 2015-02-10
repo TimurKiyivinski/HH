@@ -16,7 +16,7 @@ class Place extends CI_Controller {
     public function index()
     {
         log_msg(__CLASS__, __FUNCTION__, func_get_args());
-        read();
+        $this->read();
     }
 
     /* *
@@ -31,7 +31,11 @@ class Place extends CI_Controller {
             // Load data from form & modify place details
             // then load the place detail page
             $this->load->model('place_model');
-            $this->place_model->add_place();
+            $new_place_id = $this->place_model->add_place();
+
+            // view updated page
+            $this->load->helper('url');
+            redirect($this->data['href']['places']['details'].'/'.$new_place_id, 'refresh');
         }
         else
         {
@@ -90,7 +94,11 @@ class Place extends CI_Controller {
             // Load data from form & modify place details
             // then load the place detail page
             $this->load->model('place_model');
-            $this->place_model->modify_place();
+            $this->place_model->modify_place($place_id);
+
+            // view updated page
+            $this->load->helper('url');
+            redirect($this->data['href']['places']['details'].'/'.$place_id, 'refresh');
         }
         else
         {
@@ -131,7 +139,7 @@ class Place extends CI_Controller {
         $this->place_model->remove_place($place_id);
 
         // Reload places page after a place is removed
-        read();
+        $this->read();
     }
 }
 

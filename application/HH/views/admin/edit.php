@@ -76,7 +76,7 @@ window.onload = changeDIV(document.getElementById('place_category_id'));
     </div>
     <div class="form-group">
         <input id="submit" name="submit" type="submit" class="btn btn-success" value="Save"></input>
-        <button type="button" class="btn btn-warning">Cancel</button>
+        <button type="button" class="btn btn-warning" onclick="window.location = '<?=site_url($href['admin']['view'])?>'" >Cancel</button>
     </div>
 </form>
 </div><!-- /.container -->

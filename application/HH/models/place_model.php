@@ -212,7 +212,6 @@ class Place_model extends CI_Model
     public function add_place()
     {
         log_msg(__CLASS__, __FUNCTION__, func_get_args());
-        echo json_encode($_POST);
         
         $data = array();
         $data['category_id'] = $this->input->post('place_category_id');
@@ -265,6 +264,51 @@ class Place_model extends CI_Model
             );
         }
 
+        $this->db->insert_batch('place_detail', $batch);
+        
+        return $data['id'];
+    }
+
+    /**
+     * Modify place details in db
+     *
+     * @return bool, status of operation
+     */
+    public function modify_place($place_id = FALSE)
+    {
+        log_msg(__CLASS__, __FUNCTION__, func_get_args());
+        
+        $data = array();
+        $data['id'] = $place_id;
+        $data['category_id'] = $this->input->post('place_category_id');
+        $data['area_id'] = $this->input->post('place_area_id');
+        $data['name'] = $this->input->post('place_name');
+        $data['description'] = $this->input->post('place_description');
+        $data['address'] = $this->input->post('place_address');
+
+        $this->db->where('id', $data['id']);
+        $this->db->update($this->table, $data); 
+        
+        // delete old details
+        $this->db->where('place_detail.place_id', $data['id']);
+        $this->db->delete('place_detail');
+        
+        // get extra columns
+        $this->db->from('category_column');
+        $this->db->where('category_id', $data['category_id']);
+        $query = $this->db->get()->result_array();
+        
+        // insert data to extra columns
+        $batch = array();
+        foreach ($query as $row)
+        {
+            $batch[] = array(
+                'place_id' => $data['id'],
+                'category_column_id' => $row['id'],
+                'detail' => $this->input->post('column_'.$row['id'])
+            );
+        }
+
         return $this->db->insert_batch('place_detail', $batch);
     }
 
@@ -286,8 +330,21 @@ class Place_model extends CI_Model
         $this->db->where('id', $id);
         $this->db->delete($this->table);
 
+        // delete details
         $this->db->where('place_detail.place_id', $id);
         $this->db->delete('place_detail');
+        
+        // delete location
+        $this->db->where('location.place_id', $id);
+        $this->db->delete('location');
+        
+        // delete photos
+        $this->db->where('photo.place_id', $id);
+        $this->db->delete('photo');
+        
+        // delete rating
+        $this->db->where('rating.place_id', $id);
+        $this->db->delete('rating');
         return TRUE;
     }
 }
