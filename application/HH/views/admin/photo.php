@@ -19,7 +19,7 @@
 </div>
 <?php endforeach ?>
 <hr />
-<?php echo form_open_multipart('admin/place/upload_photo');?>
+<?php echo form_open_multipart($href['admin']['photos']['photo']);?>
     <div class="form-group">
     <label for="userfile">Add photo:</label>
     <input type="file" name="userfile" id="userfile"/>

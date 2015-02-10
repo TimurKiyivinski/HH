@@ -214,6 +214,36 @@ class Place extends CI_Controller {
         $this->photo_model->delete_photo($photo_id);
         $this->photo($place_id);
     }
+    
+    public function thumbnail($place_id = FALSE)
+    {
+        log_msg(__CLASS__, __FUNCTION__, func_get_args());
+
+        if ($place_id === FALSE)
+        {
+            show_404();
+        }
+
+        $this->load->model('place_model');
+
+        $this->load->helper(array('form', 'url'));
+
+        // get hidden data
+        $place = $this->place_model->get($place_id);
+
+        $this->data['place'] = $place;
+        $this->data['place_name'] = $place['name'];
+
+        // Load the view for user to modify details
+        // Load the view
+        $this->data['title'] = 'Edit Photos';
+        $this->data['head'] = $this->load->view('templates/head', $this->data, TRUE);
+        $this->data['banner'] = $this->load->view('templates/banner', $this->data, TRUE);
+        $this->data['navbar'] = $this->load->view('templates/navbar', $this->data, TRUE);
+        $this->data['js'] = $this->load->view('templates/js', $this->data, TRUE);
+
+        $this->load->view('admin/thumb', $this->data);
+    }
 
     public function upload_photo()
     {
@@ -228,9 +258,9 @@ class Place extends CI_Controller {
         $config['upload_path'] = $upload_path;
         $condig['overwrite'] = True;
         $config['allowed_types'] = 'jpg|png';
-        $config['max_size']	= '500KB';
-        $config['max_width']  = '480';
-        $config['max_height']  = '360';
+        $config['max_size']	= '900KB';
+        $config['max_width']  = '960';
+        $config['max_height']  = '960';
 
         $this->load->library('upload', $config);
 
@@ -238,7 +268,9 @@ class Place extends CI_Controller {
         {
             // get and display error returned
             $error = array('error' => $this->upload->display_errors());
-            show_error($error);
+            $data = array('upload_data' => $this->upload->data());
+            $output_error = $error['error'].'Extra details:<br />'.json_encode($data['upload_data']);
+            show_error($output_error);
         }
         else
         {
@@ -251,6 +283,43 @@ class Place extends CI_Controller {
 
             // return to page view
             $this->photo($place_id);
+        }
+    }
+    
+    public function upload_thumbnail()
+    {
+        log_msg(__CLASS__, __FUNCTION__, func_get_args());
+        
+        // get hidden values
+        $place_path = $this->input->post('place_path');
+        $upload_path = './public/images/places/thumbnails/';
+
+        // upload config
+        $config['upload_path'] = $upload_path;
+        $config['file_name'] = $place_path;
+        $condig['overwrite'] = True;
+        $config['allowed_types'] = 'jpg|png';
+        $config['max_size']	= '100KB';
+        $config['max_width']  = '128';
+        $config['max_height']  = '96';
+
+        $this->load->library('upload', $config);
+
+        if ( ! $this->upload->do_upload())
+        {
+            // get and display error returned
+            $error = array('error' => $this->upload->display_errors());
+            $data = array('upload_data' => $this->upload->data());
+            $output_error = $error['error'].'Extra details:<br />'.json_encode($data['upload_data']);
+            show_error($output_error);
+        }
+        else
+        {
+            $data = array('upload_data' => $this->upload->data());
+            $file_name = $data['upload_data']['file_name'];
+
+            // return to page view
+            $this->read();
         }
     }
 }

@@ -37,6 +37,11 @@
             </div><!-- /.row -->
             <div class="row">
                 <div class="col-xs-12 col-md-12 place-panel-name">
+                    <a href="<?=site_url($href['admin']['thumb'].'/'.$place['id'])?>">Thumbnail</a>
+                </div><!-- place-panel-name -->
+            </div><!-- /.row -->
+            <div class="row">
+                <div class="col-xs-12 col-md-12 place-panel-name">
                     <a href="<?=site_url($href['admin']['pop'].'/'.$place['id'])?>">Delete</a>
                 </div><!-- place-panel-name -->
             </div><!-- /.row -->

@@ -38,11 +38,11 @@ window.onload = changeDIV(document.getElementById('place_category_id'));
     </div><!-- Description -->
     <div class="form-group">
     <label for="place_latitude">Latitude:</label>
-    <input class="form-control" type="number" name="place_latitude" id="place_latitude" value=""/>
+    <input class="form-control" type="number" name="place_latitude" id="place_latitude" step="0.000001" value=""/>
     </div><!-- Latitude -->
     <div class="form-group">
     <label for="place_longitude">Longitude:</label>
-    <input class="form-control" type="number" name="place_longitude" id="place_longitude" value=""/>
+    <input class="form-control" type="number" name="place_longitude" id="place_longitude" step="0.000001" value=""/>
     </div><!-- Longitude -->
     <div class="form-group">
     <label for="place_area_id">Area:</label>
