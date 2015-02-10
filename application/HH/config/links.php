@@ -19,3 +19,5 @@ $config['href']['admin']['new'] = 'admin/place/create';
 $config['href']['admin']['view'] = 'admin/place/read';
 $config['href']['admin']['edit'] = 'admin/place/update';
 $config['href']['admin']['pop'] = 'admin/place/remove';
+$config['href']['admin']['photo'] = 'admin/place/photo';
+$config['href']['admin']['photos']['pop'] = 'admin/place/pop_photo';

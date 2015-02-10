@@ -74,12 +74,12 @@ class Photo_model extends CI_Model
      *
      * @return bool, status of operation
      */
-    public function add_link()
+    public function add_link($photo_link = FALSE)
     {
         log_msg(__CLASS__, __FUNCTION__, func_get_args());
         $data = array();
         $data['place_id'] = $this->input->post('place_id');
-        $data['photo_link'] = $this->input->post('photo_link');
+        $data['photo_link'] = $photo_link;
 
         return $this->db->insert($this->table, $data);
     }

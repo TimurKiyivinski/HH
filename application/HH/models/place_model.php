@@ -278,6 +278,10 @@ class Place_model extends CI_Model
     {
         log_msg(__CLASS__, __FUNCTION__, func_get_args());
         
+        if ($place_id === FALSE)
+        {
+            return FALSE;
+        }
         $data = array();
         $data['id'] = $place_id;
         $data['category_id'] = $this->input->post('place_category_id');

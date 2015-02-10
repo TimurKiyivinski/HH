@@ -25,7 +25,10 @@ class Place extends CI_Controller {
      * */
     public function create()
     {
+        log_msg(__CLASS__, __FUNCTION__, func_get_args());
+
         $this->load->helper('form');
+
         if($this->input->post('submit'))
         {
             // Load data from form & modify place details
@@ -67,7 +70,10 @@ class Place extends CI_Controller {
      * */
     public function read()
     {
+        log_msg(__CLASS__, __FUNCTION__, func_get_args());
+
         $this->load->model('place_model');
+
         $this->data['places'] = $this->place_model->get_all();
 
         // Load the view
@@ -88,7 +94,15 @@ class Place extends CI_Controller {
      * */
     public function update($place_id = FALSE)
     {
+        log_msg(__CLASS__, __FUNCTION__, func_get_args());
+
+        if ($place_id === FALSE)
+        {
+            show_404();
+        }
+
         $this->load->helper('form');
+
         if($this->input->post('submit'))
         {
             // Load data from form & modify place details
@@ -107,7 +121,7 @@ class Place extends CI_Controller {
             $this->load->model('area_model');
             $this->load->model('category_model');
             $this->load->model('column_model');
-            
+
             // Get the desired place
             $this->data['place'] = $this->place_model->get($place_id);
 
@@ -135,11 +149,109 @@ class Place extends CI_Controller {
      * */
     public function remove($place_id = FALSE)
     {
+        log_msg(__CLASS__, __FUNCTION__, func_get_args());
+
+        if ($place_id === FALSE)
+        {
+            show_404();
+        }
+
         $this->load->model('place_model');
         $this->place_model->remove_place($place_id);
 
         // Reload places page after a place is removed
         $this->read();
+    }
+
+    /* *
+     * Removes a certain place
+     *
+     * @param int place_id
+     * */
+    public function photo($place_id = FALSE)
+    {
+        log_msg(__CLASS__, __FUNCTION__, func_get_args());
+
+        if ($place_id === FALSE)
+        {
+            show_404();
+        }
+
+        $this->load->model('photo_model');
+        $this->load->model('place_model');
+        $this->load->model('category_model');
+
+        $this->load->helper(array('form', 'url'));
+
+        // get hidden data
+        $place = $this->place_model->get($place_id);
+        $category = $this->category_model->get($place['category_id']);
+
+        $this->data['place_id'] = $place_id;
+        $this->data['category_name'] = url_title($category['name'], '_', TRUE);
+        $this->data['photos'] = $this->photo_model->get_all($place_id);
+
+        // Load the view for user to modify details
+        // Load the view
+        $this->data['title'] = 'Edit Photos';
+        $this->data['head'] = $this->load->view('templates/head', $this->data, TRUE);
+        $this->data['banner'] = $this->load->view('templates/banner', $this->data, TRUE);
+        $this->data['navbar'] = $this->load->view('templates/navbar', $this->data, TRUE);
+        $this->data['js'] = $this->load->view('templates/js', $this->data, TRUE);
+
+        $this->load->view('admin/photo', $this->data);
+    }
+
+    public function pop_photo($place_id = FALSE, $photo_id = FALSE)
+    {
+        log_msg(__CLASS__, __FUNCTION__, func_get_args());
+        if ($place_id === FALSE OR $photo_id === FALSE)
+        {
+            show_404();
+        }
+        
+        $this->load->model('photo_model');
+        $this->photo_model->delete_photo($photo_id);
+        $this->photo($place_id);
+    }
+
+    public function upload_photo()
+    {
+        log_msg(__CLASS__, __FUNCTION__, func_get_args());
+        
+        // get hidden values
+        $place_id = $this->input->post('place_id');
+        $category_name = $this->input->post('category_name');
+        $upload_path = './public/images/places/'.$category_name.'/';
+
+        // upload config
+        $config['upload_path'] = $upload_path;
+        $condig['overwrite'] = True;
+        $config['allowed_types'] = 'jpg|png';
+        $config['max_size']	= '500KB';
+        $config['max_width']  = '480';
+        $config['max_height']  = '360';
+
+        $this->load->library('upload', $config);
+
+        if ( ! $this->upload->do_upload())
+        {
+            // get and display error returned
+            $error = array('error' => $this->upload->display_errors());
+            show_error($error);
+        }
+        else
+        {
+            $data = array('upload_data' => $this->upload->data());
+            $file_name = $data['upload_data']['file_name'];
+
+            // update database
+            $this->load->model('photo_model');
+            $this->photo_model->add_link($upload_path.$file_name);
+
+            // return to page view
+            $this->photo($place_id);
+        }
     }
 }
 
