@@ -8,6 +8,11 @@ class Place extends CI_Controller {
         parent::__construct();
         log_msg(__CLASS__, __FUNCTION__, func_get_args());
         $this->data['href'] = $this->config->item('href');
+
+        $this->load->library('session');
+
+        // verify login status
+        if ( ! $this->session->userdata('logged_in')) redirect('/');
     }
 
     /* *
