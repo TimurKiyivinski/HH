@@ -16,6 +16,7 @@ class Logout extends CI_Controller {
     {
         log_msg(__CLASS__, __FUNCTION__, func_get_args());
         $this->session->unset_userdata('logged_in');
+        redirect('/admin/login');
     }
 
 }

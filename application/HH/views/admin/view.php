@@ -8,7 +8,10 @@
 <div class="container">
 
 <div class="row">
-    <div class="col-md-4"><a class="btn btn-primary btn-lg" href="<?=site_url($href['admin']['new'])?>">+ Add place</a></div>
+<div class="col-xs-12 col-md-12 place-panel-name">
+    <a class="btn btn-success btn-lg" href="<?=site_url($href['admin']['new'])?>">+ Add place</a>
+    <a class="btn btn-danger btn-lg" href="<?=site_url($href['admin']['logout'])?>">- Log Out</a>
+</div>
 </div>
 <hr />
 <?=form_open(current_url(), array('name' => 'search_form', 'method' => 'post', 'class' => 'form-horizontal', 'role' => 'form'))?>
