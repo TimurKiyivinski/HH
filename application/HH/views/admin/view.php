@@ -10,7 +10,19 @@
 <div class="row">
     <div class="col-md-4"><a class="btn btn-primary btn-lg" href="<?=site_url($href['admin']['new'])?>">+ Add place</a></div>
 </div>
-
+<hr />
+<?=form_open(current_url(), array('name' => 'search_form', 'method' => 'post', 'class' => 'form-horizontal', 'role' => 'form'))?>
+    <div class="input-group">
+        <input id="search" name="search" class="text form-control" value="<?=$this->input->post('search')?>" type="search" placeholder="Search...">
+        <span class="input-group-btn">
+            <button class="btn btn-primary btn-search">
+                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+            </button>
+        </span>
+    </div><!-- /.input-group -->
+</form>
+<hr />
+<div class="panel panel-primary" id="accordion" role="tablist" aria-multiselectable="true">
 <?php foreach ($places as &$place): ?>
 <div class="list-group-item panel-body">
     <div class="row">
@@ -47,6 +59,7 @@
     </div><!-- /.place-panel -->
 </div>
 <?php endforeach ?>
+</div>
 </div><!-- /.container -->
 <?=$navbar?>
 <?=$js?>

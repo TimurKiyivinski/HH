@@ -77,9 +77,30 @@ class Place extends CI_Controller {
     {
         log_msg(__CLASS__, __FUNCTION__, func_get_args());
 
-        $this->load->model('place_model');
+        $this->load->helper('form');
 
-        $this->data['places'] = $this->place_model->get_all();
+        $this->load->model('place_model');
+        $this->load->model('search_model');
+
+        $search = $this->input->post('search');
+
+        $places_search = [];
+        
+        if ($search != "")
+            $places_search = $this->search_model->find_all_sorted($search);
+
+        // Check if there are any results
+        if (sizeof($places_search) == 0)
+        {
+            $this->data['places'] = $this->place_model->get_all_sorted();
+        }
+        else
+        {
+            foreach ($places_search as &$place)
+            {
+                $this->data['places'][] = $this->place_model->get($place);
+            }
+        }
 
         // Load the view
         $this->data['title'] = 'All places';
@@ -214,12 +235,12 @@ class Place extends CI_Controller {
         {
             show_404();
         }
-        
+
         $this->load->model('photo_model');
         $this->photo_model->delete_photo($photo_id);
         $this->photo($place_id);
     }
-    
+
     public function thumbnail($place_id = FALSE)
     {
         log_msg(__CLASS__, __FUNCTION__, func_get_args());
@@ -253,7 +274,7 @@ class Place extends CI_Controller {
     public function upload_photo()
     {
         log_msg(__CLASS__, __FUNCTION__, func_get_args());
-        
+
         // get hidden values
         $place_id = $this->input->post('place_id');
         $category_name = $this->input->post('category_name');
@@ -290,11 +311,11 @@ class Place extends CI_Controller {
             $this->photo($place_id);
         }
     }
-    
+
     public function upload_thumbnail()
     {
         log_msg(__CLASS__, __FUNCTION__, func_get_args());
-        
+
         // get hidden values
         $place_path = $this->input->post('place_path');
         $upload_path = './public/images/places/thumbnails/';
