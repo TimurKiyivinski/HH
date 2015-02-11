@@ -32,13 +32,11 @@ class Search_model extends CI_Model
         $this->db->select('place.id');
         $this->db->from('place');
         $this->db->join('category', 'place.category_id = category.id', 'left');
-        $this->db->join('area', 'place.area_id = area.id', 'left');
         $this->db->join('place_detail', 'place.id = place_detail.place_id', 'left');
         $this->db->or_like('place.name', $str, 'both');
         $this->db->or_like('place.description', $str, 'both');
         $this->db->or_like('place.address', $str, 'both');
         $this->db->or_like('category.name', $str, 'both');
-        $this->db->or_like('area.name', $str, 'both');
         $this->db->or_like('place_detail.detail', $str, 'both');
 
         $query = $this->db->get()->result_array();
@@ -55,7 +53,8 @@ class Search_model extends CI_Model
     }
 
     /**
-     * Make a search query
+     * Make a search query but sorted by name
+     * Used for administration
      *
      * @param string , search string
      * @return array of place ids
@@ -73,13 +72,11 @@ class Search_model extends CI_Model
         $this->db->select('place.id');
         $this->db->from('place');
         $this->db->join('category', 'place.category_id = category.id', 'left');
-        $this->db->join('area', 'place.area_id = area.id', 'left');
         $this->db->join('place_detail', 'place.id = place_detail.place_id', 'left');
         $this->db->or_like('place.name', $str, 'both');
         $this->db->or_like('place.description', $str, 'both');
         $this->db->or_like('place.address', $str, 'both');
         $this->db->or_like('category.name', $str, 'both');
-        $this->db->or_like('area.name', $str, 'both');
         $this->db->or_like('place_detail.detail', $str, 'both');
         $this->db->order_by('place.name');
 
