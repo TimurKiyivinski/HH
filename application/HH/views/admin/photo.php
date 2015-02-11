@@ -10,10 +10,13 @@
 <div class="list-group-item panel-body">
     <div class="col-xs-12 col-md-12 place-panel-name">
     <div class="row">
-    <a href="<?=base_url($photo['photo_link'])?>">Photo: <?= $photo['photo_link']?></a>
+    <a class="btn btn-primary btn-lg btn-block" href="<?=base_url($photo['photo_link'])?>">Photo: <?= $photo['photo_link']?></a>
     </div>
+    <hr />
     <div class="row">
-    <a href="<?=site_url($href['admin']['photos']['pop'].'/'.$place_id.'/'.$photo['id'])?>">Delete</a>
+    <a class="btn btn-default" href="<?=site_url($href['admin']['photos']['pop'].'/'.$place_id.'/'.$photo['id'])?>">
+        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete
+    </a>
     </div>
     </div><!-- place-panel-name -->
 </div>
