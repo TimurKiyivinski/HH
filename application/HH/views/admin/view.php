@@ -6,11 +6,18 @@
 <body>
 <?=$banner?>
 <div class="container">
-
-<div class="row">
-    <div class="col-md-4"><a class="btn btn-primary btn-lg" href="<?=site_url($href['admin']['new'])?>">+ Add place</a></div>
-</div>
-
+<nav class="nav navbar-default" style="margin-bottom:5px;">
+    <div class="container-fluid">
+    <div class="navbar-collapse">
+        <ul class="nav navbar-nav">
+            <li><a class="btn btn-default navbar-btn" href="<?=site_url($href['admin']['new'])?>">+ Add place</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a class="btn btn-default navbar-btn" href="<?=site_url($href['admin']['logout'])?>">Logout</a></li>
+        </ul>
+    </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
 <?php foreach ($places as &$place): ?>
 <div class="list-group-item panel-body">
     <div class="row">

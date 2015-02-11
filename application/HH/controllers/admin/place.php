@@ -12,7 +12,7 @@ class Place extends CI_Controller {
         $this->load->library('session');
 
         // verify login status
-        if ( ! $this->session->userdata('logged_in')) redirect('/');
+        if ( ! $this->session->userdata('logged_in')) redirect($this->data['href']['admin']['login']);
     }
 
     /* *

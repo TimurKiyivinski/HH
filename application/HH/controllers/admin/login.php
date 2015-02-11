@@ -12,7 +12,7 @@ class Login extends CI_Controller {
         $this->load->library('session');
 
         // verify login status
-        if ($this->session->userdata('logged_in')) redirect('/admin/place');
+        if ($this->session->userdata('logged_in')) redirect($this->data['href']['admin']['view']);
     }
 
     /* *
@@ -32,8 +32,10 @@ class Login extends CI_Controller {
             $this->config->load('password');
             if ( strcmp( $password, $this->config->item('admin_password') ) == 0 ) {
                 $this->session->set_userdata('logged_in', TRUE);
-                redirect('/admin/place');
+                redirect($this->data['href']['admin']['view']);
             }
+
+            $this->session->set_userdata('error', TRUE);
         }
 
         $this->data['title'] = 'Login';

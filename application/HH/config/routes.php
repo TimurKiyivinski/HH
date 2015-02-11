@@ -38,6 +38,7 @@
 |
 */
 $route['default_controller'] = 'mainpage';
+$route['login'] = 'admin/login';
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
