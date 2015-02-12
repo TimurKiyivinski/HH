@@ -30,7 +30,12 @@
     <input id="submit" name="submit" type="submit" class="btn btn-success" value="Upload" />
     <input type="hidden" name="place_id" id="place_id" value="<?=$place_id?>"/>
     <input type="hidden" name="category_name" id="category_name" value="<?=$category_name?>"/>
-    <p class="help-block">Please keep images under 500kB</p>
+    <hr />
+    <ul>
+    <li><h4 class="help-block">Please keep images under 900kB</p></li>
+    <li><h4 class="help-block">Image resolution must be below 960x960</p></li>
+    <li><h4 class="help-block">Images must be in jpg or png format</p></li>
+    </ul>
     </div><!-- Name -->
 </form>
 </div><!-- /.container -->
