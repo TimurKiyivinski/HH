@@ -138,7 +138,7 @@ class Place extends CI_Controller {
 
             // view updated page
             $this->load->helper('url');
-            redirect($this->data['href']['places']['details'].'/'.$place_id, 'refresh');
+            redirect($this->data['href']['admin']['details'].'/'.$place_id, 'refresh');
         }
         else
         {
