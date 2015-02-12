@@ -43,7 +43,7 @@ class Place extends CI_Controller {
 
             // view updated page
             $this->load->helper('url');
-            redirect($this->data['href']['places']['details'].'/'.$new_place_id, 'refresh');
+            redirect($this->data['href']['admin']['details'].'/'.$new_place_id, 'refresh');
         }
         else
         {
@@ -347,6 +347,74 @@ class Place extends CI_Controller {
             // return to page view
             $this->read();
         }
+    }
+    
+    /**
+     * Display the admin specific details of a place
+     *
+     * @param int , place id
+     */
+    public function details($place_id = FALSE)
+    {
+        log_msg(__CLASS__, __FUNCTION__, func_get_args());
+        // change rating if there's any post method call
+        if ($this->input->post()) {
+            if ($this->input->cookie('hh_place_'.$place_id)) {
+                $this->output->set_status_header('200');
+                return;
+            }
+
+            $this->_update_rating();
+
+            $cookie = array(
+                'name'   => 'place_'.$place_id,
+                'value'  => 'set',
+                'expire' => '2628000', // 1 month in seconds
+                'path'   => '/',
+            );
+
+            $this->input->set_cookie($cookie);
+            $this->output->set_status_header('204');
+            return;
+        }
+
+        //helpers
+        $this->load->helper('text');
+        $this->load->helper('form');
+
+        if ($place_id === FALSE)
+        {
+            show_404();
+        }
+
+        $this->load->model('place_model', 'place');
+        $this->load->model('category_model', 'category');
+        $this->load->model('photo_model', 'photo');
+
+        // get data from db
+        $this->data['place'] = $this->place->get($place_id);
+
+        if (empty($this->data['place']))
+        {
+            show_404();
+        }
+
+        $this->data['place']['photos'] = $this->photo->get_all($place_id);
+        if (! empty($this->data['place']['website']))
+        {
+            $this->data['place']['website'] = prep_url($this->data['place']['website']);
+        }
+        $this->data['photos_result'] = sizeof($this->data['place']['photos']) == 0 ? 0 : 1;
+
+        $category = $this->category->get($this->data['place']['category_id']);
+
+        // load views
+        $this->data['title'] = $category['name'];
+        $this->data['head'] = $this->load->view('templates/head', $this->data, TRUE);
+        $this->data['banner'] = $this->load->view('templates/banner', $this->data, TRUE);
+        $this->data['navbar'] = $this->load->view('admin/templates/navbar', $this->data, TRUE);
+        $this->data['js'] = $this->load->view('templates/js', $this->data, TRUE);
+        $this->load->view(url_title($category['name'], '_', TRUE).'/detail', $this->data);
     }
 }
 
