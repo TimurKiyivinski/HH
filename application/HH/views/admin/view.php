@@ -27,7 +27,7 @@
 <hr />
 <div class="panel panel-primary" id="accordion" role="tablist" aria-multiselectable="true">
 <?php foreach ($places as &$place): ?>
-<div class="list-group-item panel-body">
+<div id="place_<?=$place['id']?>" class="list-group-item panel-body">
     <div class="row">
         <div class="col-xs-3 col-sm-2 col-md-2">
         <?php if(file_exists($href['thumb'].'/'.url_title($place['name'], '_').'_thumb.png')): ?>

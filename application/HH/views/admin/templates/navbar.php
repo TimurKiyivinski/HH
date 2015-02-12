@@ -1,5 +1,5 @@
 <nav class="navbar navbar-inverse navbar-fixed-bottom">
-<a class="btn btn-success btn-lg btn-block" href="<?=site_url($href['admin']['view'])?>">
+<a class="btn btn-success btn-lg btn-block" href="<?=site_url($href['admin']['view'])?>#place_<?=$place['id']?>">
     <span class="glyphicon glyphicon-open" aria-hidden="true"></span> Continue
 </a>
     <div class="container">
