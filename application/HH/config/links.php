@@ -23,6 +23,7 @@ $config['href']['admin']['edit'] = 'admin/place/update';
 $config['href']['admin']['pop'] = 'admin/place/remove';
 $config['href']['admin']['photo'] = 'admin/place/photo';
 $config['href']['admin']['thumb'] = 'admin/place/thumbnail';
+$config['href']['admin']['details'] = 'admin/place/details';
 $config['href']['admin']['photos']['photo'] = 'admin/place/upload_photo';
 $config['href']['admin']['photos']['thumb'] = 'admin/place/upload_thumbnail';
 $config['href']['admin']['photos']['pop'] = 'admin/place/pop_photo';

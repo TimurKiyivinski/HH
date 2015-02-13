@@ -13,7 +13,12 @@
     <hr />
     <input id="submit" name="submit" type="submit" class="btn btn-success" value="Upload" />
     <input type="hidden" name="place_path" id="place_path" value="<?=url_title($place['name'], '_').'_thumb.png'?>"/>
-    <p class="help-block">Image resolution must be 128x96</p>
+    <hr />
+    <ul>
+    <li><h4 class="help-block">Please keep images under 100kB</p></li>
+    <li><h4 class="help-block">Image resolution must be 128x96</p></li>
+    <li><h4 class="help-block">Images must be in jpg or png format</p></li>
+    </ul>
     </div><!-- Name -->
 </form>
 </div><!-- /.container -->

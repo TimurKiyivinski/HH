@@ -6,20 +6,27 @@
 <body>
 <?=$banner?>
 <div class="container">
-<nav class="nav navbar-default" style="margin-bottom:5px;">
-    <div class="container-fluid">
-    <div class="navbar-collapse">
-        <ul class="nav navbar-nav">
-            <li><a class="btn btn-default navbar-btn" href="<?=site_url($href['admin']['new'])?>">+ Add place</a></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-            <li><a class="btn btn-default navbar-btn" href="<?=site_url($href['admin']['logout'])?>">Logout</a></li>
-        </ul>
-    </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-</nav>
+<div class="row">
+<div class="col-xs-12 col-md-12 place-panel-name">
+    <a class="btn btn-success btn-lg" href="<?=site_url($href['admin']['new'])?>">+ Add place</a>
+    <a class="btn btn-danger btn-lg" href="<?=site_url($href['admin']['logout'])?>">- Log Out</a>
+</div>
+</div>
+<hr />
+<?=form_open(current_url(), array('name' => 'search_form', 'method' => 'post', 'class' => 'form-horizontal', 'role' => 'form'))?>
+    <div class="input-group">
+        <input id="search" name="search" class="text form-control" value="<?=$this->input->post('search')?>" type="search" placeholder="Search...">
+        <span class="input-group-btn">
+            <button class="btn btn-primary btn-search">
+                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+            </button>
+        </span>
+    </div><!-- /.input-group -->
+</form>
+<hr />
+<div class="panel panel-primary" id="accordion" role="tablist" aria-multiselectable="true">
 <?php foreach ($places as &$place): ?>
-<div class="list-group-item panel-body">
+<div id="place_<?=$place['id']?>" class="list-group-item panel-body">
     <div class="row">
         <div class="col-xs-3 col-sm-2 col-md-2">
         <?php if(file_exists($href['thumb'].'/'.url_title($place['name'], '_').'_thumb.png')): ?>
@@ -54,6 +61,7 @@
     </div><!-- /.place-panel -->
 </div>
 <?php endforeach ?>
+</div>
 </div><!-- /.container -->
 <?=$navbar?>
 <?=$js?>

@@ -100,6 +100,21 @@ class Place_model extends CI_Model
         return $query->result_array();
     }
 
+
+    /**
+     * Query all the places
+     *
+     * @return array of associative array of data
+     */
+    public function get_all_sorted()
+    {
+        log_msg(__CLASS__, __FUNCTION__, func_get_args());
+        $this->db->from($this->table);
+        $this->db->order_by('name');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
     /**
      * Query all the places by category id
      * Used on the listing places page
